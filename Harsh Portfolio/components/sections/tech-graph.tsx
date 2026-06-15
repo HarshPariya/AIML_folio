@@ -1,0 +1,151 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Reveal } from "@/components/ui/reveal";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { techGraph } from "@/lib/data";
+
+const GROUP_COLOR: Record<string, string> = {
+  lang: "#f472b6",
+  framework: "#7c5cff",
+  ai: "#22d3ee",
+  data: "#34d399",
+  product: "#fbbf24",
+  cloud: "#60a5fa",
+};
+
+const GROUP_LABEL: Record<string, string> = {
+  lang: "Language",
+  framework: "Frameworks",
+  ai: "AI / LLMs",
+  data: "Data & Stores",
+  product: "Product",
+  cloud: "Cloud",
+};
+
+export function TechGraph() {
+  const W = 760;
+  const H = 460;
+  const [hover, setHover] = useState<string | null>(null);
+
+  // Deterministic radial layout grouped by category.
+  const positions = useMemo(() => {
+    const groups = Array.from(new Set(techGraph.nodes.map((n) => n.group)));
+    const map: Record<string, { x: number; y: number }> = {};
+    groups.forEach((g, gi) => {
+      const members = techGraph.nodes.filter((n) => n.group === g);
+      const gAngle = (Math.PI * 2 * gi) / groups.length;
+      const gx = W / 2 + Math.cos(gAngle) * 175;
+      const gy = H / 2 + Math.sin(gAngle) * 135;
+      members.forEach((m, mi) => {
+        const a = (Math.PI * 2 * mi) / members.length;
+        const spread = members.length > 1 ? 62 : 0;
+        // Round to whole pixels so SSR and client serialize identical strings
+        // (avoids a floating-point hydration mismatch).
+        map[m.id] = {
+          x: Math.round(gx + Math.cos(a) * spread),
+          y: Math.round(gy + Math.sin(a) * spread),
+        };
+      });
+    });
+    return map;
+  }, []);
+
+  const isActive = (id: string) =>
+    !hover ||
+    hover === id ||
+    techGraph.links.some(
+      ([a, b]) => (a === hover && b === id) || (b === hover && a === id)
+    );
+
+  const groups = Array.from(new Set(techGraph.nodes.map((n) => n.group)));
+
+  return (
+    <section id="tech" className="section-pad relative">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeading
+          eyebrow="Tech Stack Graph"
+          title="How my stack connects"
+          description="An interactive map of the tools I work with and how they relate — from Python and PyTorch to LLMs, vector stores, and cloud. Hover a node to trace its connections."
+        />
+
+        <Reveal className="mt-14">
+          <SpotlightCard className="p-4 sm:p-6" tilt={false}>
+            {/* legend */}
+            <div className="mb-4 flex flex-wrap gap-3">
+              {groups.map((g) => (
+                <span key={g} className="flex items-center gap-1.5 text-xs text-muted">
+                  <span
+                    className="h-2.5 w-2.5 rounded-full"
+                    style={{ background: GROUP_COLOR[g] }}
+                  />
+                  {GROUP_LABEL[g]}
+                </span>
+              ))}
+            </div>
+
+            <div className="overflow-x-auto">
+              <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[680px]">
+                {/* links */}
+                {techGraph.links.map(([a, b], i) => {
+                  const pa = positions[a];
+                  const pb = positions[b];
+                  if (!pa || !pb) return null;
+                  const active = !hover || hover === a || hover === b;
+                  return (
+                    <line
+                      key={i}
+                      x1={pa.x}
+                      y1={pa.y}
+                      x2={pb.x}
+                      y2={pb.y}
+                      stroke={active ? "rgba(124,92,255,0.45)" : "rgba(255,255,255,0.06)"}
+                      strokeWidth={active ? 1.4 : 0.8}
+                      className="transition-all duration-300"
+                    />
+                  );
+                })}
+
+                {/* nodes */}
+                {techGraph.nodes.map((n, i) => {
+                  const p = positions[n.id];
+                  const active = isActive(n.id);
+                  const color = GROUP_COLOR[n.group];
+                  return (
+                    <motion.g
+                      key={n.id}
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.03, type: "spring", stiffness: 200, damping: 18 }}
+                      onMouseEnter={() => setHover(n.id)}
+                      onMouseLeave={() => setHover(null)}
+                      style={{ cursor: "pointer", opacity: active ? 1 : 0.28, transition: "opacity 0.3s" }}
+                    >
+                      <circle cx={p.x} cy={p.y} r={hover === n.id ? 9 : 6} fill={color}>
+                        {hover === n.id && (
+                          <animate attributeName="r" values="6;9;6" dur="1.4s" repeatCount="indefinite" />
+                        )}
+                      </circle>
+                      <circle cx={p.x} cy={p.y} r={14} fill={color} opacity={0.12} />
+                      <text
+                        x={p.x}
+                        y={p.y - 16}
+                        textAnchor="middle"
+                        className="fill-[var(--color-fg)] text-[11px] font-medium"
+                      >
+                        {n.id}
+                      </text>
+                    </motion.g>
+                  );
+                })}
+              </svg>
+            </div>
+          </SpotlightCard>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
