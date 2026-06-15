@@ -38,9 +38,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, href, external, children, ...props }, ref) => {
     const classes = cn(buttonVariants({ variant, size }), className);
     if (href) {
+      const isHash = href.startsWith("#");
       const linkProps = external
-        ? { target: "_blank", rel: "noopener noreferrer" }
+        ? { target: "_blank" as const, rel: "noopener noreferrer" }
         : {};
+      // Use plain <a> for hash links (Lenis smooth scroll) and external links
+      if (isHash || external) {
+        return (
+          <a href={href} className={classes} onClick={props.onClick as any} {...linkProps}>
+            {children}
+          </a>
+        );
+      }
       return (
         <Link href={href} className={classes} onClick={props.onClick as any} {...linkProps}>
           {children}

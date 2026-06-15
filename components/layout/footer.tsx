@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+
 import { Github, Linkedin, Mail, Twitter, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { navItems } from "@/lib/data";
@@ -19,9 +19,9 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-16">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home">
+            <a href="/" className="inline-flex" aria-label="Harsh Pariya — home">
               <Logo markSize={38} />
-            </Link>
+            </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               Aspiring AI/ML Engineer building intelligent systems — from research
               experiments to production systems. Open to internships & research roles.
@@ -47,12 +47,12 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <Link
+                  <a
                     href={item.href}
                     className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -90,23 +90,36 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Massive Watermark Text - Edge to Edge */}
-      <div className="pointer-events-none w-full select-none overflow-hidden pb-0">
-        <div className="flex w-full justify-center">
-          <span
-            className="whitespace-nowrap text-[20vw] font-black uppercase leading-[0.85] tracking-tighter sm:text-[18vw] md:text-[16vw]"
-            style={{
-              fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif",
-              background: "linear-gradient(180deg, rgba(124,92,255,0.15) 0%, rgba(34,211,238,0.08) 50%, transparent 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              WebkitTextStroke: "1px rgba(124,92,255,0.12)",
-            }}
+      {/* Massive Watermark Text - Edge to Edge, always fits */}
+      <div className="pointer-events-none w-full select-none overflow-hidden">
+        <svg
+          viewBox="0 0 1000 120"
+          preserveAspectRatio="xMidYMid meet"
+          className="w-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="watermark-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="rgba(124,92,255,0.18)" />
+              <stop offset="60%" stopColor="rgba(34,211,238,0.10)" />
+              <stop offset="100%" stopColor="rgba(124,92,255,0.03)" />
+            </linearGradient>
+          </defs>
+          <text
+            x="500"
+            y="95"
+            textAnchor="middle"
+            fill="url(#watermark-grad)"
+            stroke="rgba(124,92,255,0.08)"
+            strokeWidth="0.5"
+            fontFamily="Inter, 'Segoe UI', system-ui, sans-serif"
+            fontWeight="900"
+            fontSize="140"
+            letterSpacing="-6"
           >
-            Harsh Pariya
-          </span>
-        </div>
+            HARSH PARIYA
+          </text>
+        </svg>
       </div>
     </footer>
   );

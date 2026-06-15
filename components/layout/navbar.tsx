@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 import { navItems } from "@/lib/data";
@@ -41,19 +40,19 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         )}
       >
-        <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
+        <a href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
           <Logo markSize={28} />
-        </Link>
+        </a>
 
         <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
-            <Link
+            <a
               key={item.href}
               href={item.href}
               className="rounded-full px-3.5 py-2 text-sm text-muted transition-colors hover:bg-white/[0.06] hover:text-fg"
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -96,13 +95,13 @@ export function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
                 >
-                  <Link
+                  <a
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="block border-b border-white/5 py-4 text-2xl font-medium text-fg"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </motion.div>
               ))}
             </div>
