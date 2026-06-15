@@ -18,6 +18,7 @@ const buttonVariants = cva(
         glass: "glass text-fg hover:bg-white/[0.08]",
       },
       size: {
+        xs: "h-7 px-3 text-xs",
         sm: "h-9 px-4",
         md: "h-11 px-6",
         lg: "h-12 px-7 text-[0.95rem]",
