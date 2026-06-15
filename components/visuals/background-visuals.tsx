@@ -1,7 +1,9 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { NeuralNetwork } from "@/components/visuals/neural-network";
+
+const NeuralNetwork = dynamic(() => import("@/components/visuals/neural-network").then(mod => mod.NeuralNetwork), { ssr: false });
 
 export function BackgroundVisuals() {
   const pathname = usePathname();

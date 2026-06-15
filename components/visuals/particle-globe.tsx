@@ -65,6 +65,7 @@ function InnerCore() {
 export default function ParticleGlobe() {
   const [particleCount, setParticleCount] = useState(2600);
   const [dpr, setDpr] = useState<[number, number]>([1, 1.6]);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
     // Detect device capabilities and screen size for optimization
@@ -75,13 +76,22 @@ export default function ParticleGlobe() {
         : false;
 
     if (isMobile) {
-      setParticleCount(isLowEndDevice ? 800 : 1200);
+      setParticleCount(isLowEndDevice ? 600 : 1000);
       setDpr([1, 1.2]);
     } else if (isLowEndDevice) {
-      setParticleCount(1600);
+      setParticleCount(1200);
       setDpr([1, 1.4]);
     }
+
+    // Delay mounting heavy WebGL to prevent blocking initial page load
+    const timeout = setTimeout(() => {
+      setShouldRender(true);
+    }, isMobile ? 800 : 100);
+
+    return () => clearTimeout(timeout);
   }, []);
+
+  if (!shouldRender) return null;
 
   return (
     <Canvas

@@ -1,13 +1,15 @@
+import dynamic from "next/dynamic";
 import { AmbientBackground } from "@/components/ui/backgrounds";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
-import { Skills } from "@/components/sections/skills";
-import { Projects } from "@/components/sections/projects";
-import { TechGraph } from "@/components/sections/tech-graph";
-import { Certifications } from "@/components/sections/certifications";
-import { OpenSource } from "@/components/sections/opensource";
-import { Testimonials } from "@/components/sections/testimonials";
-import { Contact } from "@/components/sections/contact";
+
+const Skills = dynamic(() => import("@/components/sections/skills").then(mod => mod.Skills));
+const Projects = dynamic(() => import("@/components/sections/projects").then(mod => mod.Projects));
+const TechGraph = dynamic(() => import("@/components/sections/tech-graph").then(mod => mod.TechGraph));
+const Certifications = dynamic(() => import("@/components/sections/certifications").then(mod => mod.Certifications));
+const OpenSource = dynamic(() => import("@/components/sections/opensource").then(mod => mod.OpenSource));
+const Testimonials = dynamic(() => import("@/components/sections/testimonials").then(mod => mod.Testimonials));
+const Contact = dynamic(() => import("@/components/sections/contact").then(mod => mod.Contact));
 
 export default function Home() {
   return (
