@@ -26,8 +26,8 @@ const GROUP_LABEL: Record<string, string> = {
 };
 
 export function TechGraph() {
-  const W = 760;
-  const H = 460;
+  const W = 1000;
+  const H = 600;
   const [hover, setHover] = useState<string | null>(null);
 
   // Deterministic radial layout grouped by category.
@@ -37,11 +37,11 @@ export function TechGraph() {
     groups.forEach((g, gi) => {
       const members = techGraph.nodes.filter((n) => n.group === g);
       const gAngle = (Math.PI * 2 * gi) / groups.length;
-      const gx = W / 2 + Math.cos(gAngle) * 175;
-      const gy = H / 2 + Math.sin(gAngle) * 135;
+      const gx = W / 2 + Math.cos(gAngle) * 250;
+      const gy = H / 2 + Math.sin(gAngle) * 180;
       members.forEach((m, mi) => {
         const a = (Math.PI * 2 * mi) / members.length;
-        const spread = members.length > 1 ? 62 : 0;
+        const spread = members.length > 1 ? 85 : 0;
         // Round to whole pixels so SSR and client serialize identical strings
         // (avoids a floating-point hydration mismatch).
         map[m.id] = {
@@ -88,7 +88,7 @@ export function TechGraph() {
 
             {/* Scrollable on mobile, full width on desktop */}
             <div className="-mx-1 overflow-x-auto pb-2 sm:mx-0 sm:overflow-visible sm:pb-0">
-              <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[520px] sm:min-w-0">
+              <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[800px] lg:min-w-0">
                 {/* links */}
                 {techGraph.links.map(([a, b], i) => {
                   const pa = positions[a];
