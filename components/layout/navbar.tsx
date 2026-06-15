@@ -42,7 +42,7 @@ export function Navbar() {
         )}
       >
         <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
-          <Logo markSize={24} />
+          <Logo markSize={28} />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -50,7 +50,7 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-1 text-[0.8rem] text-muted transition-colors hover:bg-white/[0.06] hover:text-fg"
+              className="rounded-full px-3.5 py-2 text-sm text-muted transition-colors hover:bg-white/[0.06] hover:text-fg"
             >
               {item.label}
             </Link>
@@ -58,11 +58,11 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button href={siteConfig.resumeUrl} external variant="outline" size="xs" data-resume>
-            <Download className="h-3.5 w-3.5" />
+          <Button href={siteConfig.resumeUrl} external variant="outline" size="sm" data-resume>
+            <Download className="h-4 w-4" />
             Resume
           </Button>
-          <Button href="#contact" size="xs">
+          <Button href="#contact" size="sm">
             Let&apos;s talk
           </Button>
         </div>
