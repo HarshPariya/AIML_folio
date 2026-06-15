@@ -119,13 +119,10 @@ export function TechGraph() {
                       key={n.id}
                       onMouseEnter={() => setHover(n.id)}
                       onMouseLeave={() => setHover(null)}
-                      style={{ cursor: "pointer", opacity: active ? 1 : 0.28, transition: "opacity 0.3s" }}
+                      className="cursor-pointer transition-opacity duration-300"
+                      opacity={active ? 1 : 0.28}
                     >
-                      <circle cx={p.x} cy={p.y} r={hover === n.id ? 9 : 6} fill={color}>
-                        {hover === n.id && (
-                          <animate attributeName="r" values="6;9;6" dur="1.4s" repeatCount="indefinite" />
-                        )}
-                      </circle>
+                      <circle cx={p.x} cy={p.y} r={hover === n.id ? 9 : 6} fill={color} className="transition-all duration-300" />
                       <circle cx={p.x} cy={p.y} r={14} fill={color} opacity={0.12} />
                       <text
                         x={p.x}
@@ -133,6 +130,7 @@ export function TechGraph() {
                         textAnchor="middle"
                         fill="#e9ecf5"
                         className="text-[10px] font-medium sm:text-[11px]"
+                        pointerEvents="none"
                       >
                         {n.id}
                       </text>
