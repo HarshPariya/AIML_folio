@@ -120,9 +120,9 @@ export function About() {
             </h3>
           </Reveal>
 
-          <div className="relative pl-6 sm:pl-0">
+          <div className="relative pl-8 sm:pl-0">
             {/* vertical line */}
-            <div className="absolute left-[7px] top-2 h-full w-px bg-gradient-to-b from-brand/60 via-white/10 to-transparent sm:left-1/2" />
+            <div className="absolute left-[15px] top-2 h-full w-[2px] bg-gradient-to-b from-brand/80 via-brand/30 to-transparent sm:left-1/2 sm:-translate-x-[1px]" />
 
             <div className="space-y-8 sm:space-y-10">
               {journey.map((item, i) => (
@@ -142,7 +142,7 @@ export function About() {
                     }`}
                   >
                     {/* node */}
-                    <span className="absolute -left-[1px] top-4 grid h-4 w-4 place-items-center rounded-full bg-brand shadow-[0_0_0_4px] shadow-brand/20 sm:left-1/2 sm:-translate-x-1/2">
+                    <span className="absolute -left-6 top-4 grid h-4 w-4 place-items-center rounded-full bg-brand shadow-[0_0_0_4px] shadow-brand/20 sm:left-1/2 sm:-translate-x-1/2">
                       <span className="h-1.5 w-1.5 rounded-full bg-white" />
                     </span>
                     <SpotlightCard className={`p-5 text-left border border-white/10 ${i % 2 === 0 ? "sm:text-right" : ""}`} tilt={false}>
