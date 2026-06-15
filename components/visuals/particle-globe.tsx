@@ -70,7 +70,9 @@ export default function ParticleGlobe() {
     // Detect device capabilities and screen size for optimization
     const isMobile = window.innerWidth < 768;
     const isLowEndDevice =
-      navigator.deviceMemory ? navigator.deviceMemory <= 4 : false; 
+      typeof navigator !== "undefined" && (navigator as any).deviceMemory
+        ? (navigator as any).deviceMemory <= 4
+        : false;
 
     if (isMobile) {
       setParticleCount(isLowEndDevice ? 800 : 1200);

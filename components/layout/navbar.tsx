@@ -29,20 +29,20 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-2">
       <motion.nav
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
         className={cn(
-          "relative z-[60] flex w-full max-w-5xl items-center justify-between rounded-full px-3 py-2 transition-all duration-300",
+          "relative z-[60] flex w-full max-w-5xl items-center justify-between rounded-full px-3 py-1.5 transition-all duration-300",
           scrolled
             ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
             : "border border-transparent bg-transparent"
         )}
       >
         <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
-          <Logo markSize={32} />
+          <Logo markSize={28} />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
