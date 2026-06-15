@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -41,6 +42,8 @@ export function TechGraph() {
       members.forEach((m, mi) => {
         const a = (Math.PI * 2 * mi) / members.length;
         const spread = members.length > 1 ? 85 : 0;
+        // Round to whole pixels so SSR and client serialize identical strings
+        // (avoids a floating-point hydration mismatch).
         map[m.id] = {
           x: Math.round(gx + Math.cos(a) * spread),
           y: Math.round(gy + Math.sin(a) * spread),
@@ -75,126 +78,74 @@ export function TechGraph() {
               {groups.map((g) => (
                 <span key={g} className="flex items-center gap-1 text-[0.65rem] text-muted sm:gap-1.5 sm:text-xs">
                   <span
-                    className="inline-block h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5"
-                    style={{ backgroundColor: GROUP_COLOR[g] }}
+                    className="h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5"
+                    style={{ background: GROUP_COLOR[g] }}
                   />
                   {GROUP_LABEL[g]}
                 </span>
               ))}
             </div>
 
-            {/* Graph: SVG lines + HTML nodes overlay */}
+            {/* Scrollable on mobile, full width on desktop */}
             <div className="-mx-1 overflow-x-auto pb-2 sm:mx-0 sm:overflow-visible sm:pb-0">
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  minWidth: 800,
-                  aspectRatio: `${W} / ${H}`,
-                }}
+              <svg
+                viewBox={`0 0 ${W} ${H}`}
+                className="h-auto w-full min-w-[800px] lg:min-w-0"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                {/* SVG layer: only the connecting lines */}
-                <svg
-                  viewBox={`0 0 ${W} ${H}`}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {techGraph.links.map(([a, b], i) => {
-                    const pa = positions[a];
-                    const pb = positions[b];
-                    if (!pa || !pb) return null;
-                    const active = !hover || hover === a || hover === b;
-                    return (
-                      <line
-                        key={i}
-                        x1={pa.x}
-                        y1={pa.y}
-                        x2={pb.x}
-                        y2={pb.y}
-                        stroke={active ? "rgba(124,92,255,0.45)" : "rgba(255,255,255,0.06)"}
-                        strokeWidth={active ? 1.4 : 0.8}
-                      />
-                    );
-                  })}
-                </svg>
+                {/* links */}
+                {techGraph.links.map(([a, b], i) => {
+                  const pa = positions[a];
+                  const pb = positions[b];
+                  if (!pa || !pb) return null;
+                  const active = !hover || hover === a || hover === b;
+                  return (
+                    <line
+                      key={i}
+                      x1={pa.x}
+                      y1={pa.y}
+                      x2={pb.x}
+                      y2={pb.y}
+                      stroke={active ? "rgba(124,92,255,0.45)" : "rgba(255,255,255,0.06)"}
+                      strokeWidth={active ? 1.4 : 0.8}
+                    />
+                  );
+                })}
 
-                {/* HTML layer: nodes rendered as absolutely positioned divs */}
+                {/* nodes */}
                 {techGraph.nodes.map((n) => {
                   const p = positions[n.id];
                   const active = isActive(n.id);
                   const color = GROUP_COLOR[n.group];
-                  // Convert from viewBox coords to percentages
-                  const leftPct = (p.x / W) * 100;
-                  const topPct = (p.y / H) * 100;
-
                   return (
-                    <div
+                    <g
                       key={n.id}
                       onMouseEnter={() => setHover(n.id)}
                       onMouseLeave={() => setHover(null)}
-                      onTouchStart={() => setHover(n.id)}
-                      style={{
-                        position: "absolute",
-                        left: `${leftPct}%`,
-                        top: `${topPct}%`,
-                        transform: "translate(-50%, -50%)",
-                        opacity: active ? 1 : 0.28,
-                        cursor: "pointer",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        zIndex: hover === n.id ? 10 : 1,
-                      }}
+                      style={{ cursor: "pointer" }}
+                      opacity={active ? 1 : 0.28}
                     >
-                      {/* Label */}
-                      <span
-                        style={{
-                          color: "#e9ecf5",
-                          fontSize: 11,
-                          fontWeight: 500,
-                          fontFamily: "Inter, system-ui, sans-serif",
-                          whiteSpace: "nowrap",
-                          marginBottom: 4,
-                          textShadow: "0 1px 4px rgba(0,0,0,0.7)",
-                        }}
+                      {/* glow ring */}
+                      <circle cx={p.x} cy={p.y} r={14} fill={color} opacity={0.12} />
+                      {/* main dot */}
+                      <circle cx={p.x} cy={p.y} r={hover === n.id ? 9 : 6} fill={color} />
+                      {/* label */}
+                      <text
+                        x={p.x}
+                        y={p.y - 16}
+                        textAnchor="middle"
+                        fill="#e9ecf5"
+                        fontSize="11"
+                        fontWeight="500"
+                        fontFamily="Inter, system-ui, sans-serif"
+                        style={{ pointerEvents: "none" }}
                       >
                         {n.id}
-                      </span>
-                      {/* Glow ring */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "50%",
-                          left: "50%",
-                          transform: "translate(-50%, -20%)",
-                          width: 28,
-                          height: 28,
-                          borderRadius: "50%",
-                          backgroundColor: color,
-                          opacity: 0.15,
-                        }}
-                      />
-                      {/* Dot */}
-                      <div
-                        style={{
-                          width: hover === n.id ? 16 : 12,
-                          height: hover === n.id ? 16 : 12,
-                          borderRadius: "50%",
-                          backgroundColor: color,
-                          boxShadow: `0 0 8px ${color}`,
-                          position: "relative",
-                          zIndex: 2,
-                        }}
-                      />
-                    </div>
+                      </text>
+                    </g>
                   );
                 })}
-              </div>
+              </svg>
             </div>
 
             {/* Mobile scroll hint */}
