@@ -77,26 +77,26 @@ export const journey = [
     description:
       "Began my CS degree with a focus on DSA, statistics, and databases — and started building AI/ML projects on the side.",
   },
+    {
+    year: "2025",
+    title: "Development Intern Offer",
+    org: "Codveda Technologies",
+    description:
+      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into production systems.",
+  },
   {
-    year: "2024",
+    year: "2026",
     title: "Fell in love with Machine Learning",
     org: "Self-directed learning",
     description:
       "Went deep on the ML foundations: regression, classification, clustering, and ensemble models with Scikit-Learn, NumPy, and Pandas.",
   },
   {
-    year: "2025",
+    year: "2026",
     title: "Moved into Deep Learning & Neural Networks",
     org: "TensorFlow · PyTorch",
     description:
       "Built and trained neural networks and CNNs, learning model training, evaluation, and the engineering behind real ML systems.",
-  },
-  {
-    year: "2025",
-    title: "Development Intern Offer",
-    org: "Codveda Technologies",
-    description:
-      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into production systems.",
   },
   {
     year: "2026",
@@ -690,22 +690,15 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "Harsh combines genuine ML curiosity with strong engineering instincts. He doesn't stop at a notebook — he ships working products.",
-    name: "Mentor / Reviewer",
-    title: "Add a real recommendation",
+    name: "Mentor",
+    title: "Dr.Pawan Shah",
     initials: "MR",
-  },
-  {
-    quote:
-      "Consistent, self-driven, and fast to learn. Harsh takes ownership of projects end-to-end and is reliable under deadlines.",
-    name: "Peer / Collaborator",
-    title: "Add a real recommendation",
-    initials: "PC",
   },
   {
     quote:
       "Strong fundamentals in Python and ML, paired with a real product sense. Exactly the kind of intern who levels up a team quickly.",
     name: "Hackathon Teammate",
-    title: "Add a real recommendation",
+    title: "Anmol Sinha",
     initials: "HT",
   },
 ];

@@ -85,8 +85,8 @@ export function personJsonLd() {
     sameAs: [
       siteConfig.links.github,
       siteConfig.links.linkedin,
-      siteConfig.links.kaggle,
-      siteConfig.links.huggingface,
+      siteConfig.links.twitter,
+      siteConfig.links.instagram,
     ],
   };
 }
