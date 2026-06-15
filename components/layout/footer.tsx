@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { navItems } from "@/lib/data";
 import { Logo } from "@/components/ui/logo";
+import { handleSmoothScroll } from "@/lib/utils";
 
 const socials = [
   { icon: Github, href: siteConfig.links.github, label: "GitHub" },
@@ -17,7 +20,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-16">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home">
+            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home" onClick={(e) => handleSmoothScroll(e, "/")}>
               <Logo markSize={38} />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
@@ -47,6 +50,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    onClick={(e) => handleSmoothScroll(e, item.href)}
                     className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {item.label}

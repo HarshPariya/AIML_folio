@@ -17,3 +17,20 @@ export function readingTime(content: string) {
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 220));
 }
+
+/** Smooth scroll handler for anchor links and "to top" jumps. */
+export function handleSmoothScroll(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (href === "/") {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  
+  if (href.startsWith("#")) {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}
