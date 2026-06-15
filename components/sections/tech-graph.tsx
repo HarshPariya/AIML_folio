@@ -131,7 +131,8 @@ export function TechGraph() {
                         x={p.x}
                         y={p.y - 16}
                         textAnchor="middle"
-                        className="fill-[var(--color-fg)] text-[10px] font-medium sm:text-[11px]"
+                        fill="#e9ecf5"
+                        className="text-[10px] font-medium sm:text-[11px]"
                       >
                         {n.id}
                       </text>
