@@ -88,7 +88,11 @@ export function TechGraph() {
 
             {/* Scrollable on mobile, full width on desktop */}
             <div className="-mx-1 overflow-x-auto pb-2 sm:mx-0 sm:overflow-visible sm:pb-0">
-              <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[800px] lg:min-w-0">
+              <svg
+                viewBox={`0 0 ${W} ${H}`}
+                className="h-auto w-full min-w-[800px] lg:min-w-0"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 {/* links */}
                 {techGraph.links.map(([a, b], i) => {
                   const pa = positions[a];
@@ -104,13 +108,12 @@ export function TechGraph() {
                       y2={pb.y}
                       stroke={active ? "rgba(124,92,255,0.45)" : "rgba(255,255,255,0.06)"}
                       strokeWidth={active ? 1.4 : 0.8}
-                      className="transition-all duration-300"
                     />
                   );
                 })}
 
                 {/* nodes */}
-                {techGraph.nodes.map((n, i) => {
+                {techGraph.nodes.map((n) => {
                   const p = positions[n.id];
                   const active = isActive(n.id);
                   const color = GROUP_COLOR[n.group];
@@ -119,18 +122,23 @@ export function TechGraph() {
                       key={n.id}
                       onMouseEnter={() => setHover(n.id)}
                       onMouseLeave={() => setHover(null)}
-                      className="cursor-pointer transition-opacity duration-300"
+                      style={{ cursor: "pointer" }}
                       opacity={active ? 1 : 0.28}
                     >
-                      <circle cx={p.x} cy={p.y} r={hover === n.id ? 9 : 6} fill={color} className="transition-all duration-300" />
+                      {/* glow ring */}
                       <circle cx={p.x} cy={p.y} r={14} fill={color} opacity={0.12} />
+                      {/* main dot */}
+                      <circle cx={p.x} cy={p.y} r={hover === n.id ? 9 : 6} fill={color} />
+                      {/* label */}
                       <text
                         x={p.x}
                         y={p.y - 16}
                         textAnchor="middle"
                         fill="#e9ecf5"
-                        className="text-[10px] font-medium sm:text-[11px]"
-                        pointerEvents="none"
+                        fontSize="11"
+                        fontWeight="500"
+                        fontFamily="Inter, system-ui, sans-serif"
+                        style={{ pointerEvents: "none" }}
                       >
                         {n.id}
                       </text>
