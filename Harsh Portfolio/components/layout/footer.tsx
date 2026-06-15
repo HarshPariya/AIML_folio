@@ -22,7 +22,7 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               Aspiring AI/ML Engineer building intelligent systems — from research
-              experiments to shipped products. Open to internships & research roles.
+              experiments to production systems. Open to internships & research roles.
             </p>
             <div className="mt-6 flex gap-2">
               {socials.map((s) => (

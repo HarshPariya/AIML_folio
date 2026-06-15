@@ -10,10 +10,10 @@ export function Certifications() {
         <SectionHeading
           eyebrow="Certifications"
           title="Always learning, always verifying"
-          description="Workshops and specializations that sharpen my AI/ML and cloud foundations — each one verifiable."
+          description="Workshops and trainings from my LinkedIn profile — each one verifiable with a direct link."
         />
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:mx-auto lg:max-w-3xl">
           {certifications.map((cert, i) => (
             <Reveal key={cert.title} delay={i * 0.07}>
               <a

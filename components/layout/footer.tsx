@@ -14,15 +14,15 @@ const socials = [
 export function Footer() {
   return (
     <footer className="relative mt-20 border-t border-white/10">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-16">
+        <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home">
               <Logo markSize={38} />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               Aspiring AI/ML Engineer building intelligent systems — from research
-              experiments to shipped products. Open to internships & research roles.
+              experiments to production systems. Open to internships & research roles.
             </p>
             <div className="mt-6 flex gap-2">
               {socials.map((s) => (
@@ -79,13 +79,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-faint sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-[0.65rem] text-faint sm:mt-14 sm:flex-row sm:gap-4 sm:pt-8 sm:text-xs">
           <p>© {2026} Harsh Pariya. Built with Next.js, Tailwind & Framer Motion.</p>
           <p className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
             {siteConfig.availability}
           </p>
         </div>
+      </div>
+
+      {/* Massive Watermark Text - Edge to Edge */}
+      <div className="pointer-events-none flex w-full select-none justify-center overflow-hidden pb-4 sm:pb-6">
+        <span className="whitespace-nowrap text-[17vw] font-black leading-none tracking-tighter text-white/[0.03] md:text-[15vw]">
+          Harsh Pariya
+        </span>
       </div>
     </footer>
   );

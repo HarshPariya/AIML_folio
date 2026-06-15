@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -78,11 +79,7 @@ export default async function CaseStudyPage({
             <span className="rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-medium text-brand-2">
               {project.category}
             </span>
-            {project.real && (
-              <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
-                Shipped product
-              </span>
-            )}
+
           </div>
           <h1 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">
             {project.title}
@@ -105,12 +102,25 @@ export default async function CaseStudyPage({
           </div>
         </header>
 
-        <ProjectPoster
-          gradient={project.gradient}
-          category={project.category}
-          seed={index + 1}
-          className="mt-8 h-56 rounded-2xl border border-white/10 sm:h-72"
-        />
+        <div className="relative mt-8 h-56 overflow-hidden rounded-2xl border border-white/10 sm:h-72">
+          {/\.(png|jpe?g|webp|avif)$/i.test(project.image) ? (
+            <Image
+              src={project.image}
+              alt={`${project.title} preview`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 896px"
+              priority
+            />
+          ) : (
+            <ProjectPoster
+              gradient={project.gradient}
+              category={project.category}
+              seed={index + 1}
+              className="h-full"
+            />
+          )}
+        </div>
 
         {/* tech + headline metrics */}
         <div className="mt-8 grid gap-6 sm:grid-cols-[1.4fr_1fr]">

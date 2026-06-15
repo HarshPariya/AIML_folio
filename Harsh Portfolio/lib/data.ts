@@ -101,7 +101,7 @@ export const journey = [
     title: "Development Intern Offer",
     org: "Codveda Technologies",
     description:
-      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into shipped products.",
+      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into production systems.",
   },
   {
     year: "2026",
@@ -181,6 +181,29 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
+export interface Language {
+  name: string;
+  proficiency: string;
+}
+
+export const languages: Language[] = [
+  { name: "English", proficiency: "Professional" },
+  { name: "Hindi", proficiency: "Native" },
+  { name: "Gujarati", proficiency: "Native" },
+];
+
+export interface SoftSkill {
+  name: string;
+}
+
+export const softSkills: SoftSkill[] = [
+  { name: "Problem Solving" },
+  { name: "Analytical Thinking" },
+  { name: "Continuous Learning" },
+  { name: "Team Collaboration" },
+  { name: "Project Ownership" },
+];
+
 /** Aggregated radar chart axes (0–100). */
 export const radarSkills = [
   { axis: "ML", value: 88 },
@@ -199,38 +222,59 @@ export const radarSkills = [
 export const techGraph = {
   nodes: [
     { id: "Python", group: "lang" },
-    { id: "PyTorch", group: "framework" },
     { id: "TensorFlow", group: "framework" },
     { id: "Scikit-Learn", group: "framework" },
-    { id: "Hugging Face", group: "framework" },
-    { id: "LangChain", group: "framework" },
-    { id: "OpenCV", group: "framework" },
-    { id: "LLMs", group: "ai" },
-    { id: "RAG", group: "ai" },
-    { id: "Vector DB", group: "data" },
-    { id: "MongoDB", group: "data" },
+    { id: "PyTorch", group: "framework" },
+    { id: "NumPy", group: "framework" },
+    { id: "Pandas", group: "framework" },
+    { id: "ML APIs", group: "framework" },
+    { id: "Model Integration", group: "framework" },
+    { id: "Feature Engineering", group: "framework" },
+    { id: "Data Preprocessing", group: "data" },
+    { id: "Classification", group: "data" },
+    { id: "Regression", group: "ai" },
+    { id: "Ensemble Models", group: "ai" },
+    { id: "Clustering", group: "data" },
+    { id: "Neural Networks", group: "ai" },
+    { id: "React", group: "product" },
     { id: "Next.js", group: "product" },
     { id: "TypeScript", group: "product" },
+    { id: "Node.js", group: "product" },
+    { id: "REST APIs", group: "product" },
+    { id: "MongoDB", group: "data" },
+    { id: "Git", group: "cloud" },
     { id: "Docker", group: "cloud" },
     { id: "AWS", group: "cloud" },
   ],
   links: [
-    ["Python", "PyTorch"],
     ["Python", "TensorFlow"],
     ["Python", "Scikit-Learn"],
-    ["Python", "OpenCV"],
-    ["PyTorch", "LLMs"],
-    ["Hugging Face", "LLMs"],
-    ["LangChain", "LLMs"],
-    ["LangChain", "RAG"],
-    ["RAG", "Vector DB"],
-    ["LLMs", "RAG"],
-    ["Next.js", "TypeScript"],
-    ["Next.js", "LLMs"],
-    ["MongoDB", "Next.js"],
+    ["Python", "PyTorch"],
+    ["Python", "NumPy"],
+    ["Python", "Pandas"],
+    ["NumPy", "Feature Engineering"],
+    ["Pandas", "Data Preprocessing"],
+    ["Data Preprocessing", "Classification"],
+    ["Data Preprocessing", "Clustering"],
+    ["PyTorch", "Neural Networks"],
+    ["TensorFlow", "Neural Networks"],
+    ["Scikit-Learn", "Classification"],
+    ["Scikit-Learn", "Regression"],
+    ["Scikit-Learn", "Ensemble Models"],
+    ["ML APIs", "Model Integration"],
+    ["Feature Engineering", "Classification"],
+    ["Feature Engineering", "Regression"],
+    ["Neural Networks", "Model Integration"],
+    ["Model Integration", "REST APIs"],
+    ["React", "Next.js"],
+    ["React", "TypeScript"],
+    ["Next.js", "Node.js"],
+    ["Node.js", "REST APIs"],
+    ["REST APIs", "MongoDB"],
+    ["MongoDB", "React"],
     ["Docker", "AWS"],
-    ["AWS", "LLMs"],
-    ["TensorFlow", "OpenCV"],
+    ["Docker", "Node.js"],
+    ["Git", "Docker"],
   ] as [string, string][],
 };
 
@@ -266,7 +310,7 @@ export interface Project {
   links: { github?: string; demo?: string };
   metrics: ProjectMetric[];
   featured: boolean;
-  real?: boolean; // true = shipped project from résumé
+  real?: boolean; // true = real project from résumé
   caseStudy: CaseStudy;
 }
 
@@ -720,9 +764,8 @@ export const contactChannels = [
   { label: "Email", value: "harshpariya195@gmail.com", href: "mailto:harshpariya195@gmail.com", icon: "Mail" },
   { label: "LinkedIn", value: "harsh-pariya", href: "https://linkedin.com/in/harsh-pariya", icon: "Linkedin" },
   { label: "GitHub", value: "HarshPariya", href: "https://github.com/HarshPariya", icon: "Github" },
-  { label: "Kaggle", value: "Add your handle", href: "https://kaggle.com/", icon: "Trophy" },
-  { label: "Hugging Face", value: "Add your handle", href: "https://huggingface.co/", icon: "Boxes" },
-  { label: "X / Twitter", value: "Add your handle", href: "https://x.com/", icon: "Twitter" },
+  { label: "X / Twitter", value: "harshpariya_01", href: "https://x.com/harshpariya_01", icon: "Twitter" },
+  { label: "Instagram", value: "_harshpariya_01", href: "https://instagram.com/_harshpariya_01", icon: "Instagram" },
 ];
 
 /* re-export icon map so client components can resolve string icon names */

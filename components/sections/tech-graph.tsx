@@ -64,21 +64,21 @@ export function TechGraph() {
 
   return (
     <section id="tech" className="section-pad relative">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <SectionHeading
           eyebrow="Tech Stack Graph"
           title="How my stack connects"
           description="An interactive map of the tools I work with and how they relate — from Python and PyTorch to LLMs, vector stores, and cloud. Hover a node to trace its connections."
         />
 
-        <Reveal className="mt-14">
-          <SpotlightCard className="p-4 sm:p-6" tilt={false}>
+        <Reveal className="mt-10 sm:mt-14">
+          <SpotlightCard className="p-3 sm:p-4 md:p-6" tilt={false}>
             {/* legend */}
-            <div className="mb-4 flex flex-wrap gap-3">
+            <div className="mb-3 flex flex-wrap gap-2 sm:mb-4 sm:gap-3">
               {groups.map((g) => (
-                <span key={g} className="flex items-center gap-1.5 text-xs text-muted">
+                <span key={g} className="flex items-center gap-1 text-[0.65rem] text-muted sm:gap-1.5 sm:text-xs">
                   <span
-                    className="h-2.5 w-2.5 rounded-full"
+                    className="h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5"
                     style={{ background: GROUP_COLOR[g] }}
                   />
                   {GROUP_LABEL[g]}
@@ -86,8 +86,9 @@ export function TechGraph() {
               ))}
             </div>
 
-            <div className="overflow-x-auto">
-              <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[680px]">
+            {/* Scrollable on mobile, full width on desktop */}
+            <div className="-mx-1 overflow-x-auto pb-2 sm:mx-0 sm:overflow-visible sm:pb-0">
+              <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[520px] sm:min-w-0">
                 {/* links */}
                 {techGraph.links.map(([a, b], i) => {
                   const pa = positions[a];
@@ -134,7 +135,7 @@ export function TechGraph() {
                         x={p.x}
                         y={p.y - 16}
                         textAnchor="middle"
-                        className="fill-[var(--color-fg)] text-[11px] font-medium"
+                        className="fill-[var(--color-fg)] text-[10px] font-medium sm:text-[11px]"
                       >
                         {n.id}
                       </text>
@@ -143,6 +144,11 @@ export function TechGraph() {
                 })}
               </svg>
             </div>
+
+            {/* Mobile scroll hint */}
+            <p className="mt-2 text-center text-[0.6rem] text-faint sm:hidden">
+              ← Scroll to explore the full graph →
+            </p>
           </SpotlightCard>
         </Reveal>
       </div>

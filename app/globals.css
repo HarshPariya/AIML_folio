@@ -68,12 +68,14 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
   body {
     background-color: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
   ::selection {
     background: color-mix(in oklab, var(--color-brand) 40%, transparent);
@@ -185,6 +187,6 @@
   }
 
   .section-pad {
-    padding-block: clamp(4.5rem, 9vw, 8rem);
+    padding-block: clamp(3rem, 9vw, 8rem);
   }
 }

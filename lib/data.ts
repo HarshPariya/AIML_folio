@@ -31,9 +31,6 @@ export const navItems = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Research", href: "#research" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -53,7 +50,6 @@ export const heroRotatingWords = [
 export const heroStats = [
   { label: "Projects Built", value: "15+" },
   { label: "GitHub Contributions", value: "1.5K+" },
-  { label: "DSA Problems", value: "50+" },
   { label: "CGPA", value: "8.85" },
 ];
 
@@ -70,7 +66,6 @@ export const aboutParagraphs = [
 export const counters = [
   { label: "Projects Completed", value: 15, suffix: "+", icon: "Boxes" },
   { label: "GitHub Contributions", value: 1500, suffix: "+", icon: "GitBranch" },
-  { label: "DSA Problems Solved", value: 50, suffix: "+", icon: "Code2" },
   { label: "Certifications", value: 2, suffix: "", icon: "Sparkles" },
 ];
 
@@ -101,7 +96,7 @@ export const journey = [
     title: "Development Intern Offer",
     org: "Codveda Technologies",
     description:
-      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into shipped products.",
+      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into production systems.",
   },
   {
     year: "2026",
@@ -181,6 +176,29 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
+export interface Language {
+  name: string;
+  proficiency: string;
+}
+
+export const languages: Language[] = [
+  { name: "English", proficiency: "Professional" },
+  { name: "Hindi", proficiency: "Native" },
+  { name: "Gujarati", proficiency: "Native" },
+];
+
+export interface SoftSkill {
+  name: string;
+}
+
+export const softSkills: SoftSkill[] = [
+  { name: "Problem Solving" },
+  { name: "Analytical Thinking" },
+  { name: "Continuous Learning" },
+  { name: "Team Collaboration" },
+  { name: "Project Ownership" },
+];
+
 /** Aggregated radar chart axes (0–100). */
 export const radarSkills = [
   { axis: "ML", value: 88 },
@@ -199,38 +217,59 @@ export const radarSkills = [
 export const techGraph = {
   nodes: [
     { id: "Python", group: "lang" },
-    { id: "PyTorch", group: "framework" },
     { id: "TensorFlow", group: "framework" },
     { id: "Scikit-Learn", group: "framework" },
-    { id: "Hugging Face", group: "framework" },
-    { id: "LangChain", group: "framework" },
-    { id: "OpenCV", group: "framework" },
-    { id: "LLMs", group: "ai" },
-    { id: "RAG", group: "ai" },
-    { id: "Vector DB", group: "data" },
-    { id: "MongoDB", group: "data" },
+    { id: "PyTorch", group: "framework" },
+    { id: "NumPy", group: "framework" },
+    { id: "Pandas", group: "framework" },
+    { id: "ML APIs", group: "framework" },
+    { id: "Model Integration", group: "framework" },
+    { id: "Feature Engineering", group: "framework" },
+    { id: "Data Preprocessing", group: "data" },
+    { id: "Classification", group: "data" },
+    { id: "Regression", group: "ai" },
+    { id: "Ensemble Models", group: "ai" },
+    { id: "Clustering", group: "data" },
+    { id: "Neural Networks", group: "ai" },
+    { id: "React", group: "product" },
     { id: "Next.js", group: "product" },
     { id: "TypeScript", group: "product" },
+    { id: "Node.js", group: "product" },
+    { id: "REST APIs", group: "product" },
+    { id: "MongoDB", group: "data" },
+    { id: "Git", group: "cloud" },
     { id: "Docker", group: "cloud" },
     { id: "AWS", group: "cloud" },
   ],
   links: [
-    ["Python", "PyTorch"],
     ["Python", "TensorFlow"],
     ["Python", "Scikit-Learn"],
-    ["Python", "OpenCV"],
-    ["PyTorch", "LLMs"],
-    ["Hugging Face", "LLMs"],
-    ["LangChain", "LLMs"],
-    ["LangChain", "RAG"],
-    ["RAG", "Vector DB"],
-    ["LLMs", "RAG"],
-    ["Next.js", "TypeScript"],
-    ["Next.js", "LLMs"],
-    ["MongoDB", "Next.js"],
+    ["Python", "PyTorch"],
+    ["Python", "NumPy"],
+    ["Python", "Pandas"],
+    ["NumPy", "Feature Engineering"],
+    ["Pandas", "Data Preprocessing"],
+    ["Data Preprocessing", "Classification"],
+    ["Data Preprocessing", "Clustering"],
+    ["PyTorch", "Neural Networks"],
+    ["TensorFlow", "Neural Networks"],
+    ["Scikit-Learn", "Classification"],
+    ["Scikit-Learn", "Regression"],
+    ["Scikit-Learn", "Ensemble Models"],
+    ["ML APIs", "Model Integration"],
+    ["Feature Engineering", "Classification"],
+    ["Feature Engineering", "Regression"],
+    ["Neural Networks", "Model Integration"],
+    ["Model Integration", "REST APIs"],
+    ["React", "Next.js"],
+    ["React", "TypeScript"],
+    ["Next.js", "Node.js"],
+    ["Node.js", "REST APIs"],
+    ["REST APIs", "MongoDB"],
+    ["MongoDB", "React"],
     ["Docker", "AWS"],
-    ["AWS", "LLMs"],
-    ["TensorFlow", "OpenCV"],
+    ["Docker", "Node.js"],
+    ["Git", "Docker"],
   ] as [string, string][],
 };
 
@@ -266,278 +305,290 @@ export interface Project {
   links: { github?: string; demo?: string };
   metrics: ProjectMetric[];
   featured: boolean;
-  real?: boolean; // true = shipped project from résumé
+  real?: boolean; // true = real project from résumé
   caseStudy: CaseStudy;
 }
 
 export const projects: Project[] = [
   {
-    slug: "squidai-assistant",
-    title: "SquidAI — Intelligent Assistant Platform",
+    slug: "squidai",
+    title: "SquidAI",
     category: "Generative AI",
-    tagline: "Conversational AI assistant with a modern, responsive interface.",
+    tagline: "AI-powered technical assistant for code generation and debugging.",
     description:
-      "An AI-inspired assistant platform featuring a conversational interface, streaming responses, and a polished product UI. Designed to feel like a real production AI product.",
-    image: "/projects/squidai.svg",
+      "SquidAI is an AI-powered technical assistant that helps developers generate, explain, and refactor code faster. It focuses on practical use-cases like debugging help and boilerplate generation.",
+    image: "/projects/squidai.png",
     gradient: "from-violet-600/30 to-fuchsia-600/20",
-    tech: ["React", "Next.js", "TypeScript", "LLM APIs", "Responsive UI"],
-    links: { github: "https://github.com/HarshPariya", demo: "https://folioharshdev.vercel.app/" },
+    tech: ["AI", "Full Stack", "React", "Node"],
+    links: {
+      github: "https://github.com/HarshPariya/SquidAI",
+      demo: "https://squid-ai-phi.vercel.app/",
+    },
     metrics: [
-      { label: "Avg. response", value: "<1.2s" },
-      { label: "Lighthouse", value: "98" },
-      { label: "Components", value: "40+" },
+      { label: "Stack", value: "Full Stack" },
+      { label: "Focus", value: "AI Dev" },
+      { label: "Year", value: "2026" },
     ],
     featured: true,
     real: true,
     caseStudy: {
       problem:
-        "Most student AI demos feel like raw API wrappers. The goal was to build an assistant that feels like a finished product — fast, conversational, and trustworthy — to demonstrate end-to-end AI product engineering.",
+        "Developers spend significant time on boilerplate, debugging explanations, and repetitive coding tasks. SquidAI was built to provide a fast, practical AI assistant focused on real developer workflows.",
       dataset:
-        "No training dataset; the system orchestrates hosted LLM APIs with prompt templates, context management, and streaming. Conversation state is held client-side with structured message history.",
+        "No custom training dataset — the app orchestrates AI APIs with structured prompts for code generation, explanation, and refactoring tasks.",
       architecture:
-        "Next.js App Router front end → streaming API route → LLM provider. A prompt-orchestration layer manages system instructions, conversation memory windows, and graceful error/timeout handling.",
+        "React front end with a Node.js backend, routing AI requests through a prompt layer that handles code context, streaming responses, and error states.",
       modelSelection:
-        "Evaluated hosted chat models on latency vs. answer quality for short conversational turns, optimizing the prompt template and temperature for a responsive, focused assistant.",
+        "Evaluated hosted AI models for code-quality output and response latency, optimizing prompts for debugging help and boilerplate generation.",
       training:
-        "Prompt-engineering iteration loop: defined an evaluation set of representative queries, A/B-tested system prompts, and tuned context-window trimming to control cost and latency.",
+        "Iterative prompt-engineering: tested representative developer queries, refined system instructions, and tuned the UX for streaming responses.",
       evaluation: [
-        { metric: "Median latency", value: "1.2s" },
-        { metric: "Lighthouse perf", value: "98/100" },
-        { metric: "Accessibility", value: "100/100" },
+        { metric: "Use cases", value: "Debug + codegen" },
+        { metric: "Stack", value: "React + Node" },
+        { metric: "Deployment", value: "Vercel" },
       ],
       results:
-        "A production-feeling assistant with sub-second perceived responsiveness via streaming, a component system reused across the app, and a UI that holds up on mobile and desktop.",
+        "A live AI technical assistant deployed on Vercel with a polished interface for code generation, explanation, and refactoring.",
       learnings: [
-        "Streaming responses changes perceived latency far more than raw model speed.",
-        "Prompt orchestration and context trimming are where most real-world quality lives.",
-        "Treating an AI demo like a product (states, errors, empty states) is what makes it credible.",
+        "AI developer tools need tight prompt scoping to stay useful.",
+        "Streaming responses make AI assistants feel dramatically faster.",
+        "Shipping a real product UI builds more credibility than a raw API demo.",
       ],
     },
   },
   {
-    slug: "rag-knowledge-assistant",
-    title: "RAG Knowledge Assistant",
-    category: "LLM Engineering",
-    tagline: "Retrieval-Augmented Generation over a custom document corpus.",
-    description:
-      "A RAG pipeline that answers questions grounded in a private document set — chunking, embeddings, vector search, and an LLM synthesis layer with citations.",
-    image: "/projects/rag.svg",
-    gradient: "from-sky-600/30 to-cyan-500/20",
-    tech: ["Python", "LangChain", "Hugging Face", "Vector DB", "FastAPI"],
-    links: { github: "https://github.com/HarshPariya" },
-    metrics: [
-      { label: "Retrieval@5", value: "0.91" },
-      { label: "Grounded answers", value: "94%" },
-      { label: "Docs indexed", value: "1K+" },
-    ],
-    featured: true,
-    caseStudy: {
-      problem:
-        "LLMs hallucinate when asked about private or domain-specific knowledge. The goal was a system that answers strictly from a trusted corpus and cites its sources.",
-      dataset:
-        "A corpus of 1,000+ documents (PDFs / markdown) chunked into ~800-token passages with overlap, embedded into a vector store for semantic retrieval.",
-      architecture:
-        "Document loader → recursive chunking → embedding model → vector index. At query time: embed query → top-k retrieval → rerank → LLM synthesis with inline citations and a confidence gate.",
-      modelSelection:
-        "Compared open embedding models for retrieval quality and a hosted LLM for synthesis; tuned chunk size and k to balance recall against context-window cost.",
-      training:
-        "No fine-tuning — focus on retrieval quality. Built an eval set of Q/A pairs and measured retrieval hit-rate and answer groundedness while sweeping chunking and reranking strategies.",
-      evaluation: [
-        { metric: "Retrieval@5", value: "0.91" },
-        { metric: "Answer groundedness", value: "94%" },
-        { metric: "Hallucination rate", value: "↓ 70% vs. base LLM" },
-      ],
-      results:
-        "Answers became traceable to source passages, hallucinations dropped sharply, and the confidence gate let the system say 'I don't know' instead of inventing facts.",
-      learnings: [
-        "Chunking strategy and overlap matter more than the choice of LLM.",
-        "Reranking the top-k retrieval gives an outsized quality boost for low cost.",
-        "Citations + a confidence gate are what make a RAG system trustworthy.",
-      ],
-    },
-  },
-  {
-    slug: "cnn-image-classifier",
-    title: "CNN Image Classifier",
-    category: "Computer Vision",
-    tagline: "Deep CNN for multi-class image classification with transfer learning.",
-    description:
-      "A convolutional neural network trained for multi-class image classification, using transfer learning, data augmentation, and careful regularization.",
-    image: "/projects/cv.svg",
-    gradient: "from-emerald-600/30 to-teal-500/20",
-    tech: ["Python", "TensorFlow", "Keras", "OpenCV", "NumPy"],
-    links: { github: "https://github.com/HarshPariya" },
-    metrics: [
-      { label: "Accuracy", value: "94.2%" },
-      { label: "F1 (macro)", value: "0.93" },
-      { label: "Params", value: "11M" },
-    ],
-    featured: true,
-    caseStudy: {
-      problem:
-        "Train an accurate image classifier on a limited dataset without overfitting — a common real-world constraint where you can't collect millions of labels.",
-      dataset:
-        "A multi-class image dataset split 80/10/10 (train/val/test), with on-the-fly augmentation (flips, rotation, zoom, brightness) to expand effective sample size.",
-      architecture:
-        "Transfer learning from a pretrained CNN backbone (frozen early layers) + a custom classification head with dropout and batch normalization. Fine-tuned top blocks at a low learning rate.",
-      modelSelection:
-        "Compared a from-scratch CNN against transfer-learning backbones; transfer learning won decisively on the small-data regime for both accuracy and training time.",
-      training:
-        "Adam optimizer with learning-rate scheduling, early stopping on validation loss, and class-weighting to handle imbalance. Tracked train/val curves to detect overfitting.",
-      evaluation: [
-        { metric: "Test accuracy", value: "94.2%" },
-        { metric: "Macro F1", value: "0.93" },
-        { metric: "Precision / Recall", value: "0.94 / 0.92" },
-      ],
-      results:
-        "A compact, well-regularized model that generalizes to the held-out test set, with a confusion matrix showing errors concentrated in genuinely ambiguous classes.",
-      learnings: [
-        "Augmentation + transfer learning beats a bigger model on small datasets.",
-        "Validation curves tell you when to stop before the test set ever does.",
-        "Macro-F1 and the confusion matrix reveal what raw accuracy hides.",
-      ],
-    },
-  },
-  {
-    slug: "nlp-sentiment-analysis",
-    title: "NLP Sentiment Analysis Engine",
-    category: "NLP",
-    tagline: "Transformer fine-tuning for fine-grained sentiment classification.",
-    description:
-      "A sentiment-analysis model that classifies text into fine-grained sentiment classes, comparing classical ML baselines against a fine-tuned transformer.",
-    image: "/projects/nlp.svg",
-    gradient: "from-rose-600/30 to-pink-500/20",
-    tech: ["Python", "Hugging Face", "PyTorch", "Scikit-Learn", "Pandas"],
-    links: { github: "https://github.com/HarshPariya" },
-    metrics: [
-      { label: "Accuracy", value: "91.5%" },
-      { label: "F1", value: "0.91" },
-      { label: "vs. baseline", value: "+12%" },
-    ],
-    featured: false,
-    caseStudy: {
-      problem:
-        "Classify the sentiment of short, noisy text (slang, typos, emojis) with high accuracy — where bag-of-words baselines plateau.",
-      dataset:
-        "A labeled sentiment corpus, cleaned and tokenized, with a stratified split to preserve class balance across train/val/test.",
-      architecture:
-        "Two tracks: (1) TF-IDF + Logistic Regression / Linear SVM baseline; (2) a fine-tuned pretrained transformer with a classification head.",
-      modelSelection:
-        "Started with interpretable classical baselines to set a floor, then fine-tuned a transformer to capture context the bag-of-words models miss.",
-      training:
-        "Fine-tuned with a small learning rate, warmup, and weight decay; used early stopping and monitored validation F1 to avoid overfitting on the smaller dataset.",
-      evaluation: [
-        { metric: "Accuracy", value: "91.5%" },
-        { metric: "Weighted F1", value: "0.91" },
-        { metric: "Lift over baseline", value: "+12% F1" },
-      ],
-      results:
-        "The transformer captured negation and context the baselines missed, delivering a double-digit F1 improvement while remaining fast enough for batch inference.",
-      learnings: [
-        "Always ship a simple baseline first — it sets an honest bar.",
-        "Transformers shine on context (negation, sarcasm) but cost more to serve.",
-        "Clean tokenization of emojis/slang materially moves the metric.",
-      ],
-    },
-  },
-  {
-    slug: "timeseries-forecasting",
-    title: "Time-Series Forecasting System",
-    category: "Machine Learning",
-    tagline: "Multivariate forecasting with classical and deep-learning models.",
-    description:
-      "A forecasting system that predicts future values from historical signals, benchmarking gradient boosting against LSTM-based deep models.",
-    image: "/projects/timeseries.svg",
-    gradient: "from-indigo-600/30 to-blue-500/20",
-    tech: ["Python", "PyTorch", "Scikit-Learn", "Pandas", "NumPy"],
-    links: { github: "https://github.com/HarshPariya" },
-    metrics: [
-      { label: "MAPE", value: "6.4%" },
-      { label: "vs. naive", value: "−38%" },
-      { label: "Horizon", value: "30d" },
-    ],
-    featured: false,
-    caseStudy: {
-      problem:
-        "Forecast a noisy multivariate signal 30 steps ahead, beating naive and seasonal baselines in a way that's robust to regime changes.",
-      dataset:
-        "Historical multivariate time-series with engineered lag features, rolling statistics, and calendar features; split chronologically to avoid leakage.",
-      architecture:
-        "Two approaches benchmarked: gradient-boosted trees on engineered features, and an LSTM sequence model on windowed inputs with teacher forcing.",
-      modelSelection:
-        "Compared models on walk-forward validation; gradient boosting was strong and cheap, while the LSTM captured longer dependencies at higher cost.",
-      training:
-        "Walk-forward (rolling-origin) cross-validation to respect temporal order; tuned window length, learning rate, and regularization per model.",
-      evaluation: [
-        { metric: "MAPE", value: "6.4%" },
-        { metric: "RMSE vs. naive", value: "−38%" },
-        { metric: "Validation", value: "Walk-forward" },
-      ],
-      results:
-        "A forecasting pipeline that meaningfully beats naive/seasonal baselines, with feature-importance analysis explaining the main drivers of the signal.",
-      learnings: [
-        "Chronological splits and walk-forward CV are non-negotiable for time series.",
-        "Good feature engineering often beats a fancier model.",
-        "Always report lift over a naive baseline — it's the honest yardstick.",
-      ],
-    },
-  },
-  {
-    slug: "quiz-application",
-    title: "Quiz Application",
+    slug: "campus-navigation",
+    title: "Campus Navigation System",
     category: "Full-Stack",
-    tagline: "Full-stack quiz platform with dynamic scoring and persistence.",
+    tagline: "Interactive campus navigation for students and visitors.",
     description:
-      "A full-stack quiz platform with dynamic scoring, MongoDB persistence, and a modular React architecture — built to be reliable and easy to extend.",
-    image: "/projects/quiz.svg",
-    gradient: "from-amber-600/30 to-yellow-500/20",
-    tech: ["React", "Node.js", "MongoDB", "REST APIs", "Express"],
-    links: { github: "https://github.com/HarshPariya" },
+      "An interactive campus navigation system that lets students and visitors find buildings, routes, and key locations on campus using an intuitive web interface.",
+    image: "/projects/campus-navigation.png",
+    gradient: "from-sky-600/30 to-cyan-500/20",
+    tech: ["React", "TypeScript", "Maps", "Tailwind CSS", "Backend"],
+    links: {
+      github: "https://github.com/HarshPariya/Campus_Navigation_Frontend",
+      demo: "https://campus-navigation-sigma.vercel.app/",
+    },
     metrics: [
-      { label: "Modular", value: "100%" },
-      { label: "Persistence", value: "MongoDB" },
-      { label: "Scoring", value: "Dynamic" },
+      { label: "Maps", value: "Interactive" },
+      { label: "Stack", value: "React" },
+      { label: "Year", value: "2025" },
+    ],
+    featured: true,
+    real: true,
+    caseStudy: {
+      problem:
+        "New students and visitors struggle to find buildings and routes on campus. A web-based navigation tool was needed to make campus exploration intuitive without installing an app.",
+      dataset:
+        "Campus location data — building names, coordinates, and route points — structured for map rendering and search.",
+      architecture:
+        "React + TypeScript front end with map integration, search/filter UI, and a backend layer for location data and routing logic.",
+      modelSelection:
+        "Chose a map-first web architecture with React and TypeScript for type-safe UI components and responsive layout across devices.",
+      training:
+        "Built iteratively: mapped campus locations, wired search and route display, and refined the mobile-first navigation experience.",
+      evaluation: [
+        { metric: "Platform", value: "Web" },
+        { metric: "UI", value: "Mobile-first" },
+        { metric: "Deployment", value: "Vercel" },
+      ],
+      results:
+        "A deployed campus navigation app where users can find buildings, view routes, and explore key locations through a clean interface.",
+      learnings: [
+        "Map UX needs simple search and clear visual hierarchy.",
+        "TypeScript catches routing and location-state bugs early.",
+        "Campus tools must work well on phones — that's how students use them.",
+      ],
+    },
+  },
+  {
+    slug: "travelgo",
+    title: "TravelGo",
+    category: "Frontend",
+    tagline: "Responsive travel agency website with conversion-focused UI.",
+    description:
+      "TravelGo is a responsive travel agency website that showcases destinations, packages, and CTAs with a focus on clean layout and conversion-friendly UI.",
+    image: "/projects/travelgo.png",
+    gradient: "from-emerald-600/30 to-teal-500/20",
+    tech: ["React", "Landing Page", "Tailwind CSS", "Frontend"],
+    links: {
+      github: "https://github.com/HarshPariya/Travel-GO-Frontend",
+      demo: "https://travelgo-by-hp01.netlify.app/",
+    },
+    metrics: [
+      { label: "Layout", value: "Responsive" },
+      { label: "Stack", value: "React" },
+      { label: "Year", value: "2025" },
+    ],
+    featured: true,
+    real: true,
+    caseStudy: {
+      problem:
+        "Travel agency sites often feel cluttered and fail to guide users toward booking. TravelGo needed a clean, modern landing experience that highlights destinations and drives action.",
+      dataset:
+        "Static travel content — destinations, packages, pricing highlights, and CTA copy — structured for modular page sections.",
+      architecture:
+        "Single-page React application with section-based layout, reusable card components, and Tailwind CSS for responsive styling.",
+      modelSelection:
+        "React + Tailwind for fast iteration on layout, typography, and responsive breakpoints without heavy CSS overhead.",
+      training:
+        "Designed section by section: hero, destinations, packages, and CTAs — refining visual hierarchy and mobile layout at each step.",
+      evaluation: [
+        { metric: "Responsive", value: "100%" },
+        { metric: "Focus", value: "Conversion UI" },
+        { metric: "Deployment", value: "Netlify" },
+      ],
+      results:
+        "A polished travel agency website live on Netlify with destination showcases, package sections, and clear call-to-action flows.",
+      learnings: [
+        "Landing pages need one primary CTA per section.",
+        "Tailwind speeds up responsive polish significantly.",
+        "Visual hierarchy matters more than feature count on marketing sites.",
+      ],
+    },
+  },
+  {
+    slug: "quiz-app",
+    title: "Quiz App",
+    category: "Full-Stack",
+    tagline: "Interactive quiz app with scoring and mobile-first UI.",
+    description:
+      "A quiz application that lets users answer multiple choice questions with instant feedback, score tracking, and a clean mobile-first UI.",
+    image: "/projects/quiz-app.png",
+    gradient: "from-amber-600/30 to-yellow-500/20",
+    tech: ["React", "JavaScript", "Frontend"],
+    links: {
+      github: "https://github.com/HarshPariya/Quiz-App-Frontend",
+      demo: "https://quiz-app-by-harsh.netlify.app/",
+    },
+    metrics: [
+      { label: "Feedback", value: "Instant" },
+      { label: "UI", value: "Mobile" },
+      { label: "Year", value: "2024" },
     ],
     featured: false,
     real: true,
     caseStudy: {
       problem:
-        "Build a quiz platform that scores dynamically, persists results reliably, and stays easy to extend with new question types.",
+        "Quiz apps need to feel engaging and responsive — instant feedback, clear scoring, and a UI that works on phones where most users play.",
       dataset:
-        "Question bank stored in MongoDB with structured schemas for questions, options, and user attempts.",
+        "Structured question bank with multiple-choice options, correct answers, and score metadata for each quiz session.",
       architecture:
-        "React front end → REST API (Express/Node) → MongoDB. Modular component architecture separates quiz logic, scoring, and presentation.",
+        "React front end with component-based quiz flow: question display, answer selection, score tracking, and result summary.",
       modelSelection:
-        "N/A — this is a product-engineering project focused on clean architecture and reliable state management.",
+        "React with modular components to separate quiz logic, scoring, and presentation for easy extension.",
       training:
-        "N/A — emphasis on API design, data modeling, and a maintainable component hierarchy.",
+        "Built core quiz loop first, then added score tracking, instant feedback animations, and mobile layout refinements.",
       evaluation: [
+        { metric: "Feedback", value: "Instant" },
         { metric: "Architecture", value: "Modular" },
-        { metric: "Persistence", value: "Reliable" },
-        { metric: "Extensibility", value: "High" },
+        { metric: "Deployment", value: "Netlify" },
       ],
       results:
-        "A working full-stack quiz app with dynamic scoring and persistent history, structured so new question types drop in cleanly.",
+        "A live quiz app with multiple-choice questions, real-time scoring, and a clean mobile-first experience.",
       learnings: [
-        "Clean data modeling up front pays off when requirements grow.",
-        "Separating scoring logic from UI makes the system testable.",
-        "Reliable persistence is a feature users notice when it's missing.",
+        "Separating quiz state from UI makes the app easier to extend.",
+        "Instant feedback keeps users engaged through a quiz session.",
+        "Mobile-first layout is essential for interactive apps.",
+      ],
+    },
+  },
+  {
+    slug: "portfolio-nextjs",
+    title: "Portfolio (Next.js)",
+    category: "Frontend",
+    tagline: "Modern responsive portfolio with animated hero and project showcase.",
+    description:
+      "A modern, responsive portfolio website built with Next.js featuring a dark-space themed design, animated hero section, interactive project showcases, and seamless navigation.",
+    image: "/projects/portfolio-nextjs.png",
+    gradient: "from-indigo-600/30 to-blue-500/20",
+    tech: ["Next.js", "React", "Portfolio", "CSS"],
+    links: {
+      github: "https://github.com/HarshPariya/Portfolio_NextJs",
+      demo: "https://portfolio-by-harshp.netlify.app/",
+    },
+    metrics: [
+      { label: "Framework", value: "Next.js" },
+      { label: "Theme", value: "Dark" },
+      { label: "Year", value: "2025" },
+    ],
+    featured: false,
+    real: true,
+    caseStudy: {
+      problem:
+        "A developer portfolio needs to showcase projects clearly, load fast, and feel polished — not like a generic template.",
+      dataset:
+        "Project metadata, skills, and personal content structured as static data for fast page rendering.",
+      architecture:
+        "Next.js App Router with reusable section components, animated hero, project cards, and responsive navigation.",
+      modelSelection:
+        "Next.js for SEO-friendly routing, image optimization, and a component architecture that scales as projects grow.",
+      training:
+        "Designed the dark-space theme, built section by section, and iterated on animations and project showcase layout.",
+      evaluation: [
+        { metric: "Framework", value: "Next.js" },
+        { metric: "Sections", value: "Multi-page" },
+        { metric: "Deployment", value: "Netlify" },
+      ],
+      results:
+        "A deployed portfolio with animated hero, project showcase, and responsive navigation — live on Netlify.",
+      learnings: [
+        "Portfolio structure should lead with your strongest projects.",
+        "Consistent theming across sections makes the site feel premium.",
+        "Next.js image and routing tools simplify portfolio maintenance.",
+      ],
+    },
+  },
+  {
+    slug: "harsh-portfolio-v2",
+    title: "Folio Harsh Dev (v2)",
+    category: "Full-Stack",
+    tagline: "Premium developer portfolio with animations and GitHub integration.",
+    description:
+      "A premium, fully custom developer portfolio built with Next.js 16, TypeScript, and Framer Motion — featuring scroll-triggered animations, a dynamic project showcase, GitHub stats integration, and a fully responsive layout.",
+    image: "/projects/folio-harsh-dev.png",
+    gradient: "from-rose-600/30 to-pink-500/20",
+    tech: ["Next.js", "TypeScript", "Framer Motion", "Vercel"],
+    links: {
+      github: "https://github.com/HarshPariya/harsh-portfolio",
+      demo: "https://folioharshdev.vercel.app/",
+    },
+    metrics: [
+      { label: "Sections", value: "10+" },
+      { label: "Motion", value: "Framer" },
+      { label: "Year", value: "2026" },
+    ],
+    featured: false,
+    real: true,
+    caseStudy: {
+      problem:
+        "A second portfolio iteration needed to feel premium — custom design, smooth animations, live GitHub stats, and a project showcase that reflects real work.",
+      dataset:
+        "Project case studies, experience timeline, GitHub/LeetCode profile data, and tech stack content managed as structured site data.",
+      architecture:
+        "Next.js 16 + TypeScript with Framer Motion animations, custom CSS design tokens, dynamic GitHub stats, and 10+ interactive sections.",
+      modelSelection:
+        "Next.js 16 for performance, TypeScript for maintainability, Framer Motion for scroll-triggered reveals, and Vercel for edge deployment.",
+      training:
+        "Four-phase build: design system → animations → content sections → performance/SEO optimization before Vercel deployment.",
+      evaluation: [
+        { metric: "Sections", value: "10+" },
+        { metric: "Animation", value: "Framer Motion" },
+        { metric: "Hosting", value: "Vercel" },
+      ],
+      results:
+        "A premium portfolio live at folioharshdev.vercel.app with custom beige/dark aesthetic, animated sections, and integrated coding profiles.",
+      learnings: [
+        "A cohesive design system saves time across every section.",
+        "Scroll animations should enhance content, not distract from it.",
+        "Integrating live GitHub stats makes a portfolio feel current.",
       ],
     },
   },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
-
-/* ------------------------------------------------------------------ */
-/* Model showcase (metrics dashboard)                                 */
-/* ------------------------------------------------------------------ */
-
-export const modelShowcase = [
-  { model: "CNN Image Classifier", accuracy: 94.2, precision: 94.0, recall: 92.1, f1: 93.0 },
-  { model: "Sentiment Transformer", accuracy: 91.5, precision: 91.2, recall: 90.4, f1: 91.0 },
-  { model: "Churn Classifier", accuracy: 88.7, precision: 86.3, recall: 84.9, f1: 85.6 },
-];
 
 /* ------------------------------------------------------------------ */
 /* Experience                                                          */
@@ -611,68 +662,15 @@ export const certifications: Certification[] = [
     title: "AI Tools & ChatGPT Workshop",
     issuer: "Be10x",
     year: "2025",
-    url: "https://linkedin.com/in/harsh-pariya",
+    url: "https://www.linkedin.com/posts/harsh-pariya_learning-ai-professionalgrowth-activity-7408434618485366784-xMev",
     accent: "from-violet-500/20 to-fuchsia-500/10",
   },
   {
     title: "Cloud DevOps Roadmap for 2026",
     issuer: "GUVI × HCL",
     year: "2025",
-    url: "https://linkedin.com/in/harsh-pariya",
+    url: "https://www.linkedin.com/posts/harsh-pariya_clouddevops-upskilling-careergrowth-activity-7413864822045466624-zOal",
     accent: "from-sky-500/20 to-cyan-500/10",
-  },
-  {
-    title: "Machine Learning Specialization",
-    issuer: "In progress",
-    year: "2026",
-    url: "https://linkedin.com/in/harsh-pariya",
-    accent: "from-emerald-500/20 to-teal-500/10",
-  },
-  {
-    title: "Deep Learning Specialization",
-    issuer: "Planned",
-    year: "2026",
-    url: "https://linkedin.com/in/harsh-pariya",
-    accent: "from-amber-500/20 to-orange-500/10",
-  },
-];
-
-/* ------------------------------------------------------------------ */
-/* Research (honest framing — interests & experiments)                */
-/* ------------------------------------------------------------------ */
-
-export interface ResearchItem {
-  title: string;
-  status: "Experiment" | "Technical Report" | "In Progress" | "Planned";
-  abstract: string;
-  tags: string[];
-  links: { pdf?: string; code?: string };
-}
-
-export const research: ResearchItem[] = [
-  {
-    title: "Retrieval-Augmented Generation: Reducing Hallucination via Reranking",
-    status: "Technical Report",
-    abstract:
-      "An experimental study on how chunking strategy, retrieval depth, and cross-encoder reranking affect answer groundedness in RAG systems. Measures hallucination rate and retrieval hit-rate across configurations.",
-    tags: ["RAG", "LLMs", "Information Retrieval"],
-    links: { code: "https://github.com/HarshPariya" },
-  },
-  {
-    title: "Transfer Learning under Data Scarcity for Image Classification",
-    status: "Experiment",
-    abstract:
-      "Empirical comparison of from-scratch CNNs vs. transfer learning across shrinking training-set sizes, quantifying the data-efficiency advantage of pretrained backbones with augmentation.",
-    tags: ["Computer Vision", "Transfer Learning", "Deep Learning"],
-    links: { code: "https://github.com/HarshPariya" },
-  },
-  {
-    title: "Baselines Matter: Classical ML vs. Transformers for Sentiment",
-    status: "In Progress",
-    abstract:
-      "A reproducible benchmark contrasting TF-IDF linear models with fine-tuned transformers for sentiment classification, with an emphasis on the accuracy/latency/cost trade-off for deployment.",
-    tags: ["NLP", "Benchmarking", "MLOps"],
-    links: { code: "https://github.com/HarshPariya" },
   },
 ];
 
@@ -720,9 +718,8 @@ export const contactChannels = [
   { label: "Email", value: "harshpariya195@gmail.com", href: "mailto:harshpariya195@gmail.com", icon: "Mail" },
   { label: "LinkedIn", value: "harsh-pariya", href: "https://linkedin.com/in/harsh-pariya", icon: "Linkedin" },
   { label: "GitHub", value: "HarshPariya", href: "https://github.com/HarshPariya", icon: "Github" },
-  { label: "Kaggle", value: "Add your handle", href: "https://kaggle.com/", icon: "Trophy" },
-  { label: "Hugging Face", value: "Add your handle", href: "https://huggingface.co/", icon: "Boxes" },
-  { label: "X / Twitter", value: "Add your handle", href: "https://x.com/", icon: "Twitter" },
+  { label: "X / Twitter", value: "harshpariya_01", href: "https://x.com/harshpariya_01", icon: "Twitter" },
+  { label: "Instagram", value: "_harshpariya_01", href: "https://instagram.com/_harshpariya_01", icon: "Instagram" },
 ];
 
 /* re-export icon map so client components can resolve string icon names */

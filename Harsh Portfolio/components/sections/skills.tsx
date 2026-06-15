@@ -153,6 +153,53 @@ export function Skills() {
             ))}
           </div>
         </div>
+
+        {/* Languages and Soft Skills */}
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          {/* Languages */}
+          <Reveal>
+            <SpotlightCard className="p-6" tilt={false}>
+              <h3 className="text-sm font-semibold text-fg">Languages</h3>
+              <div className="mt-4 space-y-3">
+                {languages.map((lang, i) => (
+                  <motion.div
+                    key={lang.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="flex items-center justify-between text-xs"
+                  >
+                    <span className="text-fg">{lang.name}</span>
+                    <span className="font-mono text-faint">— {lang.proficiency}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </SpotlightCard>
+          </Reveal>
+
+          {/* Soft Skills */}
+          <Reveal delay={0.06}>
+            <SpotlightCard className="p-6" tilt={false}>
+              <h3 className="text-sm font-semibold text-fg">Soft Skills</h3>
+              <div className="mt-4 space-y-2">
+                {softSkills.map((skill, i) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="flex items-center gap-2 text-xs text-fg"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-brand to-brand-2" />
+                    {skill.name}
+                  </motion.div>
+                ))}
+              </div>
+            </SpotlightCard>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

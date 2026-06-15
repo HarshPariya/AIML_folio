@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -63,15 +63,34 @@ function InnerCore() {
 }
 
 export default function ParticleGlobe() {
+  const [particleCount, setParticleCount] = useState(2600);
+  const [dpr, setDpr] = useState<[number, number]>([1, 1.6]);
+
+  useEffect(() => {
+    // Detect device capabilities and screen size for optimization
+    const isMobile = window.innerWidth < 768;
+    const isLowEndDevice =
+      navigator.deviceMemory ? navigator.deviceMemory <= 4 : false;
+
+    if (isMobile) {
+      setParticleCount(isLowEndDevice ? 800 : 1200);
+      setDpr([1, 1.2]);
+    } else if (isLowEndDevice) {
+      setParticleCount(1600);
+      setDpr([1, 1.4]);
+    }
+  }, []);
+
   return (
     <Canvas
       camera={{ position: [0, 0, 6], fov: 45 }}
-      dpr={[1, 1.6]}
+      dpr={dpr}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "transparent" }}
+      performance={{ min: 0.5, max: 0.8 }}
     >
       <ambientLight intensity={0.6} />
-      <GlobePoints />
+      <GlobePoints count={particleCount} />
       <InnerCore />
     </Canvas>
   );

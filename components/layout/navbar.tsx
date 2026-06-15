@@ -35,7 +35,7 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
         className={cn(
-          "flex w-full max-w-5xl items-center justify-between rounded-full px-3 py-2 transition-all duration-300",
+          "relative z-[60] flex w-full max-w-5xl items-center justify-between rounded-full px-3 py-2 transition-all duration-300",
           scrolled
             ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
             : "border border-transparent bg-transparent"
@@ -63,13 +63,14 @@ export function Navbar() {
             Resume
           </Button>
           <Button href="#contact" size="sm">
-            Let's talk
+            Let&apos;s talk
           </Button>
         </div>
 
+        {/* Mobile hamburger / close toggle — always above overlay */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-full text-fg md:hidden"
+          className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -83,8 +84,10 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-xl md:hidden"
           >
+
+
             <div className="flex flex-col gap-1">
               {navItems.map((item, i) => (
                 <motion.div
@@ -108,7 +111,7 @@ export function Navbar() {
                 <Download className="h-4 w-4" /> Download Resume
               </Button>
               <Button href="#contact" size="lg" onClick={() => setOpen(false)}>
-                Let's talk
+                Let&apos;s talk
               </Button>
             </div>
           </motion.div>

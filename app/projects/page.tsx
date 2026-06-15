@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Projects",
   description:
-    "AI/ML projects by Harsh Pariya — LLM applications, RAG systems, computer vision, NLP, and time-series forecasting, each with a full case study.",
+    "Projects by Harsh Pariya — SquidAI, Campus Navigation, TravelGo, Quiz App, and more. Each with a live demo, GitHub source, and full case study.",
   alternates: { canonical: "/projects" },
 });
 
@@ -31,8 +31,8 @@ export default function ProjectsPage() {
             <span className="text-gradient">All Projects</span>
           </h1>
           <p className="mt-4 text-pretty text-muted sm:text-lg">
-            A complete look at what I've built — from production AI products to ML research
-            experiments. Every project links to a full case study.
+            A complete look at what I&apos;ve built — from AI assistants and full-stack apps to
+            production portfolios. Every project includes a live demo, source code, and case study.
           </p>
         </div>
 

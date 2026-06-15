@@ -1,9 +1,49 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { ProjectPoster } from "./project-poster";
 import type { Project } from "@/lib/data";
+
+function ProjectCover({
+  project,
+  index,
+  featured,
+}: {
+  project: Project;
+  index: number;
+  featured?: boolean;
+}) {
+  const className = featured ? "h-52 sm:h-60" : "h-44";
+
+  if (project.image && /\.(png|jpe?g|webp|avif)$/i.test(project.image)) {
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        <Image
+          src={project.image}
+          alt={`${project.title} preview`}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/10 to-transparent" />
+        <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-bg/50 px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-fg backdrop-blur">
+          {project.category}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <ProjectPoster
+      gradient={project.gradient}
+      category={project.category}
+      seed={index + 1}
+      className={className}
+    />
+  );
+}
 
 export function ProjectCard({
   project,
@@ -15,14 +55,9 @@ export function ProjectCard({
   featured?: boolean;
 }) {
   return (
-    <SpotlightCard className="flex h-full flex-col" tilt={false}>
+    <SpotlightCard className="group flex h-full flex-col" tilt={false}>
       <Link href={`/projects/${project.slug}`} className="block">
-        <ProjectPoster
-          gradient={project.gradient}
-          category={project.category}
-          seed={index + 1}
-          className={featured ? "h-52 sm:h-60" : "h-44"}
-        />
+        <ProjectCover project={project} index={index} featured={featured} />
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
@@ -32,11 +67,7 @@ export function ProjectCard({
               {project.title}
             </h3>
           </Link>
-          {project.real && (
-            <span className="shrink-0 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[0.6rem] font-medium uppercase tracking-wide text-emerald-300">
-              Shipped
-            </span>
-          )}
+
         </div>
 
         <p className="mt-2 text-sm leading-relaxed text-muted">{project.tagline}</p>

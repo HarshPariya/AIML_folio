@@ -32,11 +32,7 @@ export function ProjectCard({
               {project.title}
             </h3>
           </Link>
-          {project.real && (
-            <span className="shrink-0 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[0.6rem] font-medium uppercase tracking-wide text-emerald-300">
-              Shipped
-            </span>
-          )}
+
         </div>
 
         <p className="mt-2 text-sm leading-relaxed text-muted">{project.tagline}</p>

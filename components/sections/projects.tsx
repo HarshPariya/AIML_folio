@@ -14,8 +14,8 @@ export function Projects() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           eyebrow="Featured Projects"
-          title="AI projects, built end to end"
-          description="From LLM applications and RAG pipelines to computer vision and forecasting — each project ships with a full case study covering the problem, the model, and the results."
+          title="Projects I've built"
+          description="A collection of what I've actually built — from AI assistants and full-stack apps to production portfolios. Each project links to a live demo and source code."
         />
 
         {/* featured grid */}

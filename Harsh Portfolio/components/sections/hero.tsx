@@ -142,28 +142,30 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative mx-auto hidden aspect-square w-full max-w-md lg:block"
+            className="relative mx-auto aspect-square w-full max-w-md"
           >
             <div className="absolute inset-0 rounded-full bg-brand/10 blur-3xl" />
             <ParticleGlobe />
-            {/* orbiting labels */}
-            {["LLMs", "PyTorch", "RAG", "Vision"].map((label, i) => (
-              <motion.span
-                key={label}
-                className="absolute left-1/2 top-1/2 rounded-full border border-white/10 bg-bg/70 px-3 py-1 text-xs text-muted backdrop-blur"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 22 + i * 4, repeat: Infinity, ease: "linear" }}
-                style={{
-                  transformOrigin: `0px ${120 + i * 18}px`,
-                  marginLeft: -24,
-                  marginTop: -(120 + i * 18),
-                }}
-              >
-                {label}
-              </motion.span>
-            ))}
-          </motion.div>
-
+            {/* orbiting labels - hidden on mobile for better UX */}
+            <div className="hidden lg:block">
+              <div className="hidden lg:block">
+              {["LLMs", "PyTorch", "RAG", "Vision"].map((label, i) => (
+                <motion.span
+                  key={label}
+                  className="absolute left-1/2 top-1/2 rounded-full border border-white/10 bg-bg/70 px-3 py-1 text-xs text-muted backdrop-blur"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 22 + i * 4, repeat: Infinity, ease: "linear" }}
+                  style={{
+                    transformOrigin: `0px ${120 + i * 18}px`,
+                    marginLeft: -24,
+                    marginTop: -(120 + i * 18),
+                  }}
+                >
+                  {label}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

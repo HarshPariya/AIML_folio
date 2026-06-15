@@ -24,7 +24,8 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // User requested continuous animation on all devices, ignoring reduced-motion
+    const reduce = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let width = 0;
@@ -45,7 +46,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const density = Math.min(Math.floor((width * height) / 14000), 90);
+      const density = Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
       nodes = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -53,6 +54,10 @@ export function NeuralNetwork({ className }: { className?: string }) {
         vy: (Math.random() - 0.5) * 0.25,
         r: Math.random() * 1.6 + 0.8,
       }));
+
+      if (reduce) {
+        requestAnimationFrame(draw);
+      }
     };
 
     const linkDist = 140;
@@ -142,6 +147,13 @@ export function NeuralNetwork({ className }: { className?: string }) {
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
     };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+      }
+    };
     const onLeave = () => {
       mouse.x = -9999;
       mouse.y = -9999;
@@ -157,13 +169,19 @@ export function NeuralNetwork({ className }: { className?: string }) {
 
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mouseleave", onLeave);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchstart", onTouchMove, { passive: true });
+    document.addEventListener("mouseleave", onLeave);
+    window.addEventListener("touchend", onLeave);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
-      canvas.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchstart", onTouchMove);
+      document.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("touchend", onLeave);
     };
   }, []);
 

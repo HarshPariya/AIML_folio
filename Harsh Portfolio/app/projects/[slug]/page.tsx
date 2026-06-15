@@ -80,7 +80,7 @@ export default async function CaseStudyPage({
             </span>
             {project.real && (
               <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
-                Shipped product
+
               </span>
             )}
           </div>

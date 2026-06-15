@@ -10,6 +10,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { BackgroundVisuals } from "@/components/visuals/background-visuals";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <CustomCursor />
+        <BackgroundVisuals />
         <SmoothScroll>
           <Navbar />
           <main id="main">{children}</main>

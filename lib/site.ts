@@ -38,9 +38,8 @@ export const siteConfig = {
   links: {
     github: "https://github.com/HarshPariya",
     linkedin: "https://linkedin.com/in/harsh-pariya",
-    twitter: "https://x.com/",
-    kaggle: "https://kaggle.com/",
-    huggingface: "https://huggingface.co/",
+    twitter: "https://x.com/harshpariya_01",
+    instagram: "https://instagram.com/_harshpariya_01",
     currentPortfolio: "https://folioharshdev.vercel.app/",
   },
   githubUsername: "HarshPariya",
