@@ -8,7 +8,7 @@ import { navItems } from "@/lib/data";
 import { siteConfig } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { cn, handleSmoothScroll } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +41,7 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         )}
       >
-        <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home" onClick={(e) => handleSmoothScroll(e, "/")}>
+        <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
           <Logo markSize={28} />
         </Link>
 
@@ -50,7 +50,6 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              onClick={(e) => handleSmoothScroll(e, item.href)}
               className="rounded-full px-3.5 py-2 text-sm text-muted transition-colors hover:bg-white/[0.06] hover:text-fg"
             >
               {item.label}
@@ -63,7 +62,7 @@ export function Navbar() {
             <Download className="h-4 w-4" />
             Resume
           </Button>
-          <Button href="#contact" size="sm" onClick={(e) => handleSmoothScroll(e, "#contact")}>
+          <Button href="#contact" size="sm">
             Let&apos;s talk
           </Button>
         </div>
@@ -99,10 +98,7 @@ export function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    onClick={(e) => {
-                      setOpen(false);
-                      handleSmoothScroll(e, item.href);
-                    }}
+                    onClick={() => setOpen(false)}
                     className="block border-b border-white/5 py-4 text-2xl font-medium text-fg"
                   >
                     {item.label}
@@ -114,10 +110,7 @@ export function Navbar() {
               <Button href={siteConfig.resumeUrl} external variant="outline" size="lg">
                 <Download className="h-4 w-4" /> Download Resume
               </Button>
-              <Button href="#contact" size="lg" onClick={(e) => {
-                setOpen(false);
-                handleSmoothScroll(e, "#contact");
-              }}>
+              <Button href="#contact" size="lg" onClick={() => setOpen(false)}>
                 Let&apos;s talk
               </Button>
             </div>

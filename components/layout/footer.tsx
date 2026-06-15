@@ -5,7 +5,6 @@ import { Github, Linkedin, Mail, Twitter, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { navItems } from "@/lib/data";
 import { Logo } from "@/components/ui/logo";
-import { handleSmoothScroll } from "@/lib/utils";
 
 const socials = [
   { icon: Github, href: siteConfig.links.github, label: "GitHub" },
@@ -20,7 +19,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-16">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home" onClick={(e) => handleSmoothScroll(e, "/")}>
+            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home">
               <Logo markSize={38} />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
@@ -50,7 +49,6 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href)}
                     className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {item.label}
@@ -93,10 +91,22 @@ export function Footer() {
       </div>
 
       {/* Massive Watermark Text - Edge to Edge */}
-      <div className="pointer-events-none flex w-full select-none justify-center overflow-hidden pb-4 sm:pb-6">
-        <span className="whitespace-nowrap text-[17vw] font-black leading-none tracking-tighter text-white/[0.03] md:text-[15vw]">
-          Harsh Pariya
-        </span>
+      <div className="pointer-events-none w-full select-none overflow-hidden pb-0">
+        <div className="flex w-full justify-center">
+          <span
+            className="whitespace-nowrap text-[20vw] font-black uppercase leading-[0.85] tracking-tighter sm:text-[18vw] md:text-[16vw]"
+            style={{
+              fontFamily: "'Inter', 'Segoe UI', system-ui, sans-serif",
+              background: "linear-gradient(180deg, rgba(124,92,255,0.15) 0%, rgba(34,211,238,0.08) 50%, transparent 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              WebkitTextStroke: "1px rgba(124,92,255,0.12)",
+            }}
+          >
+            Harsh Pariya
+          </span>
+        </div>
       </div>
     </footer>
   );
