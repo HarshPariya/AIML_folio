@@ -115,12 +115,8 @@ export function TechGraph() {
                   const active = isActive(n.id);
                   const color = GROUP_COLOR[n.group];
                   return (
-                    <motion.g
+                    <g
                       key={n.id}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.03, type: "spring", stiffness: 200, damping: 18 }}
                       onMouseEnter={() => setHover(n.id)}
                       onMouseLeave={() => setHover(null)}
                       style={{ cursor: "pointer", opacity: active ? 1 : 0.28, transition: "opacity 0.3s" }}
@@ -139,7 +135,7 @@ export function TechGraph() {
                       >
                         {n.id}
                       </text>
-                    </motion.g>
+                    </g>
                   );
                 })}
               </svg>
