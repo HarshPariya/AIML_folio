@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
+import Link from "next/link";
 import { navItems } from "@/lib/data";
 import { siteConfig } from "@/lib/site";
 import { Button } from "@/components/ui/button";
@@ -40,9 +41,9 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         )}
       >
-        <a href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
+        <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
           <Logo markSize={28} />
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (

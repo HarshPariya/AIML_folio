@@ -2,6 +2,7 @@
 
 
 import { Github, Linkedin, Mail, Twitter, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import { navItems } from "@/lib/data";
 import { Logo } from "@/components/ui/logo";
@@ -19,9 +20,9 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-16">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <a href="/" className="inline-flex" aria-label="Harsh Pariya — home">
+            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home">
               <Logo markSize={38} />
-            </a>
+            </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               Aspiring AI/ML Engineer building intelligent systems — from research
               experiments to production systems. Open to internships & research roles.
