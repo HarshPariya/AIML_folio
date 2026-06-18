@@ -45,13 +45,14 @@ export function About() {
               <div className="absolute -inset-4 -z-10 rounded-[2.25rem] bg-gradient-to-br from-brand/30 via-brand-3/20 to-brand-2/20 blur-2xl" />
               {/* gradient frame */}
               <div className="border-gradient relative overflow-hidden rounded-3xl">
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-surface">
+                <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-surface">
                   <Image
                     src={siteConfig.avatar}
                     alt={`${siteConfig.name} — ${siteConfig.role}`}
                     fill
                     sizes="(max-width: 1024px) 90vw, 380px"
                     className="object-cover object-center"
+                    priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg/85 via-bg/5 to-transparent" />
                   {/* name plate */}
