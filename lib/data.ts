@@ -48,8 +48,8 @@ export const heroRotatingWords = [
 ];
 
 export const heroStats = [
-  { label: "Projects Built", value: "15+" },
-  { label: "GitHub Contributions", value: "1.5K+" },
+  { label: "Projects Built", value: "10+" },
+  { label: "GitHub Contributions", value: "1.8K+" },
   { label: "CGPA", value: "8.85" },
 ];
 
@@ -77,7 +77,7 @@ export const journey = [
     description:
       "Began my CS degree with a focus on DSA, statistics, and databases — and started building AI/ML projects on the side.",
   },
-    {
+  {
     year: "2025",
     title: "Development Intern Offer",
     org: "Codveda Technologies",
@@ -306,10 +306,201 @@ export interface Project {
   metrics: ProjectMetric[];
   featured: boolean;
   real?: boolean; // true = real project from résumé
+  type: "aiml" | "dev"; // project category for tab filtering
   caseStudy: CaseStudy;
 }
 
 export const projects: Project[] = [
+  // ── AI/ML Projects ────────────────────────────────────────────────────────
+  {
+    slug: "resume-screening-ai",
+    title: "Resume Screening AI",
+    category: "NLP · Machine Learning",
+    tagline: "AI-powered resume analyser using XGBoost + TF-IDF to classify job categories instantly.",
+    description:
+      "ResumeAI analyses uploaded PDF resumes using a TF-IDF vectoriser and XGBoost classifier to predict job categories with 80.9% accuracy across 22+ roles — with results delivered in under 1 second.",
+    image: "/projects/resume-screening-ai.png",
+    gradient: "from-violet-600/30 to-fuchsia-600/20",
+    tech: ["Python", "XGBoost", "TF-IDF", "NLP", "Streamlit"],
+    links: {
+      github: "https://github.com/HarshPariya/Resume_Screening_AI",
+      demo: "https://resume-screening-ai-01.streamlit.app/",
+    },
+    metrics: [
+      { label: "Accuracy", value: "80.9%" },
+      { label: "Job Categories", value: "22+" },
+      { label: "Analysis Time", value: "< 1s" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Recruiters manually screen hundreds of resumes per role, leading to unconscious bias and massive time costs. The goal was an automated NLP system to predict a candidate's job category from raw resume text — instantly and accurately.",
+      dataset:
+        "2,484 labelled resume PDFs spanning 22+ job categories including Data Science, HR, Engineering, Finance, and more. PDFs were parsed with PyPDF2 and cleaned with regex before feature extraction.",
+      architecture:
+        "Two-stage pipeline: (1) TF-IDF vectorisation to convert resume text into weighted term features; (2) XGBoost multi-class classifier for category prediction. A Streamlit front end handles PDF upload, text extraction, prediction, and confidence-score display.",
+      modelSelection:
+        "XGBoost was chosen over Logistic Regression and Random Forest for its superior gradient boosting on sparse TF-IDF vectors and fast inference. TF-IDF outperformed Word2Vec for short-document classification.",
+      training:
+        "Trained with 80/20 stratified split, label encoding, and hyperparameter tuning via GridSearchCV on learning rate, max depth, and estimators. Model serialised with joblib for sub-second Streamlit inference.",
+      evaluation: [
+        { metric: "Test Accuracy", value: "80.9%" },
+        { metric: "Categories", value: "22+" },
+        { metric: "Inference", value: "< 1s" },
+      ],
+      results:
+        "Live Streamlit app at resume-screening-ai-01.streamlit.app — upload any PDF resume and get instant job-category predictions with confidence scores across 22 roles.",
+      learnings: [
+        "TF-IDF + XGBoost is a powerful, fast baseline for short-document NLP tasks.",
+        "Resume text quality varies wildly — robust PDF parsing is as important as the model.",
+        "Confidence scores add recruiter trust that raw predictions alone don't provide.",
+      ],
+    },
+  },
+  {
+    slug: "fake-news-detection",
+    title: "Fake News Detection",
+    category: "NLP · Classification",
+    tagline: "99.29% accurate fake news classifier using Linear SVM on 44K articles.",
+    description:
+      "TruthLens detects fake news with 99.29% accuracy by analysing linguistic patterns in news articles using a Linear SVM trained on 44,898 real and fake articles, delivering results in ~0.1 seconds.",
+    image: "/projects/fake-news-detection.png",
+    gradient: "from-indigo-600/30 to-blue-600/20",
+    tech: ["Python", "SVM", "TF-IDF", "NLP", "Streamlit"],
+    links: {
+      github: "https://github.com/HarshPariya/fake-news-detection-nlp",
+      demo: "https://fake-news-detection-nlp-01.streamlit.app/",
+    },
+    metrics: [
+      { label: "Accuracy", value: "99.29%" },
+      { label: "F1 Score", value: "0.99" },
+      { label: "Articles Trained", value: "44.8K" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Misinformation spreads faster than corrections. The goal was a real-time NLP classifier that could distinguish fake from real news with high precision — usable by anyone without ML knowledge via a simple paste-and-check interface.",
+      dataset:
+        "44,898 articles from the ISOT Fake News Dataset: 23,481 real Reuters articles and 21,417 fake articles from PolitiFact/unreliable sources. Text was lowercased, punctuation stripped, stop-words removed, and lemmatised before vectorisation.",
+      architecture:
+        "TF-IDF vectoriser (max 10K features, 1–2 n-grams) feeding a Linear SVM classifier. Streamlit front end accepts raw article text, runs the pipeline in memory, and returns a REAL/FAKE verdict with probability score.",
+      modelSelection:
+        "Linear SVM was benchmarked against Multinomial Naïve Bayes and Logistic Regression. SVM achieved the best accuracy (99.29%) and F1 (0.99) on the held-out test set and is fastest at inference — ideal for Streamlit deployment.",
+      training:
+        "Trained on an 80/20 stratified split. Hyperparameter tuning explored regularisation parameter C (0.1–10) with cross-validation. Final model and vectoriser saved with joblib for instant loading on Streamlit cold start.",
+      evaluation: [
+        { metric: "Test Accuracy", value: "99.29%" },
+        { metric: "F1 Score", value: "0.99" },
+        { metric: "Inference", value: "~0.1s" },
+      ],
+      results:
+        "Live at fake-news-detection-nlp-01.streamlit.app — paste any news article and get an instant real/fake verdict backed by SVM confidence scores.",
+      learnings: [
+        "Linear SVM is remarkably effective for high-dimensional TF-IDF spaces.",
+        "n-gram features (bigrams) significantly improve fake-news pattern detection.",
+        "Deployment via Streamlit makes ML demos instantly accessible without a backend.",
+      ],
+    },
+  },
+  {
+    slug: "california-house-price",
+    title: "CA House Price Predictor",
+    category: "Regression · ML",
+    tagline: "XGBoost regression model predicting California house prices via a real-time Next.js UI.",
+    description:
+      "A full-stack ML application where users enter block-group features (income, age, rooms, location) and get instant XGBoost price predictions with a Feature Comparison vs CA Average chart — deployed on Vercel.",
+    image: "/projects/california-house-price.png",
+    gradient: "from-sky-600/30 to-cyan-500/20",
+    tech: ["XGBoost", "Next.js", "Python", "FastAPI", "Vercel"],
+    links: {
+      github: "https://github.com/HarshPariya/California-House-Price-Prediction",
+      demo: "https://california-house-price-prediction-xi.vercel.app/",
+    },
+    metrics: [
+      { label: "Model", value: "XGBoost" },
+      { label: "Dataset", value: "20K rows" },
+      { label: "Stack", value: "Full Stack" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "House price estimation is a classic regression problem, but the challenge here was bridging the gap between a trained ML model and a polished, real-time web UI — making predictions accessible to non-technical users with live feature comparison.",
+      dataset:
+        "California Housing Dataset (20,640 block-group observations from the 1990 census): median income, house age, average rooms/bedrooms, population, average occupancy, and lat/lon coordinates.",
+      architecture:
+        "XGBoost regressor trained in Python, serialised, and served via a FastAPI backend. Next.js front end renders a two-panel layout — a form for feature inputs and a live bar chart comparing user inputs vs California averages via Recharts.",
+      modelSelection:
+        "XGBoost outperformed Linear Regression, Ridge, and Random Forest on RMSE and R². It handles the non-linear interaction between income, location, and occupancy density far better than linear baselines.",
+      training:
+        "Feature engineering: log-transform of income; geographical clustering of lat/lon. Hyperparameter tuning via RandomizedSearchCV on n_estimators, max_depth, learning_rate, and subsample. Final model exported with joblib.",
+      evaluation: [
+        { metric: "Model", value: "XGBoost" },
+        { metric: "Dataset", value: "20,640 rows" },
+        { metric: "Deployment", value: "Vercel" },
+      ],
+      results:
+        "Live at california-house-price-prediction-xi.vercel.app — enter any block-group features and get an instant predicted median house value with a dynamic feature comparison chart.",
+      learnings: [
+        "Bridging a Python ML model to a Next.js UI requires a clean API layer.",
+        "Visual feature comparison (user vs average) significantly improves prediction interpretability.",
+        "XGBoost's feature importance makes the model explainable to non-technical stakeholders.",
+      ],
+    },
+  },
+  // ── Development Projects ───────────────────────────────────────────────────
+  {
+    slug: "aiml-folio",
+    title: "AIML Folio",
+    category: "Portfolio · Next.js",
+    tagline: "Premium AI/ML portfolio built with Next.js — dark-space design, animated hero, and interactive tech graph.",
+    description:
+      "A fully custom AI/ML-focused portfolio built with Next.js, TypeScript, and Framer Motion — featuring a live tech-stack graph, animated hero section, tabbed project showcase with case studies, and full responsive layout. Deployed on Vercel.",
+    image: "/projects/aiml-folio.png",
+    gradient: "from-violet-600/30 to-indigo-600/20",
+    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Vercel"],
+    links: {
+      github: "https://github.com/HarshPariya/AIML_folio",
+      demo: "https://aiml-folio-alpha.vercel.app/",
+    },
+    metrics: [
+      { label: "Sections", value: "10+" },
+      { label: "Theme", value: "Dark AI" },
+      { label: "Year", value: "2026" },
+    ],
+    featured: false,
+    real: true,
+    type: "dev",
+    caseStudy: {
+      problem:
+        "Generic portfolio templates fail to communicate an AI/ML engineer's depth. The goal was a fully custom, premium portfolio that feels native to the AI world — dark aesthetic, interactive visualisations, and deep project case studies that go beyond a link and a screenshot.",
+      dataset:
+        "Personal project data, skill metrics, GitHub contributions, certifications, and experience timeline — all structured as a typed data layer in TypeScript for type-safe rendering across every section.",
+      architecture:
+        "Next.js 15 App Router with dynamic project routes, Framer Motion scroll-triggered animations, an interactive D3 force-graph for the tech stack, radar chart for skill distribution, and a tabbed AI/ML vs Dev project split.",
+      modelSelection:
+        "Next.js for SSR/SEO and image optimisation; TypeScript for maintainability; Framer Motion for declarative animations; Tailwind CSS for the design system; Vercel for edge deployment with zero-config CI.",
+      training:
+        "Iterative design: established the dark-space colour palette and CSS tokens first, then built section by section — hero, skills, tech graph, projects, timeline, certifications, contact — polishing animations and responsive breakpoints at each step.",
+      evaluation: [
+        { metric: "Lighthouse", value: "95+" },
+        { metric: "Sections", value: "10+" },
+        { metric: "Deployment", value: "Vercel" },
+      ],
+      results:
+        "Live at aiml-folio-alpha.vercel.app — a production-grade AI/ML portfolio with animated hero, interactive tech graph, tabbed project showcase with full case studies, and responsive layout across all devices.",
+      learnings: [
+        "A typed data layer makes it trivial to add new projects and sections without breaking anything.",
+        "Interactive visualisations (force graph, radar chart) communicate technical depth far better than bullet lists.",
+        "Dark-space aesthetics with purple/cyan gradients immediately signal an AI-native engineer.",
+      ],
+    },
+  },
   {
     slug: "squidai",
     title: "SquidAI",
@@ -329,8 +520,9 @@ export const projects: Project[] = [
       { label: "Focus", value: "AI Dev" },
       { label: "Year", value: "2026" },
     ],
-    featured: true,
+    featured: false,
     real: true,
+    type: "aiml",
     caseStudy: {
       problem:
         "Developers spend significant time on boilerplate, debugging explanations, and repetitive coding tasks. SquidAI was built to provide a fast, practical AI assistant focused on real developer workflows.",
@@ -356,6 +548,7 @@ export const projects: Project[] = [
       ],
     },
   },
+  // ── (SquidAI — AI-powered dev tool) ─────────────────────────────────────────
   {
     slug: "campus-navigation",
     title: "Campus Navigation System",
@@ -375,8 +568,9 @@ export const projects: Project[] = [
       { label: "Stack", value: "React" },
       { label: "Year", value: "2025" },
     ],
-    featured: true,
+    featured: false,
     real: true,
+    type: "dev",
     caseStudy: {
       problem:
         "New students and visitors struggle to find buildings and routes on campus. A web-based navigation tool was needed to make campus exploration intuitive without installing an app.",
@@ -421,8 +615,9 @@ export const projects: Project[] = [
       { label: "Stack", value: "React" },
       { label: "Year", value: "2025" },
     ],
-    featured: true,
+    featured: false,
     real: true,
+    type: "dev",
     caseStudy: {
       problem:
         "Travel agency sites often feel cluttered and fail to guide users toward booking. TravelGo needed a clean, modern landing experience that highlights destinations and drives action.",
@@ -469,6 +664,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     real: true,
+    type: "dev",
     caseStudy: {
       problem:
         "Quiz apps need to feel engaging and responsive — instant feedback, clear scoring, and a UI that works on phones where most users play.",
@@ -515,6 +711,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     real: true,
+    type: "dev",
     caseStudy: {
       problem:
         "A developer portfolio needs to showcase projects clearly, load fast, and feel polished — not like a generic template.",
@@ -561,6 +758,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     real: true,
+    type: "dev",
     caseStudy: {
       problem:
         "A second portfolio iteration needed to feel premium — custom design, smooth animations, live GitHub stats, and a project showcase that reflects real work.",
