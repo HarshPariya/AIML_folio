@@ -5,6 +5,8 @@ import { About } from "@/components/sections/about";
 
 const Skills = dynamic(() => import("@/components/sections/skills").then(mod => mod.Skills));
 const Projects = dynamic(() => import("@/components/sections/projects").then(mod => mod.Projects));
+const ModelMetrics = dynamic(() => import("@/components/sections/model-metrics").then(mod => mod.ModelMetrics));
+const ModelShowcase = dynamic(() => import("@/components/sections/model-showcase").then(mod => mod.ModelShowcase));
 const TechGraph = dynamic(() => import("@/components/sections/tech-graph").then(mod => mod.TechGraph));
 const Certifications = dynamic(() => import("@/components/sections/certifications").then(mod => mod.Certifications));
 const OpenSource = dynamic(() => import("@/components/sections/opensource").then(mod => mod.OpenSource));
@@ -19,6 +21,8 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <ModelMetrics />
+      <ModelShowcase />
       <TechGraph />
       <Certifications />
       <OpenSource />

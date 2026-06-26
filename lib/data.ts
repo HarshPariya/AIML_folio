@@ -313,6 +313,53 @@ export interface Project {
 export const projects: Project[] = [
   // ── AI/ML Projects ────────────────────────────────────────────────────────
   {
+    slug: "brain-tumor-detection",
+    title: "Brain Tumor Detection CNN",
+    category: "Deep Learning · CNN",
+    tagline: "AI-Powered Brain Tumor Detection System using a custom Convolutional Neural Network.",
+    description:
+      "A deep learning application that analyzes MRI scans to instantly detect and classify brain tumors (Glioma, Meningioma, Pituitary Tumor, or No Tumor) with 86.25% test accuracy.",
+    image: "/projects/brain-tumor-detection.png",
+    gradient: "from-blue-600/30 to-purple-600/20",
+    tech: ["Python", "TensorFlow", "CNN", "Next.js", "Vercel"],
+    links: {
+      github: "https://github.com/HarshPariya/Brain-tumor-detection-cnn",
+      demo: "https://brain-tumor-detection-cnn.vercel.app/",
+    },
+    metrics: [
+      { label: "Accuracy", value: "86.25%" },
+      { label: "MRI Images", value: "7,200" },
+      { label: "Classes", value: "4" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Brain tumor diagnosis requires careful analysis of MRI scans by radiologists. The goal was to build an automated, accessible tool to assist in detecting and classifying tumor types quickly and accurately.",
+      dataset:
+        "A comprehensive dataset of 7,200 MRI images categorized into four classes: Glioma, Meningioma, Pituitary Tumor, and No Tumor.",
+      architecture:
+        "A custom Convolutional Neural Network (CNN) built with TensorFlow/Keras, featuring multiple convolutional layers for feature extraction, followed by dense layers for classification. The frontend provides a seamless upload and prediction experience.",
+      modelSelection:
+        "A CNN architecture was chosen due to its superior performance in image recognition tasks, specifically in identifying spatial hierarchies and patterns in medical imaging compared to traditional ML models.",
+      training:
+        "Trained on 7,200 MRI images using data augmentation techniques to prevent overfitting. The model was optimized using categorical crossentropy and the Adam optimizer.",
+      evaluation: [
+        { metric: "Test Accuracy", value: "86.25%" },
+        { metric: "Training Images", value: "7,200" },
+        { metric: "Deployment", value: "Vercel" },
+      ],
+      results:
+        "A live web application that allows users to upload MRI scans and receive instant predictions across four categories with high confidence.",
+      learnings: [
+        "Data augmentation is crucial for medical imaging datasets to improve model generalization.",
+        "A clean, intuitive UI is essential for medical AI tools to be accessible to end-users.",
+        "Bridging a deep learning model with a modern web frontend creates a powerful, deployable product.",
+      ],
+    },
+  },
+  {
     slug: "resume-screening-ai",
     title: "Resume Screening AI",
     category: "NLP · Machine Learning",
@@ -909,6 +956,8 @@ export const contactChannels = [
   { label: "Email", value: "harshpariya195@gmail.com", href: "mailto:harshpariya195@gmail.com", icon: "Mail" },
   { label: "LinkedIn", value: "harsh-pariya", href: "https://linkedin.com/in/harsh-pariya", icon: "Linkedin" },
   { label: "GitHub", value: "HarshPariya", href: "https://github.com/HarshPariya", icon: "Github" },
+  { label: "Kaggle", value: "harshpariya", href: "https://www.kaggle.com/", icon: "Trophy" },
+  { label: "Hugging Face", value: "HarshPariya", href: "https://huggingface.co/", icon: "Boxes" },
   { label: "X / Twitter", value: "harshpariya_01", href: "https://x.com/harshpariya_01", icon: "Twitter" },
   { label: "Instagram", value: "_harshpariya_01", href: "https://instagram.com/_harshpariya_01", icon: "Instagram" },
 ];

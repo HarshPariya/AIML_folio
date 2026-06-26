@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Mail, Linkedin, Github, Trophy, Boxes, Twitter, Send, AlertCircle } from "lucide-react";
+import { Mail, Linkedin, Github, Trophy, Boxes, Twitter, Instagram, Send, AlertCircle } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -16,6 +16,7 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Trophy,
   Boxes,
   Twitter,
+  Instagram,
 };
 
 export function Contact() {
