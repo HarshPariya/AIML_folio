@@ -315,19 +315,19 @@ export const projects: Project[] = [
   {
     slug: "image-caption-generator",
     title: "Image Caption Generator",
-    category: "Computer Vision · NLP",
+    category: "ANN · CNN · RNN",
     tagline: "AI-powered application that generates descriptive captions for uploaded images.",
     description:
-      "VisionCaption AI is a deep-learning application that combines InceptionV3 for image feature extraction and an LSTM decoder to instantly generate accurate descriptions for any uploaded photo.",
+      "VisionCaption AI is a deep-learning application that combines InceptionV3 (CNN) for image feature extraction and an LSTM (RNN) decoder within an overall ANN architecture to instantly generate accurate descriptions for any uploaded photo.",
     image: "/projects/image-caption-generator.png",
     gradient: "from-blue-600/30 to-purple-600/20",
-    tech: ["Python", "TensorFlow", "InceptionV3", "LSTM", "Streamlit"],
+    tech: ["Python", "TensorFlow", "ANN", "CNN", "RNN", "Streamlit"],
     links: {
       github: "https://github.com/HarshPariya/Image_Caption_Generator.git",
       demo: "https://image-caption-generator-01.streamlit.app/",
     },
     metrics: [
-      { label: "Model", value: "InceptionV3+LSTM" },
+      { label: "Model", value: "CNN+RNN (LSTM)" },
       { label: "Vocabulary", value: "~8.8K" },
       { label: "Feature Dim", value: "2048" },
     ],
@@ -336,13 +336,13 @@ export const projects: Project[] = [
     type: "aiml",
     caseStudy: {
       problem:
-        "Creating meaningful descriptions for images is a complex task requiring both computer vision to understand the image content and natural language processing to articulate it. The goal was to build an accessible web app that bridges this gap.",
+        "Creating meaningful descriptions for images is a complex task requiring both computer vision to understand the image content and sequence modeling to articulate it. The goal was to build an accessible web app utilizing ANN, CNN, and RNN architectures to bridge this gap.",
       dataset:
         "Trained on the Flickr8k dataset, comprising 8,000 images each paired with five different human-annotated captions to teach the model varied descriptive language.",
       architecture:
-        "An encoder-decoder architecture where a pre-trained InceptionV3 model extracts a 2048-dimensional feature vector from the image, which is then passed into an LSTM network that generates the caption word by word.",
+        "A hybrid neural network architecture where a pre-trained CNN (InceptionV3) extracts a 2048-dimensional feature vector from the image, which is then passed into an RNN (LSTM network) that generates the caption word by word.",
       modelSelection:
-        "InceptionV3 was chosen for its excellent feature extraction capabilities on images, and LSTM for its ability to remember sequence context, making it ideal for text generation.",
+        "CNN (InceptionV3) was chosen for its excellent feature extraction capabilities on images, and RNN (LSTM) for its ability to remember sequence context, making the combined ANN ideal for text generation from images.",
       training:
         "The model was trained using categorical crossentropy loss to predict the next word in the sequence. A custom tokenizer with an 8.8K vocabulary was built to map words to integer sequences.",
       evaluation: [
