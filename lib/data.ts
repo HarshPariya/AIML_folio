@@ -313,6 +313,53 @@ export interface Project {
 export const projects: Project[] = [
   // ── AI/ML Projects ────────────────────────────────────────────────────────
   {
+    slug: "image-caption-generator",
+    title: "Image Caption Generator",
+    category: "Computer Vision · NLP",
+    tagline: "AI-powered application that generates descriptive captions for uploaded images.",
+    description:
+      "VisionCaption AI is a deep-learning application that combines InceptionV3 for image feature extraction and an LSTM decoder to instantly generate accurate descriptions for any uploaded photo.",
+    image: "/projects/image-caption-generator.png",
+    gradient: "from-blue-600/30 to-purple-600/20",
+    tech: ["Python", "TensorFlow", "InceptionV3", "LSTM", "Streamlit"],
+    links: {
+      github: "https://github.com/HarshPariya/Image_Caption_Generator.git",
+      demo: "https://image-caption-generator-01.streamlit.app/",
+    },
+    metrics: [
+      { label: "Model", value: "InceptionV3+LSTM" },
+      { label: "Vocabulary", value: "~8.8K" },
+      { label: "Feature Dim", value: "2048" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Creating meaningful descriptions for images is a complex task requiring both computer vision to understand the image content and natural language processing to articulate it. The goal was to build an accessible web app that bridges this gap.",
+      dataset:
+        "Trained on the Flickr8k dataset, comprising 8,000 images each paired with five different human-annotated captions to teach the model varied descriptive language.",
+      architecture:
+        "An encoder-decoder architecture where a pre-trained InceptionV3 model extracts a 2048-dimensional feature vector from the image, which is then passed into an LSTM network that generates the caption word by word.",
+      modelSelection:
+        "InceptionV3 was chosen for its excellent feature extraction capabilities on images, and LSTM for its ability to remember sequence context, making it ideal for text generation.",
+      training:
+        "The model was trained using categorical crossentropy loss to predict the next word in the sequence. A custom tokenizer with an 8.8K vocabulary was built to map words to integer sequences.",
+      evaluation: [
+        { metric: "Vocabulary Size", value: "~8.8K" },
+        { metric: "Feature Dim", value: "2048" },
+        { metric: "Deployment", value: "Streamlit" },
+      ],
+      results:
+        "A live Streamlit application (VisionCaption AI) where users can upload any JPG or PNG image and receive an instantly generated, deep-learning powered description of the scene.",
+      learnings: [
+        "Combining CNNs and RNNs (LSTMs) is highly effective for multimodal tasks like image captioning.",
+        "Pre-trained models like InceptionV3 significantly reduce training time and improve feature quality.",
+        "Streamlit provides an excellent, rapid way to deploy complex deep learning models into interactive web apps.",
+      ],
+    },
+  },
+  {
     slug: "brain-tumor-detection",
     title: "Brain Tumor Detection CNN",
     category: "Deep Learning · CNN",
