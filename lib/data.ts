@@ -313,49 +313,49 @@ export interface Project {
 export const projects: Project[] = [
   // ── AI/ML Projects ────────────────────────────────────────────────────────
   {
-    slug: "image-caption-generator",
-    title: "Image Caption Generator",
-    category: "ANN · CNN · RNN",
-    tagline: "AI-powered application that generates descriptive captions for uploaded images.",
+    slug: "ai-assistant-platform",
+    title: "AI Assistant Platform",
+    category: "Generative AI · Full-Stack AI",
+    tagline: "A comprehensive AI workspace featuring 6+ specialized modules powered by Groq.",
     description:
-      "VisionCaption AI is a deep-learning application that combines InceptionV3 (CNN) for image feature extraction and an LSTM (RNN) decoder within an overall ANN architecture to instantly generate accurate descriptions for any uploaded photo.",
-    image: "/projects/image-caption-generator.png",
+      "An advanced AI platform offering a suite of tools including General AI Chat, Resume Reviewer, Interview Assistant, PDF Chatbot, and Image Q&A. Built for career and research tasks with ultra-fast Groq inference.",
+    image: "/projects/ai-assistant.png",
     gradient: "from-blue-600/30 to-purple-600/20",
-    tech: ["Python", "TensorFlow", "ANN", "CNN", "RNN", "Streamlit"],
+    tech: ["Next.js", "Groq", "AI", "Full Stack", "TypeScript"],
     links: {
-      github: "https://github.com/HarshPariya/Image_Caption_Generator.git",
-      demo: "https://image-caption-generator-01.streamlit.app/",
+      github: "https://github.com/HarshPariya/AI-Assistant-Frontend",
+      demo: "https://ai-assistant-gamma-sable.vercel.app/",
     },
     metrics: [
-      { label: "Model", value: "CNN+RNN (LSTM)" },
-      { label: "Vocabulary", value: "~8.8K" },
-      { label: "Feature Dim", value: "2048" },
+      { label: "Models", value: "6+" },
+      { label: "Engine", value: "Groq" },
+      { label: "Speed", value: "~2s" },
     ],
     featured: true,
     real: true,
     type: "aiml",
     caseStudy: {
       problem:
-        "Creating meaningful descriptions for images is a complex task requiring both computer vision to understand the image content and sequence modeling to articulate it. The goal was to build an accessible web app utilizing ANN, CNN, and RNN architectures to bridge this gap.",
+        "Professionals and students often need multiple specialized AI tools—for resumes, interviews, research, and general chat—which are typically scattered across different platforms.",
       dataset:
-        "Trained on the Flickr8k dataset, comprising 8,000 images each paired with five different human-annotated captions to teach the model varied descriptive language.",
+        "Utilizes multi-modal capabilities to process text, PDFs (for resume and research), and images (Vision AI) without requiring a custom fine-tuned dataset.",
       architecture:
-        "A hybrid neural network architecture where a pre-trained CNN (InceptionV3) extracts a 2048-dimensional feature vector from the image, which is then passed into an RNN (LSTM network) that generates the caption word by word.",
+        "Full-stack architecture featuring a separate frontend and backend repository. Integrates the blazing-fast Groq API to serve 6+ AI models with minimal latency.",
       modelSelection:
-        "CNN (InceptionV3) was chosen for its excellent feature extraction capabilities on images, and RNN (LSTM) for its ability to remember sequence context, making the combined ANN ideal for text generation from images.",
+        "Leverages Groq's LPU inference engine to run powerful open-source models with ~2s response times, significantly enhancing user experience for real-time chat and analysis.",
       training:
-        "The model was trained using categorical crossentropy loss to predict the next word in the sequence. A custom tokenizer with an 8.8K vocabulary was built to map words to integer sequences.",
+        "Focused on prompt engineering and specialized module orchestration (e.g., ATS scoring constraints, mock interview personas) rather than foundational model training.",
       evaluation: [
-        { metric: "Vocabulary Size", value: "~8.8K" },
-        { metric: "Feature Dim", value: "2048" },
-        { metric: "Deployment", value: "Streamlit" },
+        { metric: "Inference Speed", value: "~2s" },
+        { metric: "Modules", value: "6+" },
+        { metric: "Deployment", value: "Vercel" },
       ],
       results:
-        "A live Streamlit application (VisionCaption AI) where users can upload any JPG or PNG image and receive an instantly generated, deep-learning powered description of the scene.",
+        "A unified AI workspace deployed on Vercel, providing users with a seamless, high-speed interface for complex tasks like multi-PDF analysis and mock interviews.",
       learnings: [
-        "Combining CNNs and RNNs (LSTMs) is highly effective for multimodal tasks like image captioning.",
-        "Pre-trained models like InceptionV3 significantly reduce training time and improve feature quality.",
-        "Streamlit provides an excellent, rapid way to deploy complex deep learning models into interactive web apps.",
+        "Specialized AI modules provide more value than a single generic chatbot.",
+        "Groq's inference speed fundamentally changes the feel of full-stack AI apps.",
+        "Managing separate frontend and backend repositories allows for cleaner separation of concerns in complex AI platforms.",
       ],
     },
   },
@@ -403,6 +403,53 @@ export const projects: Project[] = [
         "Data augmentation is crucial for medical imaging datasets to improve model generalization.",
         "A clean, intuitive UI is essential for medical AI tools to be accessible to end-users.",
         "Bridging a deep learning model with a modern web frontend creates a powerful, deployable product.",
+      ],
+    },
+  },
+  {
+    slug: "squidai",
+    title: "SquidAI",
+    category: "Generative AI",
+    tagline: "AI-powered technical assistant for code generation and debugging.",
+    description:
+      "SquidAI is an AI-powered technical assistant that helps developers generate, explain, and refactor code faster. It focuses on practical use-cases like debugging help and boilerplate generation.",
+    image: "/projects/squidai.png",
+    gradient: "from-violet-600/30 to-fuchsia-600/20",
+    tech: ["AI", "Full Stack", "React", "Node"],
+    links: {
+      github: "https://github.com/HarshPariya/SquidAI",
+      demo: "https://squid-ai-phi.vercel.app/",
+    },
+    metrics: [
+      { label: "Stack", value: "Full Stack" },
+      { label: "Focus", value: "AI Dev" },
+      { label: "Year", value: "2026" },
+    ],
+    featured: false,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Developers spend significant time on boilerplate, debugging explanations, and repetitive coding tasks. SquidAI was built to provide a fast, practical AI assistant focused on real developer workflows.",
+      dataset:
+        "No custom training dataset — the app orchestrates AI APIs with structured prompts for code generation, explanation, and refactoring tasks.",
+      architecture:
+        "React front end with a Node.js backend, routing AI requests through a prompt layer that handles code context, streaming responses, and error states.",
+      modelSelection:
+        "Evaluated hosted AI models for code-quality output and response latency, optimizing prompts for debugging help and boilerplate generation.",
+      training:
+        "Iterative prompt-engineering: tested representative developer queries, refined system instructions, and tuned the UX for streaming responses.",
+      evaluation: [
+        { metric: "Use cases", value: "Debug + codegen" },
+        { metric: "Stack", value: "React + Node" },
+        { metric: "Deployment", value: "Vercel" },
+      ],
+      results:
+        "A live AI technical assistant deployed on Vercel with a polished interface for code generation, explanation, and refactoring.",
+      learnings: [
+        "AI developer tools need tight prompt scoping to stay useful.",
+        "Streaming responses make AI assistants feel dramatically faster.",
+        "Shipping a real product UI builds more credibility than a raw API demo.",
       ],
     },
   },
@@ -547,6 +594,53 @@ export const projects: Project[] = [
       ],
     },
   },
+   {
+    slug: "image-caption-generator",
+    title: "Image Caption Generator",
+    category: "ANN · CNN · RNN",
+    tagline: "AI-powered application that generates descriptive captions for uploaded images.",
+    description:
+      "VisionCaption AI is a deep-learning application that combines InceptionV3 (CNN) for image feature extraction and an LSTM (RNN) decoder within an overall ANN architecture to instantly generate accurate descriptions for any uploaded photo.",
+    image: "/projects/image-caption-generator.png",
+    gradient: "from-blue-600/30 to-purple-600/20",
+    tech: ["Python", "TensorFlow", "ANN", "CNN", "RNN", "Streamlit"],
+    links: {
+      github: "https://github.com/HarshPariya/Image_Caption_Generator.git",
+      demo: "https://image-caption-generator-01.streamlit.app/",
+    },
+    metrics: [
+      { label: "Model", value: "CNN+RNN (LSTM)" },
+      { label: "Vocabulary", value: "~8.8K" },
+      { label: "Feature Dim", value: "2048" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Creating meaningful descriptions for images is a complex task requiring both computer vision to understand the image content and sequence modeling to articulate it. The goal was to build an accessible web app utilizing ANN, CNN, and RNN architectures to bridge this gap.",
+      dataset:
+        "Trained on the Flickr8k dataset, comprising 8,000 images each paired with five different human-annotated captions to teach the model varied descriptive language.",
+      architecture:
+        "A hybrid neural network architecture where a pre-trained CNN (InceptionV3) extracts a 2048-dimensional feature vector from the image, which is then passed into an RNN (LSTM network) that generates the caption word by word.",
+      modelSelection:
+        "CNN (InceptionV3) was chosen for its excellent feature extraction capabilities on images, and RNN (LSTM) for its ability to remember sequence context, making the combined ANN ideal for text generation from images.",
+      training:
+        "The model was trained using categorical crossentropy loss to predict the next word in the sequence. A custom tokenizer with an 8.8K vocabulary was built to map words to integer sequences.",
+      evaluation: [
+        { metric: "Vocabulary Size", value: "~8.8K" },
+        { metric: "Feature Dim", value: "2048" },
+        { metric: "Deployment", value: "Streamlit" },
+      ],
+      results:
+        "A live Streamlit application (VisionCaption AI) where users can upload any JPG or PNG image and receive an instantly generated, deep-learning powered description of the scene.",
+      learnings: [
+        "Combining CNNs and RNNs (LSTMs) is highly effective for multimodal tasks like image captioning.",
+        "Pre-trained models like InceptionV3 significantly reduce training time and improve feature quality.",
+        "Streamlit provides an excellent, rapid way to deploy complex deep learning models into interactive web apps.",
+      ],
+    },
+  },
   // ── Development Projects ───────────────────────────────────────────────────
   {
     slug: "aiml-folio",
@@ -595,53 +689,7 @@ export const projects: Project[] = [
       ],
     },
   },
-  {
-    slug: "squidai",
-    title: "SquidAI",
-    category: "Generative AI",
-    tagline: "AI-powered technical assistant for code generation and debugging.",
-    description:
-      "SquidAI is an AI-powered technical assistant that helps developers generate, explain, and refactor code faster. It focuses on practical use-cases like debugging help and boilerplate generation.",
-    image: "/projects/squidai.png",
-    gradient: "from-violet-600/30 to-fuchsia-600/20",
-    tech: ["AI", "Full Stack", "React", "Node"],
-    links: {
-      github: "https://github.com/HarshPariya/SquidAI",
-      demo: "https://squid-ai-phi.vercel.app/",
-    },
-    metrics: [
-      { label: "Stack", value: "Full Stack" },
-      { label: "Focus", value: "AI Dev" },
-      { label: "Year", value: "2026" },
-    ],
-    featured: false,
-    real: true,
-    type: "aiml",
-    caseStudy: {
-      problem:
-        "Developers spend significant time on boilerplate, debugging explanations, and repetitive coding tasks. SquidAI was built to provide a fast, practical AI assistant focused on real developer workflows.",
-      dataset:
-        "No custom training dataset — the app orchestrates AI APIs with structured prompts for code generation, explanation, and refactoring tasks.",
-      architecture:
-        "React front end with a Node.js backend, routing AI requests through a prompt layer that handles code context, streaming responses, and error states.",
-      modelSelection:
-        "Evaluated hosted AI models for code-quality output and response latency, optimizing prompts for debugging help and boilerplate generation.",
-      training:
-        "Iterative prompt-engineering: tested representative developer queries, refined system instructions, and tuned the UX for streaming responses.",
-      evaluation: [
-        { metric: "Use cases", value: "Debug + codegen" },
-        { metric: "Stack", value: "React + Node" },
-        { metric: "Deployment", value: "Vercel" },
-      ],
-      results:
-        "A live AI technical assistant deployed on Vercel with a polished interface for code generation, explanation, and refactoring.",
-      learnings: [
-        "AI developer tools need tight prompt scoping to stay useful.",
-        "Streaming responses make AI assistants feel dramatically faster.",
-        "Shipping a real product UI builds more credibility than a raw API demo.",
-      ],
-    },
-  },
+
   // ── (SquidAI — AI-powered dev tool) ─────────────────────────────────────────
   {
     slug: "campus-navigation",
