@@ -8,15 +8,12 @@ import { siteConfig } from "@/lib/site";
 
 const user = siteConfig.githubUsername;
 
-// github-readme-stats themed to match the site (no API key, generated server-side by their service).
-const statCardUrl = `https://github-readme-stats.vercel.app/api?username=${user}&show_icons=true&hide_border=true&bg_color=00000000&title_color=a78bfa&icon_color=22d3ee&text_color=9aa3b8&hide_title=true`;
-const streakUrl = `https://github-readme-streak-stats.herokuapp.com/?user=${user}&hide_border=true&background=00000000&stroke=1c1f2e&ring=7c5cff&fire=f472b6&currStreakLabel=a78bfa&sideLabels=9aa3b8&dates=5b6378&currStreakNum=e9ecf5&sideNums=e9ecf5`;
-const langUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${user}&layout=compact&hide_border=true&bg_color=00000000&title_color=a78bfa&text_color=9aa3b8`;
+
 const chartUrl = `https://ghchart.rshah.org/7c5cff/${user}`;
 
 const quickStats = [
-  { icon: GitCommit, label: "Contributions", value: "1,500+" },
-  { icon: Github, label: "Repositories", value: "15+" },
+  { icon: GitCommit, label: "Contributions", value: "1,900+" },
+  { icon: Github, label: "Repositories", value: "36+" },
   { icon: Star, label: "Languages", value: "6+" },
   { icon: GitFork, label: "Problems Solved", value: "50+" },
 ];
@@ -65,23 +62,7 @@ export function OpenSource() {
           </SpotlightCard>
         </Reveal>
 
-        <div className="mt-6 grid gap-5 lg:grid-cols-3">
-          <Reveal>
-            <SpotlightCard className="flex items-center justify-center p-6" tilt={false}>
-              <img src={statCardUrl} alt={`${user} GitHub stats`} className="w-full" loading="lazy" />
-            </SpotlightCard>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <SpotlightCard className="flex items-center justify-center p-6" tilt={false}>
-              <img src={streakUrl} alt={`${user} GitHub streak`} className="w-full" loading="lazy" />
-            </SpotlightCard>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <SpotlightCard className="flex items-center justify-center p-6" tilt={false}>
-              <img src={langUrl} alt={`${user} top languages`} className="w-full" loading="lazy" />
-            </SpotlightCard>
-          </Reveal>
-        </div>
+
 
         <Reveal className="mt-10 flex justify-center">
           <Button href={siteConfig.links.github} external variant="outline" size="lg">
