@@ -49,8 +49,8 @@ export const heroRotatingWords = [
 
 export const heroStats = [
   { label: "Projects Built", value: "10+" },
-  { label: "GitHub Contributions", value: "1.8K+" },
-  { label: "CGPA", value: "8.85" },
+  { label: "GitHub Contributions", value: "1.9K+" },
+  { label: "CGPA", value: "8.98" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -976,9 +976,9 @@ export const experiences: Experience[] = [
     period: "2024 - 2028",
     type: "Education",
     description:
-      "Pursuing CS with a focus on DSA, software engineering, statistics, and databases - CGPA 8.85/10.",
+      "Pursuing CS with a focus on DSA, software engineering, statistics, and databases - CGPA 8.98/10.",
     highlights: [
-      "CGPA 8.85 / 10",
+      "CGPA 8.98 / 10",
       "Coursework: DSA, Software Engineering, Statistics, Databases",
       "Industrial visit: Adani Power Plant - industrial automation exposure",
     ],
