@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Aurora gradient blobs — slow, GPU-cheap, blurred color fields. Decorative.
+ * Aurora gradient blobs - slow, GPU-cheap, blurred color fields. Decorative.
  */
 export function Aurora({ className }: { className?: string }) {
   return (

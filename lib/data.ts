@@ -1,5 +1,5 @@
 /**
- * Content data layer — the single source of truth for every section.
+ * Content data layer - the single source of truth for every section.
  *
  * Most fields are populated from Harsh Pariya's real résumé. A few project
  * metrics, demo links, and the Research entries are clearly-marked starter
@@ -58,9 +58,9 @@ export const heroStats = [
 /* ------------------------------------------------------------------ */
 
 export const aboutParagraphs = [
-  "I'm an aspiring AI/ML Engineer and B.Tech Computer Science student at Rai University, Ahmedabad. My work sits at the intersection of rigorous machine learning and well-engineered products — I like taking a model from a noisy notebook experiment all the way to something people can actually use.",
-  "My journey into AI started with a simple question: how do machines learn patterns humans can't see? That curiosity pulled me deep into Python, the math behind models, and frameworks like Scikit-Learn, TensorFlow, and PyTorch. Today I build classifiers, neural networks, and LLM-powered applications, and I obsess over the gap between an offline metric and real-world impact.",
-  "I'm currently focused on Large Language Models, Retrieval-Augmented Generation, and applied deep learning — and I'm actively seeking an AI/ML internship where I can contribute to production systems while learning from experienced researchers and engineers.",
+  "I'm a B.Tech Computer Science student at Rai University, Ahmedabad, with a focus on AI and machine learning. I spend most of my time building projects that actually run in production, not just notebooks.",
+  "My interest in ML started when I wanted to understand how machines pick up on patterns that humans miss. That pulled me into Python, linear algebra, and frameworks like Scikit-Learn, TensorFlow, and PyTorch. I've since built classifiers, neural networks, and LLM-powered apps, and I care deeply about whether a model works in the real world, not just on a test set.",
+  "Right now I'm focused on LLMs, Retrieval-Augmented Generation, and applied deep learning. I'm looking for an AI/ML internship where I can work on real production systems alongside people who care about the craft.",
 ];
 
 export const counters = [
@@ -75,35 +75,35 @@ export const journey = [
     title: "Started B.Tech in Computer Science",
     org: "Rai University, Ahmedabad",
     description:
-      "Began my CS degree with a focus on DSA, statistics, and databases — and started building AI/ML projects on the side.",
+      "Began CS degree with a focus on DSA, statistics, and databases. Started building small AI/ML projects on the side to understand how the math actually works in code.",
   },
   {
     year: "2025",
     title: "Development Intern Offer",
     org: "Codveda Technologies",
     description:
-      "Received an internship offer to build AI/ML and full-stack projects independently — turning experiments into production systems.",
+      "Received an internship offer to build AI/ML and full-stack projects. Learned what it takes to turn an experiment into something that actually ships.",
   },
   {
     year: "2026",
     title: "Fell in love with Machine Learning",
     org: "Self-directed learning",
     description:
-      "Went deep on the ML foundations: regression, classification, clustering, and ensemble models with Scikit-Learn, NumPy, and Pandas.",
+      "Went deep on ML foundations: regression, classification, clustering, and ensemble models using Scikit-Learn, NumPy, and Pandas. Built several projects end-to-end.",
   },
   {
     year: "2026",
-    title: "Moved into Deep Learning & Neural Networks",
-    org: "TensorFlow · PyTorch",
+    title: "Moved into Deep Learning and Neural Networks",
+    org: "TensorFlow and PyTorch",
     description:
-      "Built and trained neural networks and CNNs, learning model training, evaluation, and the engineering behind real ML systems.",
+      "Built and trained CNNs, worked through the engineering side of model training and evaluation. Deployed a brain tumor detection app using real MRI data.",
   },
   {
     year: "2026",
-    title: "Building LLM & GenAI applications",
+    title: "Building LLM and GenAI applications",
     org: "Current focus",
     description:
-      "Working with LLMs, RAG systems, and AI agents — combining ML depth with product engineering to build intelligent applications.",
+      "Working with LLMs, RAG systems, and AI agents. Combining ML depth with product engineering to ship things people can actually use.",
   },
 ];
 
@@ -127,7 +127,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "AI & Machine Learning",
     icon: Brain,
-    accent: "from-violet-500 to-fuchsia-500",
+    accent: "from-blue-600 to-sky-400",
     skills: [
       { name: "Machine Learning", level: 88 },
       { name: "Deep Learning", level: 82 },
@@ -153,7 +153,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Programming",
     icon: Code2,
-    accent: "from-emerald-500 to-teal-400",
+    accent: "from-blue-500 to-indigo-400",
     skills: [
       { name: "Python", level: 92 },
       { name: "SQL", level: 80 },
@@ -165,7 +165,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Cloud & DevOps",
     icon: Cloud,
-    accent: "from-amber-500 to-orange-400",
+    accent: "from-indigo-500 to-blue-400",
     skills: [
       { name: "AWS", level: 66 },
       { name: "Docker", level: 72 },
@@ -311,7 +311,7 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  // ── AI/ML Projects ────────────────────────────────────────────────────────
+  // AI/ML Projects
   {
     slug: "ai-assistant-platform",
     title: "AI Assistant Platform",
@@ -320,7 +320,7 @@ export const projects: Project[] = [
     description:
       "An advanced AI platform offering a suite of tools including General AI Chat, Resume Reviewer, Interview Assistant, PDF Chatbot, and Image Q&A. Built for career and research tasks with ultra-fast Groq inference.",
     image: "/projects/ai-assistant.png",
-    gradient: "from-blue-600/30 to-purple-600/20",
+    gradient: "from-blue-700/30 to-sky-500/20",
     tech: ["Next.js", "Groq", "AI", "Full Stack", "TypeScript"],
     links: {
       github: "https://github.com/HarshPariya/AI-Assistant-Frontend",
@@ -336,7 +336,7 @@ export const projects: Project[] = [
     type: "aiml",
     caseStudy: {
       problem:
-        "Professionals and students often need multiple specialized AI tools—for resumes, interviews, research, and general chat—which are typically scattered across different platforms.",
+        "Professionals and students often need multiple specialized AI tools - for resumes, interviews, research, and general chat - which are typically scattered across different platforms.",
       dataset:
         "Utilizes multi-modal capabilities to process text, PDFs (for resume and research), and images (Vision AI) without requiring a custom fine-tuned dataset.",
       architecture:
@@ -367,7 +367,7 @@ export const projects: Project[] = [
     description:
       "A deep learning application that analyzes MRI scans to instantly detect and classify brain tumors (Glioma, Meningioma, Pituitary Tumor, or No Tumor) with 86.25% test accuracy.",
     image: "/projects/brain-tumor-detection.png",
-    gradient: "from-blue-600/30 to-purple-600/20",
+    gradient: "from-blue-600/30 to-indigo-600/20",
     tech: ["Python", "TensorFlow", "CNN", "Next.js", "Vercel"],
     links: {
       github: "https://github.com/HarshPariya/Brain-tumor-detection-cnn",
@@ -414,7 +414,7 @@ export const projects: Project[] = [
     description:
       "SquidAI is an AI-powered technical assistant that helps developers generate, explain, and refactor code faster. It focuses on practical use-cases like debugging help and boilerplate generation.",
     image: "/projects/squidai.png",
-    gradient: "from-violet-600/30 to-fuchsia-600/20",
+    gradient: "from-sky-600/30 to-blue-600/20",
     tech: ["AI", "Full Stack", "React", "Node"],
     links: {
       github: "https://github.com/HarshPariya/SquidAI",
@@ -432,7 +432,7 @@ export const projects: Project[] = [
       problem:
         "Developers spend significant time on boilerplate, debugging explanations, and repetitive coding tasks. SquidAI was built to provide a fast, practical AI assistant focused on real developer workflows.",
       dataset:
-        "No custom training dataset — the app orchestrates AI APIs with structured prompts for code generation, explanation, and refactoring tasks.",
+        "No custom training dataset - the app orchestrates AI APIs with structured prompts for code generation, explanation, and refactoring tasks.",
       architecture:
         "React front end with a Node.js backend, routing AI requests through a prompt layer that handles code context, streaming responses, and error states.",
       modelSelection:
@@ -459,7 +459,7 @@ export const projects: Project[] = [
     category: "NLP · Machine Learning",
     tagline: "AI-powered resume analyser using XGBoost + TF-IDF to classify job categories instantly.",
     description:
-      "ResumeAI analyses uploaded PDF resumes using a TF-IDF vectoriser and XGBoost classifier to predict job categories with 80.9% accuracy across 22+ roles — with results delivered in under 1 second.",
+      "ResumeAI analyses uploaded PDF resumes using a TF-IDF vectoriser and XGBoost classifier to predict job categories with 80.9% accuracy across 22+ roles - with results delivered in under 1 second.",
     image: "/projects/resume-screening-ai.png",
     gradient: "from-violet-600/30 to-fuchsia-600/20",
     tech: ["Python", "XGBoost", "TF-IDF", "NLP", "Streamlit"],
@@ -477,7 +477,7 @@ export const projects: Project[] = [
     type: "aiml",
     caseStudy: {
       problem:
-        "Recruiters manually screen hundreds of resumes per role, leading to unconscious bias and massive time costs. The goal was an automated NLP system to predict a candidate's job category from raw resume text — instantly and accurately.",
+        "Recruiters manually screen hundreds of resumes per role, leading to unconscious bias and massive time costs. The goal was an automated NLP system to predict a candidate's job category from raw resume text - instantly and accurately.",
       dataset:
         "2,484 labelled resume PDFs spanning 22+ job categories including Data Science, HR, Engineering, Finance, and more. PDFs were parsed with PyPDF2 and cleaned with regex before feature extraction.",
       architecture:
@@ -492,10 +492,10 @@ export const projects: Project[] = [
         { metric: "Inference", value: "< 1s" },
       ],
       results:
-        "Live Streamlit app at resume-screening-ai-01.streamlit.app — upload any PDF resume and get instant job-category predictions with confidence scores across 22 roles.",
+        "Live Streamlit app at resume-screening-ai-01.streamlit.app - upload any PDF resume and get instant job-category predictions with confidence scores across 22 roles.",
       learnings: [
         "TF-IDF + XGBoost is a powerful, fast baseline for short-document NLP tasks.",
-        "Resume text quality varies wildly — robust PDF parsing is as important as the model.",
+        "Resume text quality varies wildly - robust PDF parsing is as important as the model.",
         "Confidence scores add recruiter trust that raw predictions alone don't provide.",
       ],
     },
@@ -524,13 +524,13 @@ export const projects: Project[] = [
     type: "aiml",
     caseStudy: {
       problem:
-        "Misinformation spreads faster than corrections. The goal was a real-time NLP classifier that could distinguish fake from real news with high precision — usable by anyone without ML knowledge via a simple paste-and-check interface.",
+        "Misinformation spreads faster than corrections. The goal was a real-time NLP classifier that could distinguish fake from real news with high precision - usable by anyone without ML knowledge via a simple paste-and-check interface.",
       dataset:
         "44,898 articles from the ISOT Fake News Dataset: 23,481 real Reuters articles and 21,417 fake articles from PolitiFact/unreliable sources. Text was lowercased, punctuation stripped, stop-words removed, and lemmatised before vectorisation.",
       architecture:
         "TF-IDF vectoriser (max 10K features, 1–2 n-grams) feeding a Linear SVM classifier. Streamlit front end accepts raw article text, runs the pipeline in memory, and returns a REAL/FAKE verdict with probability score.",
       modelSelection:
-        "Linear SVM was benchmarked against Multinomial Naïve Bayes and Logistic Regression. SVM achieved the best accuracy (99.29%) and F1 (0.99) on the held-out test set and is fastest at inference — ideal for Streamlit deployment.",
+        "Linear SVM was benchmarked against Multinomial Naïve Bayes and Logistic Regression. SVM achieved the best accuracy (99.29%) and F1 (0.99) on the held-out test set and is fastest at inference - ideal for Streamlit deployment.",
       training:
         "Trained on an 80/20 stratified split. Hyperparameter tuning explored regularisation parameter C (0.1–10) with cross-validation. Final model and vectoriser saved with joblib for instant loading on Streamlit cold start.",
       evaluation: [
@@ -539,7 +539,7 @@ export const projects: Project[] = [
         { metric: "Inference", value: "~0.1s" },
       ],
       results:
-        "Live at fake-news-detection-nlp-01.streamlit.app — paste any news article and get an instant real/fake verdict backed by SVM confidence scores.",
+        "Live at fake-news-detection-nlp-01.streamlit.app - paste any news article and get an instant real/fake verdict backed by SVM confidence scores.",
       learnings: [
         "Linear SVM is remarkably effective for high-dimensional TF-IDF spaces.",
         "n-gram features (bigrams) significantly improve fake-news pattern detection.",
@@ -553,7 +553,7 @@ export const projects: Project[] = [
     category: "Regression · ML",
     tagline: "XGBoost regression model predicting California house prices via a real-time Next.js UI.",
     description:
-      "A full-stack ML application where users enter block-group features (income, age, rooms, location) and get instant XGBoost price predictions with a Feature Comparison vs CA Average chart — deployed on Vercel.",
+      "A full-stack ML application where users enter block-group features (income, age, rooms, location) and get instant XGBoost price predictions with a Feature Comparison vs CA Average chart - deployed on Vercel.",
     image: "/projects/california-house-price.png",
     gradient: "from-sky-600/30 to-cyan-500/20",
     tech: ["XGBoost", "Next.js", "Python", "FastAPI", "Vercel"],
@@ -571,11 +571,11 @@ export const projects: Project[] = [
     type: "aiml",
     caseStudy: {
       problem:
-        "House price estimation is a classic regression problem, but the challenge here was bridging the gap between a trained ML model and a polished, real-time web UI — making predictions accessible to non-technical users with live feature comparison.",
+        "House price estimation is a classic regression problem, but the challenge here was bridging the gap between a trained ML model and a polished, real-time web UI - making predictions accessible to non-technical users with live feature comparison.",
       dataset:
         "California Housing Dataset (20,640 block-group observations from the 1990 census): median income, house age, average rooms/bedrooms, population, average occupancy, and lat/lon coordinates.",
       architecture:
-        "XGBoost regressor trained in Python, serialised, and served via a FastAPI backend. Next.js front end renders a two-panel layout — a form for feature inputs and a live bar chart comparing user inputs vs California averages via Recharts.",
+        "XGBoost regressor trained in Python, serialised, and served via a FastAPI backend. Next.js front end renders a two-panel layout - a form for feature inputs and a live bar chart comparing user inputs vs California averages via Recharts.",
       modelSelection:
         "XGBoost outperformed Linear Regression, Ridge, and Random Forest on RMSE and R². It handles the non-linear interaction between income, location, and occupancy density far better than linear baselines.",
       training:
@@ -586,7 +586,7 @@ export const projects: Project[] = [
         { metric: "Deployment", value: "Vercel" },
       ],
       results:
-        "Live at california-house-price-prediction-xi.vercel.app — enter any block-group features and get an instant predicted median house value with a dynamic feature comparison chart.",
+        "Live at california-house-price-prediction-xi.vercel.app - enter any block-group features and get an instant predicted median house value with a dynamic feature comparison chart.",
       learnings: [
         "Bridging a Python ML model to a Next.js UI requires a clean API layer.",
         "Visual feature comparison (user vs average) significantly improves prediction interpretability.",
@@ -641,16 +641,16 @@ export const projects: Project[] = [
       ],
     },
   },
-  // ── Development Projects ───────────────────────────────────────────────────
+  // Development Projects
   {
     slug: "aiml-folio",
     title: "AIML Folio",
     category: "Portfolio · Next.js",
-    tagline: "Premium AI/ML portfolio built with Next.js — dark-space design, animated hero, and interactive tech graph.",
+    tagline: "Premium AI/ML portfolio built with Next.js - dark-space design, animated hero, and interactive tech graph.",
     description:
-      "A fully custom AI/ML-focused portfolio built with Next.js, TypeScript, and Framer Motion — featuring a live tech-stack graph, animated hero section, tabbed project showcase with case studies, and full responsive layout. Deployed on Vercel.",
+      "A fully custom AI/ML-focused portfolio built with Next.js, TypeScript, and Framer Motion - featuring a live tech-stack graph, animated hero section, tabbed project showcase with case studies, and full responsive layout. Deployed on Vercel.",
     image: "/projects/aiml-folio.png",
-    gradient: "from-violet-600/30 to-indigo-600/20",
+    gradient: "from-blue-600/30 to-indigo-700/20",
     tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Vercel"],
     links: {
       github: "https://github.com/HarshPariya/AIML_folio",
@@ -666,22 +666,22 @@ export const projects: Project[] = [
     type: "dev",
     caseStudy: {
       problem:
-        "Generic portfolio templates fail to communicate an AI/ML engineer's depth. The goal was a fully custom, premium portfolio that feels native to the AI world — dark aesthetic, interactive visualisations, and deep project case studies that go beyond a link and a screenshot.",
+        "Generic portfolio templates fail to communicate an AI/ML engineer's depth. The goal was a fully custom, premium portfolio that feels native to the AI world - dark aesthetic, interactive visualisations, and deep project case studies that go beyond a link and a screenshot.",
       dataset:
-        "Personal project data, skill metrics, GitHub contributions, certifications, and experience timeline — all structured as a typed data layer in TypeScript for type-safe rendering across every section.",
+        "Personal project data, skill metrics, GitHub contributions, certifications, and experience timeline - all structured as a typed data layer in TypeScript for type-safe rendering across every section.",
       architecture:
         "Next.js 15 App Router with dynamic project routes, Framer Motion scroll-triggered animations, an interactive D3 force-graph for the tech stack, radar chart for skill distribution, and a tabbed AI/ML vs Dev project split.",
       modelSelection:
         "Next.js for SSR/SEO and image optimisation; TypeScript for maintainability; Framer Motion for declarative animations; Tailwind CSS for the design system; Vercel for edge deployment with zero-config CI.",
       training:
-        "Iterative design: established the dark-space colour palette and CSS tokens first, then built section by section — hero, skills, tech graph, projects, timeline, certifications, contact — polishing animations and responsive breakpoints at each step.",
+        "Iterative design: established the dark-space colour palette and CSS tokens first, then built section by section - hero, skills, tech graph, projects, timeline, certifications, contact - polishing animations and responsive breakpoints at each step.",
       evaluation: [
         { metric: "Lighthouse", value: "95+" },
         { metric: "Sections", value: "10+" },
         { metric: "Deployment", value: "Vercel" },
       ],
       results:
-        "Live at aiml-folio-alpha.vercel.app — a production-grade AI/ML portfolio with animated hero, interactive tech graph, tabbed project showcase with full case studies, and responsive layout across all devices.",
+        "Live at aiml-folio-alpha.vercel.app - a production-grade AI/ML portfolio with animated hero, interactive tech graph, tabbed project showcase with full case studies, and responsive layout across all devices.",
       learnings: [
         "A typed data layer makes it trivial to add new projects and sections without breaking anything.",
         "Interactive visualisations (force graph, radar chart) communicate technical depth far better than bullet lists.",
@@ -690,7 +690,7 @@ export const projects: Project[] = [
     },
   },
 
-  // ── (SquidAI — AI-powered dev tool) ─────────────────────────────────────────
+  // SquidAI - AI-powered dev tool
   {
     slug: "campus-navigation",
     title: "Campus Navigation System",
@@ -717,7 +717,7 @@ export const projects: Project[] = [
       problem:
         "New students and visitors struggle to find buildings and routes on campus. A web-based navigation tool was needed to make campus exploration intuitive without installing an app.",
       dataset:
-        "Campus location data — building names, coordinates, and route points — structured for map rendering and search.",
+        "Campus location data - building names, coordinates, and route points - structured for map rendering and search.",
       architecture:
         "React + TypeScript front end with map integration, search/filter UI, and a backend layer for location data and routing logic.",
       modelSelection:
@@ -734,7 +734,7 @@ export const projects: Project[] = [
       learnings: [
         "Map UX needs simple search and clear visual hierarchy.",
         "TypeScript catches routing and location-state bugs early.",
-        "Campus tools must work well on phones — that's how students use them.",
+        "Campus tools must work well on phones - that's how students use them.",
       ],
     },
   },
@@ -764,13 +764,13 @@ export const projects: Project[] = [
       problem:
         "Travel agency sites often feel cluttered and fail to guide users toward booking. TravelGo needed a clean, modern landing experience that highlights destinations and drives action.",
       dataset:
-        "Static travel content — destinations, packages, pricing highlights, and CTA copy — structured for modular page sections.",
+        "Static travel content - destinations, packages, pricing highlights, and CTA copy - structured for modular page sections.",
       architecture:
         "Single-page React application with section-based layout, reusable card components, and Tailwind CSS for responsive styling.",
       modelSelection:
         "React + Tailwind for fast iteration on layout, typography, and responsive breakpoints without heavy CSS overhead.",
       training:
-        "Designed section by section: hero, destinations, packages, and CTAs — refining visual hierarchy and mobile layout at each step.",
+        "Designed section by section: hero, destinations, packages, and CTAs - refining visual hierarchy and mobile layout at each step.",
       evaluation: [
         { metric: "Responsive", value: "100%" },
         { metric: "Focus", value: "Conversion UI" },
@@ -809,7 +809,7 @@ export const projects: Project[] = [
     type: "dev",
     caseStudy: {
       problem:
-        "Quiz apps need to feel engaging and responsive — instant feedback, clear scoring, and a UI that works on phones where most users play.",
+        "Quiz apps need to feel engaging and responsive - instant feedback, clear scoring, and a UI that works on phones where most users play.",
       dataset:
         "Structured question bank with multiple-choice options, correct answers, and score metadata for each quiz session.",
       architecture:
@@ -840,7 +840,7 @@ export const projects: Project[] = [
     description:
       "A modern, responsive portfolio website built with Next.js featuring a dark-space themed design, animated hero section, interactive project showcases, and seamless navigation.",
     image: "/projects/portfolio-nextjs.png",
-    gradient: "from-indigo-600/30 to-blue-500/20",
+    gradient: "from-sky-600/30 to-blue-500/20",
     tech: ["Next.js", "React", "Portfolio", "CSS"],
     links: {
       github: "https://github.com/HarshPariya/Portfolio_NextJs",
@@ -856,7 +856,7 @@ export const projects: Project[] = [
     type: "dev",
     caseStudy: {
       problem:
-        "A developer portfolio needs to showcase projects clearly, load fast, and feel polished — not like a generic template.",
+        "A developer portfolio needs to showcase projects clearly, load fast, and feel polished - not like a generic template.",
       dataset:
         "Project metadata, skills, and personal content structured as static data for fast page rendering.",
       architecture:
@@ -871,7 +871,7 @@ export const projects: Project[] = [
         { metric: "Deployment", value: "Netlify" },
       ],
       results:
-        "A deployed portfolio with animated hero, project showcase, and responsive navigation — live on Netlify.",
+        "A deployed portfolio with animated hero, project showcase, and responsive navigation - live on Netlify.",
       learnings: [
         "Portfolio structure should lead with your strongest projects.",
         "Consistent theming across sections makes the site feel premium.",
@@ -885,9 +885,9 @@ export const projects: Project[] = [
     category: "Full-Stack",
     tagline: "Premium developer portfolio with animations and GitHub integration.",
     description:
-      "A premium, fully custom developer portfolio built with Next.js 16, TypeScript, and Framer Motion — featuring scroll-triggered animations, a dynamic project showcase, GitHub stats integration, and a fully responsive layout.",
+      "A premium, fully custom developer portfolio built with Next.js 16, TypeScript, and Framer Motion - featuring scroll-triggered animations, a dynamic project showcase, GitHub stats integration, and a fully responsive layout.",
     image: "/projects/folio-harsh-dev.png",
-    gradient: "from-rose-600/30 to-pink-500/20",
+    gradient: "from-blue-600/30 to-sky-600/20",
     tech: ["Next.js", "TypeScript", "Framer Motion", "Vercel"],
     links: {
       github: "https://github.com/HarshPariya/harsh-portfolio",
@@ -903,7 +903,7 @@ export const projects: Project[] = [
     type: "dev",
     caseStudy: {
       problem:
-        "A second portfolio iteration needed to feel premium — custom design, smooth animations, live GitHub stats, and a project showcase that reflects real work.",
+        "A second portfolio iteration needed to feel premium - custom design, smooth animations, live GitHub stats, and a project showcase that reflects real work.",
       dataset:
         "Project case studies, experience timeline, GitHub/LeetCode profile data, and tech stack content managed as structured site data.",
       architecture:
@@ -960,10 +960,10 @@ export const experiences: Experience[] = [
   {
     role: "AI/ML Project Builder",
     org: "Self-directed",
-    period: "2024 — Present",
+    period: "2024 - Present",
     type: "Independent",
     description:
-      "Continuously building ML and deep-learning projects — from classical models to LLM-powered applications — and shipping them publicly.",
+      "Continuously building ML and deep-learning projects - from classical models to LLM-powered applications - and shipping them publicly.",
     highlights: [
       "15+ projects spanning ML, deep learning, NLP, and full-stack",
       "1,500+ GitHub contributions",
@@ -971,16 +971,16 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    role: "B.Tech — Computer Science & Engineering",
+    role: "B.Tech - Computer Science & Engineering",
     org: "Rai University, Ahmedabad",
-    period: "2024 — 2028",
+    period: "2024 - 2028",
     type: "Education",
     description:
-      "Pursuing CS with a focus on DSA, software engineering, statistics, and databases — CGPA 8.85/10.",
+      "Pursuing CS with a focus on DSA, software engineering, statistics, and databases - CGPA 8.85/10.",
     highlights: [
       "CGPA 8.85 / 10",
       "Coursework: DSA, Software Engineering, Statistics, Databases",
-      "Industrial visit: Adani Power Plant — industrial automation exposure",
+      "Industrial visit: Adani Power Plant - industrial automation exposure",
     ],
   },
 ];
@@ -1003,14 +1003,14 @@ export const certifications: Certification[] = [
     issuer: "Be10x",
     year: "2025",
     url: "https://www.linkedin.com/posts/harsh-pariya_learning-ai-professionalgrowth-activity-7408434618485366784-xMev",
-    accent: "from-violet-500/20 to-fuchsia-500/10",
+    accent: "from-blue-600/20 to-sky-500/10",
   },
   {
     title: "Cloud DevOps Roadmap for 2026",
     issuer: "GUVI × HCL",
     year: "2025",
     url: "https://www.linkedin.com/posts/harsh-pariya_clouddevops-upskilling-careergrowth-activity-7413864822045466624-zOal",
-    accent: "from-sky-500/20 to-cyan-500/10",
+    accent: "from-sky-500/20 to-blue-400/10",
   },
 ];
 
@@ -1029,17 +1029,17 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Harsh combines genuine ML curiosity with strong engineering instincts. He doesn't stop at a notebook — he ships working products.",
-    name: "Mentor",
-    title: "Dr.Pawan Shah",
-    initials: "MR",
+      "Harsh has genuine ML curiosity and strong engineering instincts. He doesn't stop at a notebook - he ships working products and takes ownership of the full stack.",
+    name: "Dr. Pawan Shah",
+    title: "Mentor",
+    initials: "PS",
   },
   {
     quote:
-      "Strong fundamentals in Python and ML, paired with a real product sense. Exactly the kind of intern who levels up a team quickly.",
-    name: "Hackathon Teammate",
-    title: "Anmol Sinha",
-    initials: "HT",
+      "Good fundamentals in Python and ML, and a real product sense on top. The kind of person who actually reads the paper and then builds the thing.",
+    name: "Anmol Sinha",
+    title: "Hackathon Teammate",
+    initials: "AS",
   },
 ];
 

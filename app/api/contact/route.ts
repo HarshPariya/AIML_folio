@@ -67,7 +67,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Delivery failed" }, { status: 502 });
     }
   } else {
-    // No provider configured — log for local visibility.
+    // No provider configured - log for local visibility.
     console.info("[contact] message received (no email provider configured):", {
       name,
       email,

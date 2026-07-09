@@ -9,7 +9,7 @@ import { Magnetic } from "@/components/ui/magnetic";
 import { heroRotatingWords, heroStats } from "@/lib/data";
 import { siteConfig } from "@/lib/site";
 
-// 3D globe is heavy — load it only on the client, after the hero paints.
+// 3D globe is heavy - load it only on the client, after the hero paints.
 const ParticleGlobe = dynamic(() => import("@/components/visuals/particle-globe"), {
   ssr: false,
   loading: () => null,
@@ -100,7 +100,7 @@ export function Hero() {
             className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-muted sm:mt-5 sm:text-base md:text-lg"
           >
             AI Engineer focused on Machine Learning, Deep Learning, LLMs, Computer Vision,
-            Generative AI, and scalable AI products — turning research into systems people use.
+            and Generative AI. I build things that work in production, not just in notebooks.
           </motion.p>
 
           <motion.div
@@ -136,7 +136,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* right: 3D globe + stats — now visible on mobile, scaled to fit */}
+        {/* right: 3D globe + stats - now visible on mobile, scaled to fit */}
         <div className="relative mt-6 flex justify-center lg:mt-0 lg:block">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -167,7 +167,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Stats grid — shown on all breakpoints */}
+        {/* Stats grid - shown on all breakpoints */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

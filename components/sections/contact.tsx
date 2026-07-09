@@ -60,7 +60,7 @@ export function Contact() {
         <SectionHeading
           eyebrow="Contact"
           title="Let's build something intelligent"
-          description="I'm actively looking for AI/ML internships and research opportunities. Whether it's a role, a collaboration, or a question — my inbox is open."
+          description="Open to AI/ML internships and research roles. If you have a project, a role, or just want to talk ML - reach out."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.2fr]">

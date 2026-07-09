@@ -41,7 +41,7 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         )}
       >
-        <Link href="/" className="pl-1.5" aria-label="Harsh Pariya — home">
+        <Link href="/" className="pl-1.5" aria-label="Harsh Pariya - home">
           <Logo markSize={28} />
         </Link>
 
@@ -67,7 +67,7 @@ export function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile hamburger / close toggle — always above overlay */}
+        {/* Mobile hamburger / close toggle - always above overlay */}
         <button
           onClick={() => setOpen((v) => !v)}
           className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg md:hidden"

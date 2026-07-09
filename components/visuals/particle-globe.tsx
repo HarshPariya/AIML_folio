@@ -38,7 +38,7 @@ function GlobePoints({ count = 2600 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.028}
-        color="#a78bfa"
+        color="#93c5fd"
         transparent
         opacity={0.9}
         sizeAttenuation
@@ -57,7 +57,7 @@ function InnerCore() {
   return (
     <mesh ref={ref}>
       <icosahedronGeometry args={[1.4, 1]} />
-      <meshBasicMaterial color="#22d3ee" wireframe transparent opacity={0.12} />
+      <meshBasicMaterial color="#38bdf8" wireframe transparent opacity={0.12} />
     </mesh>
   );
 }

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Generated abstract project poster — no image assets required. A gradient
+ * Generated abstract project poster - no image assets required. A gradient
  * wash, a circuit-grid, and a soft glow keep cards consistent and fast.
  */
 export function ProjectPoster({

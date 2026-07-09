@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 const user = siteConfig.githubUsername;
 
 
-const chartUrl = `https://ghchart.rshah.org/7c5cff/${user}`;
+const chartUrl = `https://ghchart.rshah.org/1e40af/${user}`;
 
 const quickStats = [
   { icon: GitCommit, label: "Contributions", value: "1,900+" },
@@ -25,7 +25,7 @@ export function OpenSource() {
         <SectionHeading
           eyebrow="Open Source"
           title="I build in public"
-          description="A snapshot of my GitHub activity — contributions, top languages, and streaks. Code is the resume that can't be faked."
+          description="A snapshot of my GitHub activity - contributions, top languages, and streaks. Code is the resume that can't be faked."
         />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-4">

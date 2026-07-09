@@ -1,5 +1,5 @@
 /**
- * Global site configuration — single source of truth for identity, SEO,
+ * Global site configuration - single source of truth for identity, SEO,
  * and social links. Update values here to propagate everywhere.
  */
 export const siteConfig = {
@@ -8,7 +8,7 @@ export const siteConfig = {
   shortRole: "AI Engineer",
   tagline: "Building Intelligent Systems with AI & Machine Learning",
   description:
-    "Harsh Pariya — Aspiring AI/ML Engineer specializing in Machine Learning, Deep Learning, LLMs, Computer Vision, and Generative AI. B.Tech CSE @ Rai University. Open to AI/ML internships and research opportunities.",
+    "Harsh Pariya - Aspiring AI/ML Engineer specializing in Machine Learning, Deep Learning, LLMs, Computer Vision, and Generative AI. B.Tech CSE @ Rai University. Open to AI/ML internships and research opportunities.",
   // Update this to your production domain before deploying.
   url: "https://harshpariya.vercel.app",
   ogImage: "/og",

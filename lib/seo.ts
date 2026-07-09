@@ -3,7 +3,7 @@ import { siteConfig } from "./site";
 
 /** Build a complete Metadata object with sensible OG / Twitter defaults. */
 export function buildMetadata(overrides: Partial<Metadata> = {}): Metadata {
-  const title = `${siteConfig.name} — ${siteConfig.role}`;
+  const title = `${siteConfig.name} | ${siteConfig.role}`;
   return {
     metadataBase: new URL(siteConfig.url),
     title: {
@@ -20,7 +20,7 @@ export function buildMetadata(overrides: Partial<Metadata> = {}): Metadata {
       type: "website",
       locale: siteConfig.locale,
       url: siteConfig.url,
-      siteName: `${siteConfig.name} — Portfolio`,
+      siteName: `${siteConfig.name} - Portfolio`,
       title,
       description: siteConfig.description,
       images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: title }],

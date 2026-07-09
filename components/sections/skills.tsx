@@ -113,7 +113,7 @@ export function Skills() {
         <SectionHeading
           eyebrow="Skills"
           title="An ML toolkit, end to end"
-          description="From the math and the models to the frameworks and the deployment — the stack I use to take ideas from notebook to production."
+          description="From the math and the models to the frameworks and the deployment - the stack I use to take ideas from notebook to production."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.4fr]">

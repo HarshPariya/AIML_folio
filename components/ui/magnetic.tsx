@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 /**
- * Wraps children in a magnetic hover effect — the element gently pulls toward
+ * Wraps children in a magnetic hover effect - the element gently pulls toward
  * the cursor. Purely decorative; gracefully inert on touch.
  */
 export function Magnetic({

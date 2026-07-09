@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Harsh Pariya brand mark — a geometric "HP" ligature where the H's right leg
+ * Harsh Pariya brand mark - a geometric "HP" ligature where the H's right leg
  * doubles as the P's stem, set in a gradient squircle. Pure SVG paths so it
  * renders identically everywhere (navbar, footer, favicon, OG, avatars).
  */
@@ -26,9 +26,9 @@ export function LogoMark({
     >
       <defs>
         <linearGradient id="hpGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#7c5cff" />
-          <stop offset="55%" stopColor="#a855f7" />
-          <stop offset="100%" stopColor="#f472b6" />
+          <stop offset="0%" stopColor="#1e40af" />
+          <stop offset="55%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#38bdf8" />
         </linearGradient>
         <linearGradient id="hpGloss" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
@@ -66,7 +66,7 @@ export function LogoMark({
       </g>
 
       {/* AI accent node */}
-      <circle cx="31" cy="29" r="4.5" fill="#22d3ee" />
+      <circle cx="31" cy="29" r="4.5" fill="#38bdf8" />
     </svg>
   );
 }

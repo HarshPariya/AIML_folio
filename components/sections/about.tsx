@@ -13,17 +13,17 @@ const focusCards = [
   {
     icon: Lightbulb,
     title: "Why ML",
-    body: "I'm drawn to the patterns machines can see that we can't — and the engineering it takes to make those patterns useful.",
+    body: "I want to understand how machines find patterns that humans can't. The engineering required to make those patterns useful is what keeps me going.",
   },
   {
     icon: Target,
     title: "Research interests",
-    body: "LLMs, Retrieval-Augmented Generation, applied deep learning, and the gap between offline metrics and real impact.",
+    body: "LLMs, Retrieval-Augmented Generation, applied deep learning, and the gap between a good offline metric and actual user impact.",
   },
   {
     icon: Rocket,
     title: "Career goal",
-    body: "An AI/ML internship where I can contribute to production systems and learn from strong researchers and engineers.",
+    body: "An AI/ML internship where I can contribute to real production systems and learn from engineers who've shipped at scale.",
   },
 ];
 
@@ -34,7 +34,7 @@ export function About() {
         <SectionHeading
           eyebrow="About"
           title="From curiosity to intelligent systems"
-          description="The story behind the work — how I got into AI, what drives me, and where I'm headed."
+          description="The story behind the work - how I got into AI, what drives me, and where I'm headed."
         />
 
         <div className="mt-10 grid items-start gap-10 sm:mt-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
@@ -48,7 +48,7 @@ export function About() {
                 <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-surface">
                   <Image
                     src={siteConfig.avatar}
-                    alt={`${siteConfig.name} — ${siteConfig.role}`}
+                    alt={`${siteConfig.name} - ${siteConfig.role}`}
                     fill
                     sizes="(max-width: 1024px) 90vw, 380px"
                     className="object-cover object-center"
@@ -69,7 +69,7 @@ export function About() {
                 </div>
               </div>
 
-              {/* floating chips — positioned within container bounds on mobile */}
+              {/* floating chips - positioned within container bounds on mobile */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}

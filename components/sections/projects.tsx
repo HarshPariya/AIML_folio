@@ -36,10 +36,10 @@ export function Projects() {
         <SectionHeading
           eyebrow="Portfolio"
           title="Projects I've built"
-          description="Real projects — from AI classifiers and NLP models to full-stack web apps. Each ships with a live demo, source code, and a full case study."
+          description="Real projects - from AI classifiers and NLP models to full-stack web apps. Each ships with a live demo, source code, and a full case study."
         />
 
-        {/* ── Category Tabs ── */}
+        {/* Category Tabs */}
         <div className="mt-12 flex justify-center">
           <div
             className="relative flex rounded-2xl border border-white/10 bg-white/[0.03] p-1.5 gap-1"
@@ -85,14 +85,14 @@ export function Projects() {
           </div>
         </div>
 
-        {/* ── Tab description ── */}
+        {/* Tab description */}
         <p className="mt-5 text-center text-sm text-muted">
           {activeTab === "aiml"
-            ? "Machine learning models, NLP classifiers, and AI-powered applications — trained, evaluated, and deployed."
-            : "Full-stack web apps, frontend projects, and interactive interfaces — live and open-source."}
+            ? "Machine learning models, NLP classifiers, and AI-powered applications - trained, evaluated, and deployed."
+            : "Full-stack web apps, frontend projects, and interactive interfaces - live and open-source."}
         </p>
 
-        {/* ── Project Grid ── */}
+        {/* Project Grid */}
         <div
           key={activeTab}
           className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -104,7 +104,7 @@ export function Projects() {
           ))}
         </div>
 
-        {/* ── View All CTA ── */}
+        {/* View All CTA */}
         <Reveal className="mt-12 flex justify-center">
           <Button href="/projects" variant="outline" size="lg">
             View all projects <ArrowRight className="h-4 w-4" />

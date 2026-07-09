@@ -7,12 +7,12 @@ import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { techGraph } from "@/lib/data";
 
 const GROUP_COLOR: Record<string, string> = {
-  lang: "#f472b6",
-  framework: "#7c5cff",
-  ai: "#22d3ee",
-  data: "#34d399",
-  product: "#fbbf24",
-  cloud: "#60a5fa",
+  lang: "#38bdf8",      // light sky blue
+  framework: "#60a5fa", // medium blue
+  ai: "#93c5fd",        // soft blue
+  data: "#34d399",      // keep teal/emerald for data
+  product: "#fbbf24",   // keep amber for product
+  cloud: "#1d4ed8",     // deep navy blue
 };
 
 const GROUP_LABEL: Record<string, string> = {
@@ -67,7 +67,7 @@ export function TechGraph() {
         <SectionHeading
           eyebrow="Tech Stack Graph"
           title="How my stack connects"
-          description="An interactive map of the tools I work with and how they relate — from Python and PyTorch to LLMs, vector stores, and cloud. Hover a node to trace its connections."
+          description="An interactive map of the tools I work with and how they relate - from Python and PyTorch to LLMs, vector stores, and cloud. Hover a node to trace its connections."
         />
 
         <Reveal className="mt-10 sm:mt-14">
@@ -105,7 +105,7 @@ export function TechGraph() {
                       y1={pa.y}
                       x2={pb.x}
                       y2={pb.y}
-                      stroke={active ? "rgba(124,92,255,0.45)" : "rgba(255,255,255,0.06)"}
+                      stroke={active ? "rgba(56,189,248,0.5)" : "rgba(255,255,255,0.06)"}
                       strokeWidth={active ? 1.4 : 0.8}
                     />
                   );

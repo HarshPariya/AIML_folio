@@ -41,12 +41,12 @@ export default function ProjectsPageClient() {
             <span className="text-gradient">All Projects</span>
           </h1>
           <p className="mt-4 text-pretty text-muted sm:text-lg">
-            Every project I&apos;ve shipped — AI models, NLP classifiers, full-stack apps, and
+            Every project I&apos;ve shipped - AI models, NLP classifiers, full-stack apps, and
             polished frontends. Each comes with a live demo, source code, and a full case study.
           </p>
         </div>
 
-        {/* ── Tabs ── */}
+        {/* Tabs */}
         <div className="mt-10 flex">
           <div
             className="flex rounded-2xl border border-white/10 bg-white/[0.03] p-1.5 gap-1"
@@ -85,14 +85,14 @@ export default function ProjectsPageClient() {
           </div>
         </div>
 
-        {/* ── Tab subtitle ── */}
+        {/* Tab subtitle */}
         <p className="mt-4 text-sm text-muted">
           {activeTab === "aiml"
-            ? "Machine learning models, NLP classifiers, and AI-powered apps — trained, evaluated, and deployed."
-            : "Full-stack web apps, frontend projects, and interactive interfaces — live and open-source."}
+            ? "Machine learning models, NLP classifiers, and AI-powered apps - trained, evaluated, and deployed."
+            : "Full-stack web apps, frontend projects, and interactive interfaces - live and open-source."}
         </p>
 
-        {/* ── Grid ── */}
+        {/* Grid */}
         <div
           key={activeTab}
           className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"

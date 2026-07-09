@@ -20,12 +20,12 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-16">
         <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Link href="/" className="inline-flex" aria-label="Harsh Pariya — home">
+            <Link href="/" className="inline-flex" aria-label="Harsh Pariya - home">
               <Logo markSize={38} />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-              Aspiring AI/ML Engineer building intelligent systems — from research
-              experiments to production systems. Open to internships & research roles.
+              CS student and AI/ML builder. I ship ML projects that run in production.
+              Looking for internships and research roles.
             </p>
             <div className="mt-6 flex gap-2">
               {socials.map((s) => (
@@ -101,9 +101,9 @@ export function Footer() {
         >
           <defs>
             <linearGradient id="watermark-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(124,92,255,0.18)" />
-              <stop offset="60%" stopColor="rgba(34,211,238,0.10)" />
-              <stop offset="100%" stopColor="rgba(124,92,255,0.03)" />
+              <stop offset="0%" stopColor="rgba(30,64,175,0.20)" />
+              <stop offset="60%" stopColor="rgba(56,189,248,0.10)" />
+              <stop offset="100%" stopColor="rgba(30,64,175,0.03)" />
             </linearGradient>
           </defs>
           <text
@@ -111,7 +111,7 @@ export function Footer() {
             y="95"
             textAnchor="middle"
             fill="url(#watermark-grad)"
-            stroke="rgba(124,92,255,0.08)"
+            stroke="rgba(56,189,248,0.08)"
             strokeWidth="0.5"
             fontFamily="Inter, 'Segoe UI', system-ui, sans-serif"
             fontWeight="900"

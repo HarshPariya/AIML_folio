@@ -6,9 +6,9 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 
-/* ─────────────────────────────────────────────────────────── */
-/* Types                                                        */
-/* ─────────────────────────────────────────────────────────── */
+/* Helpers */
+/* Types */
+
 
 interface ClassResult { label: string; confidence: number; color: string; }
 interface PipelineStep { id: string; label: string; ms: number; }
@@ -29,9 +29,9 @@ interface ModelDef {
   classify: (input: string) => ClassResult[];
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* Classifiers */
 /* Hash util (for deterministic file-based results)           */
-/* ─────────────────────────────────────────────────────────── */
+
 
 function hashStr(s: string): number {
   let h = 5381;
@@ -43,9 +43,9 @@ function seededRand(seed: number, n: number): number {
   return ((seed * 1103515245 + 12345 + n * 6364136223846793005) % 2147483648) / 2147483648;
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* Mock inferences */
 /* Classifiers                                                  */
-/* ─────────────────────────────────────────────────────────── */
+
 
 function classifyFakeNews(text: string): ClassResult[] {
   const t = text.toLowerCase();
@@ -67,7 +67,7 @@ const RESUME_CATS: [string, string[], string][] = [
   ["Engineering",     ["java","c++","system","embedded","hardware","firmware","circuit","design"], "#60a5fa"],
   ["Web Development", ["react","html","css","javascript","frontend","node","api","vue","typescript"], "#34d399"],
   ["Finance",         ["investment","portfolio","risk","accounting","finance","equity","banking","revenue"], "#fbbf24"],
-  ["HR / Management", ["recruitment","hiring","onboarding","hr","talent","employee","leadership","management"], "#f472b6"],
+  ["HR / Management", ["recruitment","hiring","onboarding","hr","talent","employee","leadership","management"], "#7dd3fc"],
   ["Marketing",       ["seo","campaign","brand","social media","digital marketing","conversion","ads","content"], "#fb923c"],
   ["Healthcare",      ["patient","clinical","medical","diagnosis","hospital","nursing","pharmaceutical"], "#2dd4bf"],
 ];
@@ -128,21 +128,21 @@ function classifyTumor(input: string): ClassResult[] {
   return ranked.map((s) => ({ ...s, confidence: Math.round((s.confidence / sum) * 100) }));
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* Model registry */
 /* Model registry                                              */
-/* ─────────────────────────────────────────────────────────── */
+
 
 const MODELS: ModelDef[] = [
   {
     id: "fake-news",
     name: "Fake News Detector",
-    accent: "#22d3ee",
+    accent: "#38bdf8",
     description: "Linear SVM · TF-IDF · 44,898 articles · 99.29% acc.",
     inputMode: "text",
     placeholder: "Paste a news headline or article...",
     examples: [
       "Scientists confirm new vaccine is 95% effective in preventing severe illness, published in Nature.",
-      "SHOCKING: Government secretly poisons water supply — mainstream media won't report this bombshell!",
+      "SHOCKING: Government secretly poisons water supply - mainstream media won't report this bombshell!",
       "Federal Reserve raises interest rates by 0.25%, citing persistent inflation according to Reuters.",
     ],
     pipeline: [
@@ -157,7 +157,7 @@ const MODELS: ModelDef[] = [
   {
     id: "resume",
     name: "Resume Classifier",
-    accent: "#7c5cff",
+    accent: "#1e40af",
     description: "XGBoost · TF-IDF · 22+ job categories · 80.9% acc.",
     inputMode: "file",
     accept: ".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png",
@@ -174,7 +174,7 @@ const MODELS: ModelDef[] = [
   {
     id: "brain-tumor",
     name: "Brain Tumor CNN",
-    accent: "#f472b6",
+    accent: "#60a5fa",
     description: "Custom CNN · TensorFlow · 7,200 MRI scans · 86.25% acc.",
     inputMode: "image",
     accept: ".jpg,.jpeg,.png,.webp,.bmp",
@@ -190,9 +190,9 @@ const MODELS: ModelDef[] = [
   },
 ];
 
-/* ─────────────────────────────────────────────────────────── */
+/* FileDropZone */
 /* FileDropZone                                                 */
-/* ─────────────────────────────────────────────────────────── */
+
 
 function FileDropZone({
   accept,
@@ -343,9 +343,9 @@ function FileDropZone({
   );
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* InferenceTerminal */
 /* Confidence bar                                              */
-/* ─────────────────────────────────────────────────────────── */
+
 
 function ConfBar({ label, confidence, color, rank }: ClassResult & { rank: number }) {
   return (
@@ -372,9 +372,9 @@ function ConfBar({ label, confidence, color, rank }: ClassResult & { rank: numbe
   );
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* Section */
 /* Main section                                               */
-/* ─────────────────────────────────────────────────────────── */
+
 
 type Phase = "idle" | "running" | "done";
 
@@ -483,20 +483,20 @@ export function ModelShowcase() {
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.10] blur-[130px]"
-        style={{ background: "radial-gradient(ellipse, #7c5cff 0%, #22d3ee 50%, transparent 100%)" }}
+        style={{ background: "radial-gradient(ellipse, #1e40af 0%, #38bdf8 50%, transparent 100%)" }}
       />
 
       <div className="mx-auto max-w-5xl px-6">
         <SectionHeading
           eyebrow="AI Playground"
-          title="Try my models — live"
+          title="Try my models - live"
           description="Run real inference against three of my trained models. Upload a file, paste text, and watch the pipeline execute step by step."
         />
 
         <Reveal className="mt-14">
           <div className="grid gap-4 lg:grid-cols-[1fr_1.05fr]">
 
-            {/* ── LEFT: input ── */}
+            {/* LEFT: input */}
             <SpotlightCard className="flex flex-col overflow-hidden p-0" tilt={false}>
 
               {/* Model tabs */}
@@ -579,7 +579,7 @@ export function ModelShowcase() {
                   onClick={run}
                   disabled={!hasInput || phase === "running"}
                   className="relative w-full overflow-hidden rounded-xl py-3 text-sm font-semibold text-white shadow-lg transition-all disabled:cursor-not-allowed disabled:opacity-40 hover:scale-[1.01] active:scale-[0.99]"
-                  style={{ background: `linear-gradient(135deg, ${model.accent}, #7c5cff)` }}
+                  style={{ background: `linear-gradient(135deg, ${model.accent}, #1e40af)` }}
                 >
                   {phase === "running" ? (
                     <span className="flex items-center justify-center gap-2">
@@ -596,7 +596,7 @@ export function ModelShowcase() {
               </div>
             </SpotlightCard>
 
-            {/* ── RIGHT: terminal + results ── */}
+            {/* RIGHT: terminal + results */}
             <div className="flex flex-col gap-4">
 
               {/* Terminal */}
@@ -607,7 +607,7 @@ export function ModelShowcase() {
                     <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
                     <span className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
                   </div>
-                  <span className="ml-2 font-mono text-[0.62rem] text-faint">pipeline.py — {model.name}</span>
+                  <span className="ml-2 font-mono text-[0.62rem] text-faint">pipeline.py - {model.name}</span>
                   {phase === "done" && (
                     <span className="ml-auto font-mono text-[0.6rem]" style={{ color: model.accent }}>{totalMs}ms</span>
                   )}

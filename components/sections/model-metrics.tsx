@@ -6,9 +6,9 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 
-/* ─────────────────────────────────────────────────────────── */
+/* Data */
 /* Data                                                         */
-/* ─────────────────────────────────────────────────────────── */
+
 
 const METRIC_MODELS = [
   {
@@ -57,9 +57,9 @@ const METRIC_MODELS = [
   },
 ];
 
-/* ─────────────────────────────────────────────────────────── */
+/* SVG helpers */
 /* SVG layout                                                  */
-/* ─────────────────────────────────────────────────────────── */
+
 
 const W = 320, H = 200;
 const PAD = { top: 14, right: 14, bottom: 30, left: 34 };
@@ -72,9 +72,9 @@ function toPath(pts: [number, number][]): string {
     .join(" ");
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* ROC Curve component */
 /* ROC Curve                                                   */
-/* ─────────────────────────────────────────────────────────── */
+
 
 function RocCurve({ model }: { model: (typeof METRIC_MODELS)[0] }) {
   const ref = useRef<SVGSVGElement>(null);
@@ -86,12 +86,12 @@ function RocCurve({ model }: { model: (typeof METRIC_MODELS)[0] }) {
     <svg ref={ref} viewBox={`0 0 ${W} ${H}`} className="w-full" aria-label={`ROC for ${model.label}`}>
       <defs>
         <linearGradient id={`ag-${model.id}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(124,92,255,0.45)" />
-          <stop offset="100%" stopColor="rgba(34,211,238,0.03)" />
+          <stop offset="0%" stopColor="rgba(30,64,175,0.50)" />
+          <stop offset="100%" stopColor="rgba(56,189,248,0.03)" />
         </linearGradient>
         <linearGradient id="lg-roc" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#7c5cff" />
-          <stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" stopColor="#1e40af" />
+          <stop offset="100%" stopColor="#38bdf8" />
         </linearGradient>
         <clipPath id={`cp-${model.id}`}>
           <motion.rect
@@ -130,9 +130,9 @@ function RocCurve({ model }: { model: (typeof METRIC_MODELS)[0] }) {
   );
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* Metric bar component */
 /* Metric bar                                                  */
-/* ─────────────────────────────────────────────────────────── */
+
 
 function MetricBar({ label, value, delay, flip }: { label: string; value: number; delay: number; flip?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -155,9 +155,9 @@ function MetricBar({ label, value, delay, flip }: { label: string; value: number
   );
 }
 
-/* ─────────────────────────────────────────────────────────── */
+/* Section component */
 /* Section                                                     */
-/* ─────────────────────────────────────────────────────────── */
+
 
 export function ModelMetrics() {
   const [activeId, setActiveId] = useState(METRIC_MODELS[0].id);
@@ -169,7 +169,7 @@ export function ModelMetrics() {
         <SectionHeading
           eyebrow="Model Showcase"
           title="Evaluation metrics, end to end"
-          description="Every model is only as good as its evaluation. Here are the headline metrics for my trained models — accuracy, precision, recall, F1, and the ROC profile."
+          description="Every model is only as good as its evaluation. Here are the headline metrics for my trained models - accuracy, precision, recall, F1, and the ROC profile."
         />
 
         <Reveal className="mt-12">

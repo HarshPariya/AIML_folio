@@ -5,7 +5,7 @@ import ProjectsPageClient from "./projects-client";
 export const metadata: Metadata = buildMetadata({
   title: "Projects",
   description:
-    "Projects by Harsh Pariya — Resume Screening AI, Fake News Detection, California House Price Predictor, SquidAI, Campus Navigation, TravelGo, and more. Each with a live demo, GitHub source, and full case study.",
+    "Projects by Harsh Pariya - Resume Screening AI, Fake News Detection, California House Price Predictor, SquidAI, Campus Navigation, TravelGo, and more. Each with a live demo, GitHub source, and full case study.",
   alternates: { canonical: "/projects" },
 });
 
