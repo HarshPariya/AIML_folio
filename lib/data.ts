@@ -89,21 +89,21 @@ export const journey = [
     title: "Fell in love with Machine Learning",
     org: "Self-directed learning",
     description:
-      "Went deep on ML foundations: regression, classification, clustering, and ensemble models using Scikit-Learn, NumPy, and Pandas. Built several projects end-to-end.",
+      "Dove into ML fundamentals: regression, classification, clustering, and ensemble models using Scikit-Learn, NumPy, and Pandas. Built several projects end-to-end and started caring a lot about evaluation, not just accuracy.",
   },
   {
     year: "2026",
-    title: "Moved into Deep Learning and Neural Networks",
+    title: "Deep Learning clicked",
     org: "TensorFlow and PyTorch",
     description:
-      "Built and trained CNNs, worked through the engineering side of model training and evaluation. Deployed a brain tumor detection app using real MRI data.",
+      "Trained CNNs for the first time and got hooked. Worked through the engineering side of model training, debugging loss curves, and actual deployment. Built a brain tumor detection app on real MRI data.",
   },
   {
     year: "2026",
     title: "Building LLM and GenAI applications",
     org: "Current focus",
     description:
-      "Working with LLMs, RAG systems, and AI agents. Combining ML depth with product engineering to ship things people can actually use.",
+      "Working with LLMs, RAG systems, and AI agents. Trying to combine solid ML foundations with real product engineering - building things people can actually use.",
   },
 ];
 
@@ -192,11 +192,11 @@ export interface SoftSkill {
 }
 
 export const softSkills: SoftSkill[] = [
-  { name: "Problem Solving" },
-  { name: "Analytical Thinking" },
-  { name: "Continuous Learning" },
-  { name: "Team Collaboration" },
-  { name: "Project Ownership" },
+  { name: "Fast Learner" },
+  { name: "Detail-Oriented" },
+  { name: "Self-Driven" },
+  { name: "Good Communicator" },
+  { name: "Ownership Mindset" },
 ];
 
 /** Aggregated radar chart axes (0–100). */
@@ -950,11 +950,11 @@ export const experiences: Experience[] = [
     period: "2025",
     type: "Internship Offer Received",
     description:
-      "Building AI/ML and full-stack projects independently to gain hands-on, industry-grade engineering experience.",
+      "Got an internship offer to build AI/ML and full-stack apps. Treated every task like a real product - not just something to submit and forget.",
     highlights: [
-      "Developing AI/ML and full-stack applications end-to-end",
-      "Translating model experiments into deployable products",
-      "Practicing production engineering: APIs, version control, deployment",
+      "Built AI/ML and full-stack apps from scratch, solo",
+      "Learned what it takes to go from a working notebook to a deployed app",
+      "Got hands-on with APIs, version control, and cloud deployment",
     ],
   },
   {
@@ -1029,14 +1029,14 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Harsh has genuine ML curiosity and strong engineering instincts. He doesn't stop at a notebook - he ships working products and takes ownership of the full stack.",
+      "Harsh builds things end to end. He doesn't just run experiments in notebooks - he gets the model into a UI and deploys it. That kind of follow-through is rare at this stage.",
     name: "Dr. Pawan Shah",
-    title: "Mentor",
+    title: "Faculty Mentor",
     initials: "PS",
   },
   {
     quote:
-      "Good fundamentals in Python and ML, and a real product sense on top. The kind of person who actually reads the paper and then builds the thing.",
+      "Solid Python and ML chops, and he actually reads the papers before building. We worked together on a hackathon project and he was the one keeping things grounded when we started over-engineering everything.",
     name: "Anmol Sinha",
     title: "Hackathon Teammate",
     initials: "AS",

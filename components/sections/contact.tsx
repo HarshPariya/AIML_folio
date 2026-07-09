@@ -98,7 +98,7 @@ export function Contact() {
                 noValidate
               >
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field name="name" label="Name" placeholder="Ada Lovelace" error={errors.name} />
+                  <Field name="name" label="Name" placeholder="Your Name" error={errors.name} />
                   <Field
                     name="email"
                     label="Email"
@@ -107,7 +107,7 @@ export function Contact() {
                     error={errors.email}
                   />
                 </div>
-                <Field name="company" label="Company / Org (optional)" placeholder="Acme AI" />
+                <Field name="company" label="Company / Org (optional)" placeholder="Company / Org Name" />
                 <div>
                   <label htmlFor="message" className="mb-1.5 block text-xs font-medium text-muted">
                     Message
@@ -116,7 +116,7 @@ export function Contact() {
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="Tell me about the role or opportunity…"
+                    placeholder="What's on your mind? A role, a project, a collaboration..."
                     className="w-full resize-none rounded-xl border border-white/10 bg-bg/60 p-3.5 text-sm text-fg outline-none transition-colors placeholder:text-faint focus:border-brand/50"
                   />
                   {errors.message && <FieldError msg={errors.message} />}

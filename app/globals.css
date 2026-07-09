@@ -8,9 +8,9 @@
   --color-bg-soft: #060a15;
   --color-surface: #0a0f1e;
   --color-border: #152040;
-  --color-fg: #dce8f8;
-  --color-muted: #7da8d0;
-  --color-faint: #3d6080;
+  --color-fg: #f0f4fa;
+  --color-muted: #94a3b8;
+  --color-faint: #475569;
 
   /* Dark navy (primary) + light sky blue (accent) + medium blue (tertiary) */
   --color-brand: #1e40af;
