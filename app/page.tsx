@@ -9,6 +9,7 @@ const ModelMetrics = dynamic(() => import("@/components/sections/model-metrics")
 const ModelShowcase = dynamic(() => import("@/components/sections/model-showcase").then(mod => mod.ModelShowcase));
 const TechGraph = dynamic(() => import("@/components/sections/tech-graph").then(mod => mod.TechGraph));
 const Certifications = dynamic(() => import("@/components/sections/certifications").then(mod => mod.Certifications));
+const OfferLetters = dynamic(() => import("@/components/sections/offer-letters").then(mod => mod.OfferLetters));
 const OpenSource = dynamic(() => import("@/components/sections/opensource").then(mod => mod.OpenSource));
 const Testimonials = dynamic(() => import("@/components/sections/testimonials").then(mod => mod.Testimonials));
 const Contact = dynamic(() => import("@/components/sections/contact").then(mod => mod.Contact));
@@ -25,6 +26,7 @@ export default function Home() {
       <ModelShowcase />
       <TechGraph />
       <Certifications />
+      <OfferLetters />
       <OpenSource />
       <Testimonials />
       <Contact />

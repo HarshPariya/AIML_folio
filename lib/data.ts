@@ -1057,6 +1057,49 @@ export const contactChannels = [
   { label: "Instagram", value: "_harshpariya_01", href: "https://instagram.com/_harshpariya_01", icon: "Instagram" },
 ];
 
+/* ------------------------------------------------------------------ */
+/* Offer Letters                                                      */
+/* ------------------------------------------------------------------ */
+
+export interface OfferLetter {
+  title: string;
+  company: string;
+  date: string;
+  url: string;
+  accent: string;
+}
+
+export const offerLetters: OfferLetter[] = [
+  {
+    title: "Artificial Intelligence Intern",
+    company: "Codec Technologies",
+    date: "July 2026",
+    url: "/offers/AI_OFFER%20LETTER.pdf",
+    accent: "from-blue-600/20 to-sky-500/10",
+  },
+  {
+    title: "Python Developer Intern",
+    company: "Codec Technologies",
+    date: "July 2026",
+    url: "/offers/PYTHON_OFFER%20LETTER.pdf",
+    accent: "from-sky-500/20 to-blue-400/10",
+  },
+  {
+    title: "Machine Learning Intern",
+    company: "SYNTECXHUB",
+    date: "July 2026",
+    url: "/offers/ML_OFFER%20LETTER.pdf",
+    accent: "from-indigo-500/20 to-blue-500/10",
+  },
+  {
+    title: "Full-Stack Development Intern",
+    company: "Codveda Technologies",
+    date: "December 2025",
+    url: "/offers/FSD_OFFER%20LETTER.pdf",
+    accent: "from-purple-500/20 to-fuchsia-400/10",
+  },
+];
+
 /* re-export icon map so client components can resolve string icon names */
 export const iconMap: Record<string, LucideIcon> = {
   Brain,
