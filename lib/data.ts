@@ -1051,9 +1051,9 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "Solid Python and ML chops, and he actually reads the papers before building. We worked together on a hackathon project and he was the one keeping things grounded when we started over-engineering everything.",
-    name: "Anmol Sinha",
+    name: "Dev Naik",
     title: "Hackathon Teammate",
-    initials: "AS",
+    initials: "DN",
   },
 ];
 
@@ -1103,14 +1103,14 @@ export const offerLetters: OfferLetter[] = [
     company: "SYNTECXHUB",
     date: "July 2026",
     url: "/offers/ML_OFFER%20LETTER.pdf",
-    accent: "from-indigo-500/20 to-blue-500/10",
+    accent: "from-blue-600/20 to-sky-500/10",
   },
   {
     title: "Full-Stack Development Intern",
     company: "Codveda Technologies",
     date: "December 2025",
     url: "/offers/FSD_OFFER%20LETTER.pdf",
-    accent: "from-purple-500/20 to-fuchsia-400/10",
+    accent: "from-sky-500/20 to-blue-400/10",
   },
 ];
 
