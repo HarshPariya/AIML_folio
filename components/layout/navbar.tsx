@@ -69,8 +69,9 @@ export function Navbar() {
 
         {/* Mobile hamburger / close toggle - always above overlay */}
         <button
+          type="button"
           onClick={() => setOpen((v) => !v)}
-          className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg md:hidden"
+          className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg touch-manipulation md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -84,7 +85,8 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-md md:hidden"
+            style={{ willChange: "opacity" }}
           >
 
 
@@ -95,6 +97,7 @@ export function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
+                  style={{ willChange: "opacity, transform" }}
                 >
                   <a
                     href={item.href}
