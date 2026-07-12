@@ -46,11 +46,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const isMobile = width < 768;
-      // Use much lower density on mobile to preserve battery and maintain high FPS
-      const density = isMobile
-        ? Math.max(15, Math.min(Math.floor((width * height) / 20000), 35))
-        : Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
+      const density = Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
       nodes = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,

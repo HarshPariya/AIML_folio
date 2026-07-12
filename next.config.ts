@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/_next/static/chunks/:path*.mjs.map",
+        destination: "/empty.map",
+      },
+    ];
+  },
   async headers() {
     return [
       {
