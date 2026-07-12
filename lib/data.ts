@@ -66,7 +66,7 @@ export const aboutParagraphs = [
 export const counters = [
   { label: "Projects Completed", value: 15, suffix: "+", icon: "Boxes" },
   { label: "GitHub Contributions", value: 1500, suffix: "+", icon: "GitBranch" },
-  { label: "Certifications", value: 2, suffix: "", icon: "Sparkles" },
+  { label: "Certifications", value: 4, suffix: "", icon: "Sparkles" },
 ];
 
 export const journey = [
@@ -998,6 +998,20 @@ export interface Certification {
 }
 
 export const certifications: Certification[] = [
+  {
+    title: "Machine Learning Terminology and Process",
+    issuer: "AWS Training & Certification",
+    year: "2026",
+    url: "https://www.linkedin.com/posts/harsh-pariya_aws-awstraining-machinelearning-ugcPost-7482051472449306624-SBfM/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFCXGMQBB7au119S-B1ro90B6Ckg1Q9Kl-M",
+    accent: "from-indigo-500/20 to-purple-500/10",
+  },
+  {
+    title: "Planning a Machine Learning Project",
+    issuer: "AWS Training & Certification",
+    year: "2026",
+    url: "https://www.linkedin.com/posts/harsh-pariya_aws-awstraining-machinelearning-ugcPost-7482051472449306624-SBfM/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFCXGMQBB7au119S-B1ro90B6Ckg1Q9Kl-M",
+    accent: "from-cyan-500/20 to-blue-500/10",
+  },
   {
     title: "AI Tools & ChatGPT Workshop",
     issuer: "Be10x",
