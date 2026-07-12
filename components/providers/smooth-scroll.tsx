@@ -10,13 +10,17 @@ import Lenis from "lenis";
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    
+    // Disable Lenis on touch devices (iOS/Android already have native smooth scrolling)
+    // This fixes the issue where the page gets "stuck" and clicks don't register.
+    if (reduce || isTouch) return;
 
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.6,
+      // Remove touch multiplier to not interfere if it somehow activates on a hybrid device
     });
 
     let frame = 0;

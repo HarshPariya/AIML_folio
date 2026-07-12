@@ -76,17 +76,17 @@ export default function ParticleGlobe() {
         : false;
 
     if (isMobile) {
-      setParticleCount(isLowEndDevice ? 600 : 1000);
-      setDpr([1, 1.2]);
+      setParticleCount(isLowEndDevice ? 300 : 600); // Drastically reduced for mobile
+      setDpr([1, 1]); // Lower DPR for better performance on mobile
     } else if (isLowEndDevice) {
-      setParticleCount(1200);
-      setDpr([1, 1.4]);
+      setParticleCount(1000);
+      setDpr([1, 1.2]);
     }
 
     // Delay mounting heavy WebGL to prevent blocking initial page load
     const timeout = setTimeout(() => {
       setShouldRender(true);
-    }, isMobile ? 800 : 100);
+    }, isMobile ? 1800 : 200); // Give mobile much more time to paint the UI first
 
     return () => clearTimeout(timeout);
   }, []);
