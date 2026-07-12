@@ -34,7 +34,7 @@ export function Projects() {
     <section id="projects" className="section-pad relative">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          eyebrow="Portfolio"
+          eyebrow="Projects"
           title="Projects I've built"
           description="Real projects - from AI classifiers and NLP models to full-stack web apps. Each ships with a live demo, source code, and a full case study."
         />
