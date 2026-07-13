@@ -26,12 +26,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
 
     // User requested continuous animation on all devices, ignoring reduced-motion
     const reduce = false;
-    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-    // Throttle to 30fps on mobile to reduce GPU load and free frames for UI transitions
-    const targetFps = isMobile ? 30 : 60;
-    const fpsInterval = 1000 / targetFps;
-    let lastFrameTime = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let width = 0;
     let height = 0;
@@ -67,20 +62,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
 
     const linkDist = 140;
 
-    const draw = (timestamp: number = 0) => {
-      // Pause completely while menu is open (body overflow:hidden) to free GPU
-      if (document.body.style.overflow === "hidden") {
-        raf = requestAnimationFrame(draw);
-        return;
-      }
-      // Throttle frame rate on mobile
-      if (isMobile) {
-        if (timestamp - lastFrameTime < fpsInterval) {
-          raf = requestAnimationFrame(draw);
-          return;
-        }
-        lastFrameTime = timestamp;
-      }
+    const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
       // edges + collect candidates for pulses
@@ -157,7 +139,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
         ctx.fill();
       }
 
-      raf = requestAnimationFrame(draw as FrameRequestCallback);
+      raf = requestAnimationFrame(draw);
     };
 
     const onMove = (e: MouseEvent) => {
@@ -182,7 +164,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
       draw();
       cancelAnimationFrame(raf); // single static frame
     } else {
-      raf = requestAnimationFrame(draw as FrameRequestCallback);
+      raf = requestAnimationFrame(draw);
     }
 
     window.addEventListener("resize", resize);
