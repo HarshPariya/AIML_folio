@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 import Link from "next/link";
 import { navItems } from "@/lib/data";
@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -22,41 +21,12 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll on menu open — use documentElement to avoid iOS reflow quirk
   useEffect(() => {
-    const html = document.documentElement;
-    if (open) {
-      html.style.overflow = "hidden";
-      // Notify background canvas to pause RAF while menu is open
-      window.dispatchEvent(new CustomEvent("menuopen"));
-    } else {
-      html.style.overflow = "";
-      window.dispatchEvent(new CustomEvent("menuclose"));
-    }
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
-      html.style.overflow = "";
+      document.body.style.overflow = "";
     };
   }, [open]);
-
-  // Close menu on Escape key
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const handleNavClick = (href: string) => {
-    setOpen(false);
-    // Small rAF delay so the menu starts closing before scroll begins
-    requestAnimationFrame(() => {
-      const el = document.querySelector(href);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
@@ -97,101 +67,59 @@ export function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile hamburger — touch-action:manipulation removes iOS 300ms delay */}
+        {/* Mobile hamburger / close toggle - always above overlay */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="mobile-menu-btn relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg md:hidden"
-          style={{ touchAction: "manipulation" }}
+          className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg touch-manipulation md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          aria-controls="mobile-menu"
         >
-          {/* Use CSS opacity swap instead of conditional rendering — avoids React reconcile */}
-          <Menu
-            className="h-5 w-5 absolute transition-all duration-200"
-            style={{ opacity: open ? 0 : 1, transform: open ? "rotate(90deg) scale(0.7)" : "rotate(0deg) scale(1)" }}
-            aria-hidden
-          />
-          <X
-            className="h-5 w-5 absolute transition-all duration-200"
-            style={{ opacity: open ? 1 : 0, transform: open ? "rotate(0deg) scale(1)" : "rotate(-90deg) scale(0.7)" }}
-            aria-hidden
-          />
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </motion.nav>
 
-      {/*
-        Mobile menu overlay — pure CSS transitions, no Framer Motion.
-        backdrop-blur only applied after open (avoids iOS initial composite cost).
-        GPU-only properties: opacity + transform, no layout-triggering changes.
-      */}
-      <div
-        id="mobile-menu"
-        ref={overlayRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation menu"
-        className="fixed inset-0 z-[55] flex flex-col px-6 pt-24 md:hidden"
-        style={{
-          background: "rgba(3, 5, 13, 0.96)",
-          // Use transform + opacity for GPU-composited transitions (no layout thrash)
-          opacity: open ? 1 : 0,
-          transform: open ? "translateY(0)" : "translateY(-8px)",
-          transition: "opacity 0.22s ease, transform 0.22s ease",
-          // Prevent interaction when hidden
-          pointerEvents: open ? "auto" : "none",
-          // backdrop-blur as CSS var so it only costs GPU when visible
-          WebkitBackdropFilter: open ? "blur(16px)" : "none",
-          backdropFilter: open ? "blur(16px)" : "none",
-          willChange: "opacity, transform",
-        }}
-      >
-        <nav className="flex flex-col gap-1">
-          {navItems.map((item, i) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(item.href);
-              }}
-              className="block border-b border-white/5 py-4 text-2xl font-medium text-fg"
-              style={{
-                // CSS stagger via transition-delay — zero JS overhead
-                opacity: open ? 1 : 0,
-                transform: open ? "translateX(0)" : "translateX(-16px)",
-                transition: `opacity 0.2s ease ${0.04 + i * 0.05}s, transform 0.2s ease ${0.04 + i * 0.05}s`,
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div
-          className="mt-8 flex flex-col gap-3"
-          style={{
-            opacity: open ? 1 : 0,
-            transform: open ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity 0.2s ease 0.25s, transform 0.2s ease 0.25s",
-          }}
-        >
-          <Button href={siteConfig.resumeUrl} external variant="outline" size="lg">
-            <Download className="h-4 w-4" /> Download Resume
-          </Button>
-          <Button
-            href="#contact"
-            size="lg"
-            onClick={(e: React.MouseEvent) => {
-              e.preventDefault();
-              handleNavClick("#contact");
-            }}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-md md:hidden"
+            style={{ willChange: "opacity" }}
           >
-            Let&apos;s talk
-          </Button>
-        </div>
-      </div>
+
+
+            <div className="flex flex-col gap-1">
+              {navItems.map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i }}
+                  style={{ willChange: "opacity, transform" }}
+                >
+                  <a
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block border-b border-white/5 py-4 text-2xl font-medium text-fg"
+                  >
+                    {item.label}
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-3">
+              <Button href={siteConfig.resumeUrl} external variant="outline" size="lg">
+                <Download className="h-4 w-4" /> Download Resume
+              </Button>
+              <Button href="#contact" size="lg" onClick={() => setOpen(false)}>
+                Let&apos;s talk
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

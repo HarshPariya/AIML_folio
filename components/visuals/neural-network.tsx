@@ -14,12 +14,6 @@ interface Node {
  * Animated neural-network field rendered on a 2D canvas: drifting nodes,
  * proximity-linked synapses, traveling signal pulses, and gentle mouse
  * repulsion. Lightweight (no WebGL), DPR-aware, and reduced-motion safe.
- *
- * Mobile optimisations:
- * - Detects touch devices and halves node density + skips every other frame
- * - Listens for custom "menuopen"/"menuclose" events to pause RAF entirely
- *   while the mobile navigation overlay is visible (frees CPU for the UI thread)
- * - Pauses on document visibility change (tab hidden / screen off)
  */
 export function NeuralNetwork({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,11 +24,9 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // User requested continuous animation on all devices, ignoring reduced-motion
     const reduce = false;
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let width = 0;
     let height = 0;
@@ -42,12 +34,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const mouse = { x: -9999, y: -9999 };
     let raf = 0;
     let pulses: { a: number; b: number; t: number; speed: number }[] = [];
-
-    // Pause flags — RAF exits early when either is true
-    let menuOpen = false;
-    let hidden = false;
-    // Frame-skip counter for mobile (draw every 2nd frame)
-    let frameCount = 0;
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -60,17 +46,12 @@ export function NeuralNetwork({ className }: { className?: string }) {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Mobile: use lower density cap to keep CPU usage low
-      const maxDensity = isMobile ? 50 : 120;
-      const density = Math.max(
-        isMobile ? 20 : 40,
-        Math.min(Math.floor((width * height) / (isMobile ? 20000 : 10000)), maxDensity)
-      );
+      const density = Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
       nodes = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.25),
-        vy: (Math.random() - 0.5) * (isMobile ? 0.15 : 0.25),
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
         r: Math.random() * 1.6 + 0.8,
       }));
 
@@ -79,19 +60,9 @@ export function NeuralNetwork({ className }: { className?: string }) {
       }
     };
 
-    const linkDist = isMobile ? 110 : 140;
+    const linkDist = 140;
 
     const draw = () => {
-      // Re-schedule first so we always have the next frame queued
-      raf = requestAnimationFrame(draw);
-
-      // Exit early without drawing if menu is open or tab is hidden
-      if (menuOpen || hidden) return;
-
-      // Mobile: skip odd frames (halves GPU/CPU load while keeping animation alive)
-      frameCount++;
-      if (isMobile && frameCount % 2 !== 0) return;
-
       ctx.clearRect(0, 0, width, height);
 
       // edges + collect candidates for pulses
@@ -117,7 +88,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
       }
 
       // occasionally spawn a signal pulse along a near edge
-      if (!reduce && pulses.length < (isMobile ? 6 : 14) && near.length && Math.random() < 0.08) {
+      if (!reduce && pulses.length < 14 && near.length && Math.random() < 0.08) {
         const [a, b] = near[Math.floor(Math.random() * near.length)];
         pulses.push({ a, b, t: 0, speed: 0.012 + Math.random() * 0.02 });
       }
@@ -143,16 +114,14 @@ export function NeuralNetwork({ className }: { className?: string }) {
 
       // nodes
       for (const n of nodes) {
-        // mouse / touch repulsion — skip on mobile when no active touch
-        if (!isMobile || mouse.x !== -9999) {
-          const dx = n.x - mouse.x;
-          const dy = n.y - mouse.y;
-          const d = Math.hypot(dx, dy);
-          if (d < 120) {
-            const force = (120 - d) / 120;
-            n.x += (dx / d) * force * 1.4;
-            n.y += (dy / d) * force * 1.4;
-          }
+        // mouse repulsion
+        const dx = n.x - mouse.x;
+        const dy = n.y - mouse.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 120) {
+          const force = (120 - d) / 120;
+          n.x += (dx / d) * force * 1.4;
+          n.y += (dy / d) * force * 1.4;
         }
 
         if (!reduce) {
@@ -169,6 +138,8 @@ export function NeuralNetwork({ className }: { className?: string }) {
         ctx.fillStyle = "rgba(196, 181, 253, 0.8)";
         ctx.fill();
       }
+
+      raf = requestAnimationFrame(draw);
     };
 
     const onMove = (e: MouseEvent) => {
@@ -188,15 +159,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
       mouse.y = -9999;
     };
 
-    // Menu open/close events dispatched from navbar
-    const onMenuOpen = () => { menuOpen = true; };
-    const onMenuClose = () => { menuOpen = false; };
-
-    // Pause when tab is hidden (saves battery on mobile)
-    const onVisibilityChange = () => {
-      hidden = document.hidden;
-    };
-
     resize();
     if (reduce) {
       draw();
@@ -211,9 +173,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
     window.addEventListener("touchstart", onTouchMove, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     window.addEventListener("touchend", onLeave);
-    window.addEventListener("menuopen", onMenuOpen);
-    window.addEventListener("menuclose", onMenuClose);
-    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -223,9 +182,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
       window.removeEventListener("touchstart", onTouchMove);
       document.removeEventListener("mouseleave", onLeave);
       window.removeEventListener("touchend", onLeave);
-      window.removeEventListener("menuopen", onMenuOpen);
-      window.removeEventListener("menuclose", onMenuClose);
-      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 
