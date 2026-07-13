@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 import Link from "next/link";
@@ -13,12 +13,6 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  // Track whether we're on a touch device to skip expensive effects
-  const isTouchRef = useRef(false);
-
-  useEffect(() => {
-    isTouchRef.current = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -27,27 +21,12 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when menu is open — use touch-action instead of overflow
-  // on iOS to avoid the expensive reflow that causes freezes
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      // iOS Safari needs this to prevent scroll-through
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
     };
   }, [open]);
-
-  const close = () => setOpen(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
@@ -95,11 +74,6 @@ export function Navbar() {
           className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg touch-manipulation md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          // Use onTouchEnd for instant response on iOS (fires before onClick delay)
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            setOpen((v) => !v);
-          }}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -111,29 +85,23 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            // NO backdrop-blur on mobile — it's the primary cause of iOS Safari freezing
-            // Use a solid/near-solid background instead for the same visual effect
-            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/98 px-6 pt-24 md:hidden"
+            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-md md:hidden"
             style={{ willChange: "opacity" }}
           >
+
+
             <div className="flex flex-col gap-1">
               {navItems.map((item, i) => (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.18, delay: 0.04 * i }}
+                  transition={{ delay: 0.05 * i }}
                   style={{ willChange: "opacity, transform" }}
                 >
                   <a
                     href={item.href}
-                    onClick={close}
-                    onTouchEnd={(e) => {
-                      e.preventDefault();
-                      close();
-                      window.location.href = item.href;
-                    }}
+                    onClick={() => setOpen(false)}
                     className="block border-b border-white/5 py-4 text-2xl font-medium text-fg"
                   >
                     {item.label}
@@ -145,7 +113,7 @@ export function Navbar() {
               <Button href={siteConfig.resumeUrl} external variant="outline" size="lg">
                 <Download className="h-4 w-4" /> Download Resume
               </Button>
-              <Button href="#contact" size="lg" onClick={close}>
+              <Button href="#contact" size="lg" onClick={() => setOpen(false)}>
                 Let&apos;s talk
               </Button>
             </div>

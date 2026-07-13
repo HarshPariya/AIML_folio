@@ -64,8 +64,6 @@
 @layer base {
   * {
     border-color: var(--color-border);
-    /* Eliminate the 300ms iOS tap delay on all elements */
-    touch-action: manipulation;
   }
   html {
     scroll-behavior: smooth;
@@ -79,8 +77,6 @@
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
-    /* Remove tap highlight flash on mobile */
-    -webkit-tap-highlight-color: transparent;
   }
   ::selection {
     background: color-mix(in oklab, var(--color-brand) 40%, transparent);
