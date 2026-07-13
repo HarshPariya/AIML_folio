@@ -66,7 +66,8 @@
     border-color: var(--color-border);
   }
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior removed: Lenis owns smooth scroll on desktop;
+       on iOS it fights native momentum scrolling causing jank. */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
@@ -77,6 +78,10 @@
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
+  }
+  /* Eliminate iOS 300ms tap delay on all interactive elements */
+  a, button, [role="button"] {
+    touch-action: manipulation;
   }
   ::selection {
     background: color-mix(in oklab, var(--color-brand) 40%, transparent);
