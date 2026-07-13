@@ -22,7 +22,11 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
@@ -85,8 +89,8 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-md md:hidden"
-            style={{ willChange: "opacity" }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg px-6 pt-24 md:hidden"
           >
 
 
@@ -94,10 +98,9 @@ export function Navbar() {
               {navItems.map((item, i) => (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 * i }}
-                  style={{ willChange: "opacity, transform" }}
                 >
                   <a
                     href={item.href}
