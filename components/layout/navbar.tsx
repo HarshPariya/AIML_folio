@@ -21,13 +21,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
       <motion.nav
@@ -85,7 +78,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-md md:hidden"
+            className="fixed inset-0 top-0 z-[55] flex flex-col bg-bg/95 px-6 pt-24 backdrop-blur-md md:hidden overflow-y-auto"
             style={{ willChange: "opacity" }}
           >
 
