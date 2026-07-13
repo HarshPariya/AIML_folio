@@ -14,6 +14,11 @@ interface Node {
  * Animated neural-network field rendered on a 2D canvas: drifting nodes,
  * proximity-linked synapses, traveling signal pulses, and gentle mouse
  * repulsion. Lightweight (no WebGL), DPR-aware, and reduced-motion safe.
+ *
+ * Performance notes:
+ * - On mobile, particle count and link-distance are reduced to cut O(n²) cost.
+ * - On mobile, animation is throttled to ~30 fps via timestamp gating.
+ * - Canvas is marked pointer-events-none so touches pass through immediately.
  */
 export function NeuralNetwork({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,9 +29,11 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // User requested continuous animation on all devices, ignoring reduced-motion
-    const reduce = false;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    // Cap DPR to 1 on mobile — rendering at 2× doubles pixel work
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+    // Target ~30 fps on mobile (33ms frame budget) vs full fps on desktop
+    const frameInterval = isMobile ? 33 : 0;
 
     let width = 0;
     let height = 0;
@@ -34,6 +41,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const mouse = { x: -9999, y: -9999 };
     let raf = 0;
     let pulses: { a: number; b: number; t: number; speed: number }[] = [];
+    let lastFrame = 0;
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -46,23 +54,31 @@ export function NeuralNetwork({ className }: { className?: string }) {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const density = Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
+      // Mobile: drastically fewer nodes & smaller link distance to cut O(n²) cost
+      const maxNodes = isMobile ? 35 : 120;
+      const density = Math.max(
+        isMobile ? 20 : 40,
+        Math.min(Math.floor((width * height) / (isMobile ? 18000 : 10000)), maxNodes)
+      );
       nodes = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.18 : 0.25),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.18 : 0.25),
         r: Math.random() * 1.6 + 0.8,
       }));
-
-      if (reduce) {
-        requestAnimationFrame(draw);
-      }
     };
 
-    const linkDist = 140;
+    // Shorter link distance on mobile reduces O(n²) edge pairs significantly
+    const linkDist = isMobile ? 90 : 140;
 
-    const draw = () => {
+    const draw = (ts: number) => {
+      raf = requestAnimationFrame(draw);
+
+      // Throttle on mobile
+      if (frameInterval > 0 && ts - lastFrame < frameInterval) return;
+      lastFrame = ts;
+
       ctx.clearRect(0, 0, width, height);
 
       // edges + collect candidates for pulses
@@ -73,8 +89,10 @@ export function NeuralNetwork({ className }: { className?: string }) {
           const b = nodes[j];
           const dx = a.x - b.x;
           const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < linkDist) {
+          // Use squared distance first to skip sqrt when possible
+          const distSq = dx * dx + dy * dy;
+          if (distSq < linkDist * linkDist) {
+            const dist = Math.sqrt(distSq);
             const alpha = (1 - dist / linkDist) * 0.5;
             ctx.strokeStyle = `rgba(124, 92, 255, ${alpha})`;
             ctx.lineWidth = 0.6;
@@ -87,8 +105,10 @@ export function NeuralNetwork({ className }: { className?: string }) {
         }
       }
 
-      // occasionally spawn a signal pulse along a near edge
-      if (!reduce && pulses.length < 14 && near.length && Math.random() < 0.08) {
+      // Spawn fewer pulses on mobile
+      const maxPulses = isMobile ? 6 : 14;
+      const spawnChance = isMobile ? 0.04 : 0.08;
+      if (pulses.length < maxPulses && near.length && Math.random() < spawnChance) {
         const [a, b] = near[Math.floor(Math.random() * near.length)];
         pulses.push({ a, b, t: 0, speed: 0.012 + Math.random() * 0.02 });
       }
@@ -114,20 +134,18 @@ export function NeuralNetwork({ className }: { className?: string }) {
 
       // nodes
       for (const n of nodes) {
-        // mouse repulsion
+        // mouse/touch repulsion (skip expensive hypot on mobile when no pointer)
         const dx = n.x - mouse.x;
         const dy = n.y - mouse.y;
         const d = Math.hypot(dx, dy);
-        if (d < 120) {
+        if (d > 0 && d < 120) {
           const force = (120 - d) / 120;
           n.x += (dx / d) * force * 1.4;
           n.y += (dy / d) * force * 1.4;
         }
 
-        if (!reduce) {
-          n.x += n.vx;
-          n.y += n.vy;
-        }
+        n.x += n.vx;
+        n.y += n.vy;
         if (n.x < 0 || n.x > width) n.vx *= -1;
         if (n.y < 0 || n.y > height) n.vy *= -1;
         n.x = Math.max(0, Math.min(width, n.x));
@@ -138,8 +156,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
         ctx.fillStyle = "rgba(196, 181, 253, 0.8)";
         ctx.fill();
       }
-
-      raf = requestAnimationFrame(draw);
     };
 
     const onMove = (e: MouseEvent) => {
@@ -160,28 +176,28 @@ export function NeuralNetwork({ className }: { className?: string }) {
     };
 
     resize();
-    if (reduce) {
-      draw();
-      cancelAnimationFrame(raf); // single static frame
-    } else {
-      raf = requestAnimationFrame(draw);
-    }
+    raf = requestAnimationFrame(draw);
 
-    window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchstart", onTouchMove, { passive: true });
-    document.addEventListener("mouseleave", onLeave);
-    window.addEventListener("touchend", onLeave);
+    window.addEventListener("resize", resize, { passive: true });
+    window.addEventListener("mousemove", onMove, { passive: true });
+    // Touch repulsion is cosmetic – skip on mobile to avoid consuming touch events
+    if (!isMobile) {
+      window.addEventListener("touchmove", onTouchMove, { passive: true });
+      window.addEventListener("touchstart", onTouchMove, { passive: true });
+      window.addEventListener("touchend", onLeave, { passive: true });
+    }
+    document.addEventListener("mouseleave", onLeave, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchstart", onTouchMove);
+      if (!isMobile) {
+        window.removeEventListener("touchmove", onTouchMove);
+        window.removeEventListener("touchstart", onTouchMove);
+        window.removeEventListener("touchend", onLeave);
+      }
       document.removeEventListener("mouseleave", onLeave);
-      window.removeEventListener("touchend", onLeave);
     };
   }, []);
 

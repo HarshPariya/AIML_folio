@@ -68,7 +68,6 @@ export default function ParticleGlobe() {
   const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    // Detect device capabilities and screen size for optimization
     const isMobile = window.innerWidth < 768;
     const isLowEndDevice =
       typeof navigator !== "undefined" && (navigator as any).deviceMemory
@@ -76,17 +75,19 @@ export default function ParticleGlobe() {
         : false;
 
     if (isMobile) {
-      setParticleCount(isLowEndDevice ? 300 : 600); // Drastically reduced for mobile
-      setDpr([1, 1]); // Lower DPR for better performance on mobile
+      // Very low particle count on mobile to avoid blocking the main thread
+      setParticleCount(isLowEndDevice ? 200 : 400);
+      setDpr([1, 1]); // Render at 1× on mobile
     } else if (isLowEndDevice) {
       setParticleCount(1000);
       setDpr([1, 1.2]);
     }
 
-    // Delay mounting heavy WebGL to prevent blocking initial page load
+    // Delay heavy WebGL to let the UI paint first and become interactive
+    // Mobile needs more time — but not TOO long or it feels broken
     const timeout = setTimeout(() => {
       setShouldRender(true);
-    }, isMobile ? 1800 : 200); // Give mobile much more time to paint the UI first
+    }, isMobile ? 2500 : 300);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -97,7 +98,7 @@ export default function ParticleGlobe() {
     <Canvas
       camera={{ position: [0, 0, 6], fov: 45 }}
       dpr={dpr}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{ antialias: false, alpha: true, powerPreference: "default" }}
       style={{ background: "transparent" }}
       performance={{ min: 0.5, max: 0.8 }}
     >
