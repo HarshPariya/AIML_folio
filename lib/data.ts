@@ -654,7 +654,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Vercel"],
     links: {
       github: "https://github.com/HarshPariya/AIML_folio",
-      demo: "https://aiml-folio-alpha.vercel.app/",
+      demo: "https://www.harshpariya.dev/",
     },
     metrics: [
       { label: "Sections", value: "10+" },
@@ -681,7 +681,7 @@ export const projects: Project[] = [
         { metric: "Deployment", value: "Vercel" },
       ],
       results:
-        "Live at aiml-folio-alpha.vercel.app - a production-grade AI/ML portfolio with animated hero, interactive tech graph, tabbed project showcase with full case studies, and responsive layout across all devices.",
+        "Live at www.harshpariya.dev - a production-grade AI/ML portfolio with animated hero, interactive tech graph, tabbed project showcase with full case studies, and responsive layout across all devices.",
       learnings: [
         "A typed data layer makes it trivial to add new projects and sections without breaking anything.",
         "Interactive visualisations (force graph, radar chart) communicate technical depth far better than bullet lists.",

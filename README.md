@@ -2,7 +2,7 @@
   <h1>🚀 Harsh Pariya | AI/ML Portfolio</h1>
   <p><strong>A premium, modern portfolio website showcasing AI/ML expertise, deep learning projects, and intelligent systems development.</strong></p>
   <p>
-    <a href="https://aiml-folio-alpha.vercel.app/"><strong>🌐 Live Portfolio Preview</strong></a>
+    <a href="https://www.harshpariya.dev/"><strong>🌐 Live Portfolio Preview</strong></a>
   </p>
 </div>
 
@@ -36,7 +36,7 @@
 ### 💻 Development & Engineering
 | Project | Stack | Key Highlights | Demo |
 | :--- | :--- | :--- | :--- |
-| **AIML Folio** | Next.js, TypeScript, Framer Motion, Tailwind, Vercel | Dark-space aesthetic, interactive tech graph, 3D globe | [Live Demo](https://aiml-folio-alpha.vercel.app/) |
+| **AIML Folio** | Next.js, TypeScript, Framer Motion, Tailwind, Vercel | Dark-space aesthetic, interactive tech graph, 3D globe | [Live Demo](https://www.harshpariya.dev/) |
 | **Folio Harsh Dev (v2)** | Next.js, TypeScript, Framer Motion, Vercel | Premium beige/dark developer portfolio, 10+ sections | [Live Demo](https://folioharshdev.vercel.app/) |
 | **Campus Navigation System** | React, TypeScript, Maps API, Tailwind CSS | Mobile-first building finder and campus routing | [Live Demo](https://campus-navigation-sigma.vercel.app/) |
 | **TravelGo** | React, Tailwind CSS, Netlify | Conversion-focused responsive agency landing page | [Live Demo](https://travelgo-by-hp01.netlify.app/) |

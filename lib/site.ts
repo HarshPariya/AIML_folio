@@ -10,7 +10,7 @@ export const siteConfig = {
   description:
     "Harsh Pariya - Aspiring AI/ML Engineer specializing in Machine Learning, Deep Learning, LLMs, Computer Vision, and Generative AI. B.Tech CSE @ Rai University. Open to AI/ML internships and research opportunities.",
   // Update this to your production domain before deploying.
-  url: "https://harshpariya.vercel.app",
+  url: "https://www.harshpariya.dev",
   ogImage: "/og",
   avatar: "/harsh-pariya.jpg",
   locale: "en_US",
