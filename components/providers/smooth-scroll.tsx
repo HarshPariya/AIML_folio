@@ -11,10 +11,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const isMobile = window.innerWidth < 768;
     
     // Disable Lenis on touch devices (iOS/Android already have native smooth scrolling)
     // This fixes the issue where the page gets "stuck" and clicks don't register.
-    if (reduce || isTouch) return;
+    if (reduce || isTouch || isMobile) return;
 
     const lenis = new Lenis({
       duration: 1.1,

@@ -1,9 +1,20 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
  * Aurora gradient blobs - slow, GPU-cheap, blurred color fields. Decorative.
  */
 export function Aurora({ className }: { className?: string }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  if (isMobile) return null;
+
   return (
     <div aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
       <div className="absolute -left-1/4 top-[-10%] h-[42rem] w-[42rem] rounded-full bg-brand/20 blur-[120px] animate-aurora" />
