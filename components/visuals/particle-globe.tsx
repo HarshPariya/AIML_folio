@@ -66,19 +66,25 @@ export default function ParticleGlobe() {
   const [particleCount, setParticleCount] = useState(2600);
   const [dpr, setDpr] = useState<[number, number]>([1, 1.6]);
   const [shouldRender, setShouldRender] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Detect device capabilities and screen size for optimization
-    const isMobile = window.innerWidth < 768;
+    const mobileCheck = window.innerWidth < 768;
+    setIsMobile(mobileCheck);
+    
+    // Do not render heavy WebGL on mobile devices at all, as it blocks the main thread
+    // and causes the entire UI (like the navbar menu) to freeze for up to 30 seconds.
+    if (mobileCheck) {
+      return;
+    }
+
     const isLowEndDevice =
       typeof navigator !== "undefined" && (navigator as any).deviceMemory
         ? (navigator as any).deviceMemory <= 4
         : false;
 
-    if (isMobile) {
-      setParticleCount(isLowEndDevice ? 300 : 600); // Drastically reduced for mobile
-      setDpr([1, 1]); // Lower DPR for better performance on mobile
-    } else if (isLowEndDevice) {
+    if (isLowEndDevice) {
       setParticleCount(1000);
       setDpr([1, 1.2]);
     }
@@ -86,18 +92,18 @@ export default function ParticleGlobe() {
     // Delay mounting heavy WebGL to prevent blocking initial page load
     const timeout = setTimeout(() => {
       setShouldRender(true);
-    }, isMobile ? 1800 : 200); // Give mobile much more time to paint the UI first
+    }, 200);
 
     return () => clearTimeout(timeout);
   }, []);
 
-  if (!shouldRender) return null;
+  if (isMobile || !shouldRender) return null;
 
   return (
     <Canvas
       camera={{ position: [0, 0, 6], fov: 45 }}
       dpr={dpr}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{ antialias: true, alpha: true, powerPreference: "default" }}
       style={{ background: "transparent" }}
       performance={{ min: 0.5, max: 0.8 }}
     >

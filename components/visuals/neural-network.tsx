@@ -143,15 +143,13 @@ export function NeuralNetwork({ className }: { className?: string }) {
     };
 
     const onMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     };
     const onTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.touches[0].clientX - rect.left;
-        mouse.y = e.touches[0].clientY - rect.top;
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
       }
     };
     const onLeave = () => {
