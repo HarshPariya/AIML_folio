@@ -24,10 +24,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Detect mobile and completely skip animation to save battery and prevent lag
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) return;
-
     // User requested continuous animation on all devices, ignoring reduced-motion
     const reduce = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -38,6 +34,8 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const mouse = { x: -9999, y: -9999 };
     let raf = 0;
     let pulses: { a: number; b: number; t: number; speed: number }[] = [];
+
+    const isMobile = window.innerWidth < 768;
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -50,7 +48,11 @@ export function NeuralNetwork({ className }: { className?: string }) {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const density = Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
+      // On mobile, reduce maximum density drastically (from 120 -> 35) to prevent loop freezing
+      const baseDensity = isMobile ? 15 : 40;
+      const maxDensity = isMobile ? 35 : 120;
+      const density = Math.max(baseDensity, Math.min(Math.floor((width * height) / 10000), maxDensity));
+      
       nodes = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
