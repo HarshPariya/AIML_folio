@@ -24,6 +24,10 @@ export function NeuralNetwork({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Detect mobile and completely skip animation to save battery and prevent lag
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return;
+
     // User requested continuous animation on all devices, ignoring reduced-motion
     const reduce = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
