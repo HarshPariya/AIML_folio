@@ -69,19 +69,23 @@ export default function ParticleGlobe() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Detect device capabilities and screen size for optimization
     const mobileCheck = window.innerWidth < 768;
     setIsMobile(mobileCheck);
     
+    // Do not render heavy WebGL on mobile devices at all, as it blocks the main thread
+    // and causes the entire UI (like the navbar menu) to freeze for up to 30 seconds.
+    if (mobileCheck) {
+      return;
+    }
+
     const isLowEndDevice =
       typeof navigator !== "undefined" && (navigator as any).deviceMemory
         ? (navigator as any).deviceMemory <= 4
         : false;
 
-    if (mobileCheck) {
-      setParticleCount(800);
-      setDpr([1, 1]);
-    } else if (isLowEndDevice) {
-      setParticleCount(1200);
+    if (isLowEndDevice) {
+      setParticleCount(1000);
       setDpr([1, 1.2]);
     }
 
@@ -93,7 +97,7 @@ export default function ParticleGlobe() {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (!shouldRender) return null;
+  if (isMobile || !shouldRender) return null;
 
   return (
     <Canvas
