@@ -35,8 +35,6 @@ export function NeuralNetwork({ className }: { className?: string }) {
     let raf = 0;
     let pulses: { a: number; b: number; t: number; speed: number }[] = [];
 
-    const isMobile = window.innerWidth < 768;
-
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
@@ -48,11 +46,7 @@ export function NeuralNetwork({ className }: { className?: string }) {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // On mobile, reduce maximum density drastically (from 120 -> 35) to prevent loop freezing
-      const baseDensity = isMobile ? 15 : 40;
-      const maxDensity = isMobile ? 35 : 120;
-      const density = Math.max(baseDensity, Math.min(Math.floor((width * height) / 10000), maxDensity));
-      
+      const density = Math.max(40, Math.min(Math.floor((width * height) / 10000), 120));
       nodes = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,

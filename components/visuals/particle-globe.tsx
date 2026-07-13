@@ -69,7 +69,6 @@ export default function ParticleGlobe() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detect device capabilities and screen size for optimization
     const mobileCheck = window.innerWidth < 768;
     setIsMobile(mobileCheck);
     
@@ -78,9 +77,8 @@ export default function ParticleGlobe() {
         ? (navigator as any).deviceMemory <= 4
         : false;
 
-    // Drastically reduce particles and resolution on mobile to prevent GPU freezing
     if (mobileCheck) {
-      setParticleCount(600);
+      setParticleCount(800);
       setDpr([1, 1]);
     } else if (isLowEndDevice) {
       setParticleCount(1200);
