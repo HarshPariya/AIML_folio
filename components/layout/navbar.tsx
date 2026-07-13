@@ -21,12 +21,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  // We remove the body overflow lock because on complex mobile layouts,
+  // toggling document.body.style.overflow = "hidden" can cause massive reflows
+  // and completely freeze the GPU/main thread for several seconds.
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
@@ -71,7 +68,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg touch-manipulation md:hidden"
+          className="relative z-[60] grid h-10 w-10 place-items-center rounded-full text-fg md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
