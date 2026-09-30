@@ -15,24 +15,23 @@ function ProjectCover({
   index: number;
   featured?: boolean;
 }) {
-  const className = featured ? "h-52 sm:h-60" : "h-44";
+  const containerClass =
+    "relative aspect-[16/10] w-full overflow-hidden bg-[#0c1017] border-b border-white/5 p-2 sm:p-2.5 flex items-center justify-center";
 
   if (project.image && /\.(png|jpe?g|webp|avif)$/i.test(project.image)) {
     return (
-      <div className={`relative overflow-hidden ${className}`}>
-        <Image
-          src={project.image}
-          alt={`${project.title} preview`}
-          fill
-          unoptimized
-          priority={index < 4 || featured}
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/10 to-transparent" />
-        <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-bg/50 px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-fg backdrop-blur">
-          {project.category}
-        </span>
+      <div className={containerClass}>
+        <div className="relative h-full w-full overflow-hidden rounded-lg flex items-center justify-center">
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            fill
+            unoptimized
+            priority={index < 4 || featured}
+            className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
       </div>
     );
   }
@@ -42,7 +41,7 @@ function ProjectCover({
       gradient={project.gradient}
       category={project.category}
       seed={index + 1}
-      className={className}
+      className="relative aspect-[16/10] w-full"
     />
   );
 }
@@ -63,16 +62,21 @@ export function ProjectCard({
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
+        <div className="mb-2.5">
+          <span className="inline-block rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-[0.65rem] font-medium uppercase tracking-wider text-brand-2">
+            {project.category}
+          </span>
+        </div>
+
         <div className="flex items-start justify-between gap-3">
           <Link href={`/projects/${project.slug}`}>
             <h3 className="text-base font-semibold leading-snug text-fg transition-colors hover:text-brand-2">
               {project.title}
             </h3>
           </Link>
-
         </div>
 
-        <p className="mt-2 text-sm leading-relaxed text-muted">{project.tagline}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted line-clamp-2">{project.tagline}</p>
 
         {/* metrics */}
         <div className="mt-4 grid grid-cols-3 gap-2">
@@ -95,7 +99,7 @@ export function ProjectCard({
         </div>
 
         {/* links */}
-        <div className="mt-5 flex items-center gap-3 border-t border-white/5 pt-4">
+        <div className="mt-auto flex items-center gap-3 border-t border-white/5 pt-4">
           <Link
             href={`/projects/${project.slug}`}
             className="inline-flex items-center gap-1 text-sm font-medium text-brand-2 transition-colors hover:text-fg"

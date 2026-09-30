@@ -62,7 +62,7 @@ export function SpotlightCard({
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
       />
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 flex h-full flex-col">{children}</div>
     </div>
   );
 }

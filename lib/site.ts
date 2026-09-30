@@ -4,11 +4,11 @@
  */
 export const siteConfig = {
   name: "Harsh Pariya",
-  role: "AI / ML Engineer",
-  shortRole: "AI Engineer",
-  tagline: "Building Intelligent Systems with AI & Machine Learning",
+  role: "Agentic AI & Generative AI Engineer",
+  shortRole: "Agentic AI Engineer",
+  tagline: "Building Autonomous Multi-Agent Systems & Production AI",
   description:
-    "Harsh Pariya - Aspiring AI/ML Engineer specializing in Machine Learning, Deep Learning, LLMs, Computer Vision, and Generative AI. B.Tech CSE @ Rai University. Open to AI/ML internships and research opportunities.",
+    "Harsh Pariya - Agentic AI & Generative AI Engineer specializing in Autonomous Multi-Agent Systems, LangGraph, Model Context Protocol (MCP), LLMs, and Production RAG pipelines.",
   // Update this to your production domain before deploying.
   url: "https://www.harshpariya.dev",
   ogImage: "/og",
@@ -17,7 +17,7 @@ export const siteConfig = {
   email: "harshpariya195@gmail.com",
   phone: "+91 96019 86209",
   location: "Ahmedabad, Gujarat, India",
-  availability: "Open to AI/ML Internships",
+  availability: "Open to Agentic AI & ML Roles",
   resumeUrl: "/Harsh-Pariya-Resume.pdf",
   keywords: [
     "AI Engineer",

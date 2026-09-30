@@ -48,7 +48,7 @@ export const heroRotatingWords = [
 ];
 
 export const heroStats = [
-  { label: "Projects Built", value: "10+" },
+  { label: "Projects Built", value: "16+" },
   { label: "GitHub Contributions", value: "1.9K+" },
   { label: "CGPA", value: "8.98" },
 ];
@@ -64,8 +64,8 @@ export const aboutParagraphs = [
 ];
 
 export const counters = [
-  { label: "Projects Completed", value: 15, suffix: "+", icon: "Boxes" },
-  { label: "GitHub Contributions", value: 1500, suffix: "+", icon: "GitBranch" },
+  { label: "Projects Completed", value: 16, suffix: "+", icon: "Boxes" },
+  { label: "GitHub Contributions", value: 1900, suffix: "+", icon: "GitBranch" },
   { label: "Certifications", value: 4, suffix: "", icon: "Sparkles" },
 ];
 
@@ -75,35 +75,28 @@ export const journey = [
     title: "Started B.Tech in Computer Science",
     org: "Rai University, Ahmedabad",
     description:
-      "Began CS degree with a focus on DSA, statistics, and databases. Started building small AI/ML projects on the side to understand how the math actually works in code.",
-  },
-  {
-    year: "2025",
-    title: "Development Intern Offer",
-    org: "Codveda Technologies",
-    description:
-      "Received an internship offer to build AI/ML and full-stack projects. Learned what it takes to turn an experiment into something that actually ships.",
+      "Began CS degree focusing on Data Structures, Algorithms, Statistics, and Databases. Built practical ML and AI foundations from scratch.",
   },
   {
     year: "2026",
-    title: "Fell in love with Machine Learning",
-    org: "Self-directed learning",
+    title: "Artificial Intelligence Intern",
+    org: "Codec Technologies India (Remote)",
     description:
-      "Dove into ML fundamentals: regression, classification, clustering, and ensemble models using Scikit-Learn, NumPy, and Pandas. Built several projects end-to-end and started caring a lot about evaluation, not just accuracy.",
+      "Developed ML models and NLP pipelines with Scikit-Learn, Pandas, and NumPy. Trained classification models (XGBoost, SVM, Random Forest) with 90%+ accuracy and containerized inference REST endpoints with FastAPI and Docker.",
+  },
+  {
+    year: "2026 – Present",
+    title: "Agentic AI Intern",
+    org: "Codage Habitation, Ahmedabad (On-site)",
+    description:
+      "Architecting enterprise Agentic AI systems with Python and LangGraph. Building execution graphs with dynamic runtime nodes, MCP tool bindings, and high-precision RAG pipelines with 0.65 relevance gates.",
   },
   {
     year: "2026",
-    title: "Deep Learning clicked",
-    org: "TensorFlow and PyTorch",
+    title: "Autonomous Agentic AI Platforms",
+    org: "LeadFlow AI, Git-Agent & Agentflow-AI",
     description:
-      "Trained CNNs for the first time and got hooked. Worked through the engineering side of model training, debugging loss curves, and actual deployment. Built a brain tumor detection app on real MRI data.",
-  },
-  {
-    year: "2026",
-    title: "Building LLM and GenAI applications",
-    org: "Current focus",
-    description:
-      "Working with LLMs, RAG systems, and AI agents. Trying to combine solid ML foundations with real product engineering - building things people can actually use.",
+      "Architected autonomous multi-agent execution graphs, GraphRAG code intelligence, and enterprise sales/operations platforms orchestrating Groq LLaMA 3.3, Twenty CRM, Zapier, and MCP tools.",
   },
 ];
 
@@ -312,6 +305,147 @@ export interface Project {
 
 export const projects: Project[] = [
   // AI/ML Projects
+  {
+    slug: "leadflow-ai",
+    title: "LeadFlow AI",
+    category: "Autonomous Agents · CRM Automation",
+    tagline: "Autonomous B2B sales operations platform orchestrating lead capture, qualification, Twenty CRM, and Zapier.",
+    description:
+      "An enterprise-grade B2B sales automation platform. It autonomously captures incoming prospects, eliminates duplicates, performs real-time AI qualification using Groq Llama 3.3, synchronizes CRM records to Twenty CRM, and triggers multi-channel routing (Gmail, Tasks, Deals) through Zapier.",
+    image: "/projects/leadflow-ai.png",
+    gradient: "from-amber-600/30 to-orange-600/20",
+    tech: ["Next.js 15", "TypeScript", "Groq Llama 3.3", "Twenty CRM", "MongoDB Atlas", "Zapier", "Tailwind CSS v4"],
+    links: {
+      github: "https://github.com/HarshPariya/LeadFlow-AI",
+      demo: "https://lead-flow-ai-rust.vercel.app/",
+    },
+    metrics: [
+      { label: "AI Engine", value: "Llama 3.3" },
+      { label: "CRM Sync", value: "Twenty CRM" },
+      { label: "Automation", value: "Zapier" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "B2B sales teams spend excessive hours manually vetting leads, triaging duplicate records, and updating disparate systems. Inbound prospects slip through the cracks without immediate qualification or structured CRM synchronization.",
+      dataset:
+        "Inbound prospect payloads and enterprise contact inquiries processed through normalized email indexing to ensure complete duplicate prevention across CRM records.",
+      architecture:
+        "Built on Next.js 15 App Router with server actions and route handlers. Features Groq Llama 3.3 for structured JSON scoring, a direct backend webhook dispatch to Twenty CRM for Person & Company upserts, and outbound Zapier catch hooks with cryptographically unique event IDs and 3-path branching.",
+      modelSelection:
+        "Groq-hosted Llama 3.3 70B was chosen for its ultra-low latency inference, enabling real-time scoring (0–100) coupled with deterministic priority thresholds (High 80-100, Medium 50-79, Low 0-49) to ensure 100% predictable downstream routing.",
+      training:
+        "Engineered high-accuracy structured prompt contracts with JSON schema validation, deterministic fallback logic, and multi-channel routing templates for automated Gmail alerts and scheduling.",
+      evaluation: [
+        { metric: "LLM Inference", value: "< 1.5s" },
+        { metric: "Pipeline Stages", value: "7 Stages" },
+        { metric: "Design Contrast", value: "13.8:1 (WCAG AA+)" },
+      ],
+      results:
+        "A live sales automation platform featuring 10 operational KPIs, interactive Kanban and table pipeline views, audit logs, and verified end-to-end CRM dispatch and Zapier multi-channel routing.",
+      learnings: [
+        "Combining deterministic priority rules with LLM reasoning delivers robust, hallucination-free sales qualification.",
+        "Normalizing emails and blocking duplicates at ingestion avoids downstream CRM pollution and redundant webhooks.",
+        "Warm editorial styling with 13.8:1 contrast dramatically improves usability in high-density CRM dashboards compared to harsh clinical interfaces.",
+      ],
+    },
+  },
+  {
+    slug: "git-agent",
+    title: "Git Debug Agent",
+    category: "Autonomous Agents · Code Intelligence · GraphRAG",
+    tagline: "Enterprise-grade autonomous Git debugging and code intelligence platform powered by GraphRAG and a 28-state engine.",
+    description:
+      "An autonomous debugging and code intelligence platform that isolates defect root causes using GraphRAG and TypeScript AST intelligence, performs 3-way merge conflict resolution, validates patches with Critic Agent guardrails, runs CI pipeline triage, and coordinates safe Git operations with push safeguards.",
+    image: "/projects/git-agent.png",
+    gradient: "from-emerald-600/30 to-teal-600/20",
+    tech: ["Node.js 22", "TypeScript", "GraphRAG", "Groq Llama 3.3", "Express.js", "MongoDB Atlas", "AST Parser", "Tailwind CSS"],
+    links: {
+      github: "https://github.com/HarshPariya/git-agent",
+      demo: "https://git-agent-pi.vercel.app/",
+    },
+    metrics: [
+      { label: "State Engine", value: "28 States" },
+      { label: "Code Intel", value: "GraphRAG + AST" },
+      { label: "Test Suites", value: "10 (100%)" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Software debugging, regression isolation, and merge conflict resolution are tedious, high-stakes tasks. Developers often struggle to trace root causes across complex dependencies or risk pushing unvetted patches directly to production branches.",
+      dataset:
+        "Multi-repository codebases analyzed via TypeScript Compiler AST extraction, generating 384-dimensional semantic feature vectors, symbol dependency call graphs, and unified diff hunks.",
+      architecture:
+        "A 28-state autonomous state machine orchestrating TaskPlanner, ContextBuilder, HypothesisEngine, CriticAgent, and PatchEngine. Features Express.js REST + SSE streaming, Windows native PowerShell folder dialogs, safe direct execFile('git') execution with 19 operation safety tiers, and MongoDB Atlas vector storage.",
+      modelSelection:
+        "Groq Llama 3.3 70B selected for high-velocity multi-step reasoning, hypothesis generation, and patch synthesis, integrated with Hybrid Reciprocal Rank Fusion (RRF) for precise code symbol retrieval.",
+      training:
+        "Strict safety guardrails and 10 comprehensive automated test suites (Git engine, agent state machine, API, guardrails, change analyzer, E2E workflow, recovery snapshot rollbacks, and GraphRAG security).",
+      evaluation: [
+        { metric: "Test Suite Pass", value: "100% (10 Suites)" },
+        { metric: "Agent States", value: "28 States" },
+        { metric: "Git Ops Catalog", value: "19 Operations" },
+      ],
+      results:
+        "A production-ready code intelligence platform with 9 modular views (Dashboard, Repositories, AI Debugging, Issues, PRs, CI Runs, Conflict Center, History, Admin), supporting automated Git bisect, rollback snapshots, and side-by-side 4-way merge resolution.",
+      learnings: [
+        "AST symbol indexing combined with dependency graph traversal delivers exponentially more accurate bug localization than naive vector search.",
+        "A dedicated Critic Agent safety gate is indispensable to catch regressions and prevent dangerous shell commands before patches are committed.",
+        "Classifying Git operations into safe, controlled, and dangerous tiers prevents catastrophic accidental force pushes to protected branches.",
+      ],
+    },
+  },
+  {
+    slug: "agentflow-ai",
+    title: "Agentflow-AI",
+    category: "Autonomous Agents · LangGraph · MCP · RAG",
+    tagline: "Production-grade autonomous enterprise operations copilot implementing 'Ask, Retrieve, Act' with LangGraph and MCP.",
+    description:
+      "An autonomous operations copilot that dynamically decides at runtime whether an incoming query requires private knowledge base retrieval (RAG), external tool execution via Model Context Protocol (MCP), a multi-step chained combination, or targeted clarification—accelerated by Redis caching and MongoDB Atlas audit logs.",
+    image: "/projects/agentflow-ai.png",
+    gradient: "from-blue-600/30 to-indigo-600/20",
+    tech: ["Python", "FastAPI", "LangGraph", "Model Context Protocol", "Redis", "MongoDB Atlas", "Next.js 14", "PyMuPDF"],
+    links: {
+      github: "https://github.com/HarshPariya/Agentflow-AI",
+      demo: "https://agentflow-ai-lime.vercel.app/",
+    },
+    metrics: [
+      { label: "Architecture", value: "LangGraph + MCP" },
+      { label: "Relevance Gate", value: "0.65 Cutoff" },
+      { label: "Test Pass", value: "16/16 (100%)" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Enterprise operations teams waste time toggling between static documentation and internal transactional tools. Existing chatbots either hallucinate policy answers or lack the ability to safely execute multi-step operational actions.",
+      dataset:
+        "26+ enterprise policy markdown and PDF documents ingested via a dual PyMuPDF + PyPDF pipeline using 300–500 token chunking with ~15% overlap, combined with transactional order and support ticket schemas.",
+      architecture:
+        "LangGraph pattern-driven state machine with Planner, Retriever, Tool Executor (FastMCP async client), Responder, and Clarify nodes. Coupled with a FastAPI SSE streaming backend, Redis query-hash caching (10m TTL), MongoDB Atlas audit logging, and a Next.js 14 chat interface with collapsible step-trace transparency.",
+      modelSelection:
+        "LLM planner dynamically routes queries into retrieve_only, tool_only, retrieve_and_tool, or answer_directly via structured JSON reasoning. A calibrated 0.65 cosine similarity gate routes low-confidence retrieval to the Clarify node.",
+      training:
+        "Strict human-in-the-loop confirmation checkpoints for state-altering actions (e.g., ticket creation) and resilient JSON extraction prompts to eliminate fragile keyword routing.",
+      evaluation: [
+        { metric: "Test Suite Pass", value: "100% (16/16)" },
+        { metric: "Similarity Threshold", value: "0.65 Gate" },
+        { metric: "Cache Latency", value: "< 50ms" },
+      ],
+      results:
+        "An enterprise copilot capable of resolving complex multi-step queries (e.g. policy checks combined with order lookups), citing authoritative documentation, executing MCP tools safely, and rendering full step-level audit trails.",
+      learnings: [
+        "A calibrated relevance threshold (0.65) is crucial for enterprise agents to gracefully decline queries rather than hallucinating answers.",
+        "Separating tool execution behind the Model Context Protocol (MCP) decouples the agent core from specific operational APIs.",
+        "Human-in-the-loop confirmation dialogs for destructive actions provide enterprise security without degrading user experience.",
+      ],
+    },
+  },
   {
     slug: "ai-assistant-platform",
     title: "AI Assistant Platform",
