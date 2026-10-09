@@ -48,7 +48,7 @@ export const heroRotatingWords = [
 ];
 
 export const heroStats = [
-  { label: "Projects Built", value: "18+" },
+  { label: "Projects Built", value: "17+" },
   { label: "GitHub Contributions", value: "1.9K+" },
   { label: "CGPA", value: "8.98" },
 ];
@@ -64,7 +64,7 @@ export const aboutParagraphs = [
 ];
 
 export const counters = [
-  { label: "Projects Completed", value: 18, suffix: "+", icon: "Boxes" },
+  { label: "Projects Completed", value: 17, suffix: "+", icon: "Boxes" },
   { label: "GitHub Contributions", value: 1900, suffix: "+", icon: "GitBranch" },
   { label: "Certifications", value: 4, suffix: "", icon: "Sparkles" },
 ];
@@ -870,55 +870,6 @@ export const projects: Project[] = [
     },
   },
   // Development Projects
-  {
-    slug: "aiml-folio",
-    title: "AIML Folio",
-    category: "Portfolio · Next.js",
-    tagline: "Premium AI/ML portfolio built with Next.js - dark-space design, animated hero, and interactive tech graph.",
-    description:
-      "A fully custom AI/ML-focused portfolio built with Next.js, TypeScript, and Framer Motion - featuring a live tech-stack graph, animated hero section, tabbed project showcase with case studies, and full responsive layout. Deployed on Vercel.",
-    image: "/projects/aiml-folio.png",
-    gradient: "from-blue-600/30 to-indigo-700/20",
-    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Vercel"],
-    links: {
-      github: "https://github.com/HarshPariya/AIML_folio",
-      demo: "https://www.harshpariya.dev/",
-    },
-    metrics: [
-      { label: "Sections", value: "10+" },
-      { label: "Theme", value: "Dark AI" },
-      { label: "Year", value: "2026" },
-    ],
-    featured: false,
-    real: true,
-    type: "dev",
-    caseStudy: {
-      problem:
-        "Generic portfolio templates fail to communicate an AI/ML engineer's depth. The goal was a fully custom, premium portfolio that feels native to the AI world - dark aesthetic, interactive visualisations, and deep project case studies that go beyond a link and a screenshot.",
-      dataset:
-        "Personal project data, skill metrics, GitHub contributions, certifications, and experience timeline - all structured as a typed data layer in TypeScript for type-safe rendering across every section.",
-      architecture:
-        "Next.js 15 App Router with dynamic project routes, Framer Motion scroll-triggered animations, an interactive D3 force-graph for the tech stack, radar chart for skill distribution, and a tabbed AI/ML vs Dev project split.",
-      modelSelection:
-        "Next.js for SSR/SEO and image optimisation; TypeScript for maintainability; Framer Motion for declarative animations; Tailwind CSS for the design system; Vercel for edge deployment with zero-config CI.",
-      training:
-        "Iterative design: established the dark-space colour palette and CSS tokens first, then built section by section - hero, skills, tech graph, projects, timeline, certifications, contact - polishing animations and responsive breakpoints at each step.",
-      evaluation: [
-        { metric: "Lighthouse", value: "95+" },
-        { metric: "Sections", value: "10+" },
-        { metric: "Deployment", value: "Vercel" },
-      ],
-      results:
-        "Live at www.harshpariya.dev - a production-grade AI/ML portfolio with animated hero, interactive tech graph, tabbed project showcase with full case studies, and responsive layout across all devices.",
-      learnings: [
-        "A typed data layer makes it trivial to add new projects and sections without breaking anything.",
-        "Interactive visualisations (force graph, radar chart) communicate technical depth far better than bullet lists.",
-        "Dark-space aesthetics with purple/cyan gradients immediately signal an AI-native engineer.",
-      ],
-    },
-  },
-
-  // SquidAI - AI-powered dev tool
   {
     slug: "campus-navigation",
     title: "Campus Navigation System",
