@@ -48,7 +48,7 @@ export const heroRotatingWords = [
 ];
 
 export const heroStats = [
-  { label: "Projects Built", value: "16+" },
+  { label: "Projects Built", value: "18+" },
   { label: "GitHub Contributions", value: "1.9K+" },
   { label: "CGPA", value: "8.98" },
 ];
@@ -64,7 +64,7 @@ export const aboutParagraphs = [
 ];
 
 export const counters = [
-  { label: "Projects Completed", value: 16, suffix: "+", icon: "Boxes" },
+  { label: "Projects Completed", value: 18, suffix: "+", icon: "Boxes" },
   { label: "GitHub Contributions", value: 1900, suffix: "+", icon: "GitBranch" },
   { label: "Certifications", value: 4, suffix: "", icon: "Sparkles" },
 ];
@@ -94,7 +94,7 @@ export const journey = [
   {
     year: "2026",
     title: "Autonomous Agentic AI Platforms",
-    org: "LeadFlow AI, Git-Agent & Agentflow-AI",
+    org: "AegisCode, LeadFlow AI & Agentflow-AI",
     description:
       "Architected autonomous multi-agent execution graphs, GraphRAG code intelligence, and enterprise sales/operations platforms orchestrating Groq LLaMA 3.3, Twenty CRM, Zapier, and MCP tools.",
   },
@@ -305,6 +305,100 @@ export interface Project {
 
 export const projects: Project[] = [
   // AI/ML Projects
+  {
+    slug: "aegiscode",
+    title: "AegisCode",
+    category: "Autonomous Multi-Agent · SWE Platform",
+    tagline: "Enterprise-grade autonomous AI software engineering platform with multi-agent orchestration, sandboxed execution, and security guardrails.",
+    description:
+      "An enterprise-grade autonomous software engineering platform coordinating specialized agents (Supervisor, Researcher, Coder, Tester, Security, Reviewer) to inspect GitHub repositories, plan modifications, execute code in isolated sandboxes, run regression suites, verify security guardrails, and open verified Pull Requests.",
+    image: "/projects/aegiscode.png",
+    gradient: "from-cyan-600/30 to-blue-600/20",
+    tech: ["Python", "FastAPI", "LangGraph", "Next.js 15", "Docker Sandbox", "MongoDB Atlas", "Model Context Protocol", "TypeScript"],
+    links: {
+      github: "https://github.com/HarshPariya/AegisCode",
+      demo: "https://aegis-code-tau.vercel.app/",
+    },
+    metrics: [
+      { label: "Agents", value: "6 Specialized" },
+      { label: "Execution", value: "Docker Sandbox" },
+      { label: "Safety", value: "Policy Engine" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Autonomous coding assistants often produce hallucinated patches, introduce security vulnerabilities, or overwrite code without proper isolation, test verification, or human sign-off on critical production branches.",
+      dataset:
+        "Multi-repository AST call graphs, commit histories, GitHub issue specifications, and dependency trees parsed in real-time.",
+      architecture:
+        "LangGraph deterministic state machine orchestrating 6 specialized agents (Supervisor, Researcher, Coder, Tester, Security, Reviewer). Backed by FastAPI SSE event broadcasting, MongoDB Atlas audit storage, pluggable Docker sandboxes for untrusted code execution, and a responsive Next.js 15 command center.",
+      modelSelection:
+        "Hybrid LLM routing leveraging high-capacity reasoning models for task planning and code architecture, with low-latency models for AST parsing and code reviews. Implements Model Context Protocol (MCP) and Agent-to-Agent (A2A) capability negotiation.",
+      training:
+        "Rigorous prompt engineering, bounded repair loops (max 3 diagnostic retry iterations on failed tests), input prompt-injection filtering, and security AST scanning for SSRF, injections, and leaked secrets.",
+      evaluation: [
+        { metric: "Specialized Agents", value: "6 Roles" },
+        { metric: "Sandbox Isolation", value: "100% Ephemeral" },
+        { metric: "Approval Flow", value: "Risk-Gated" },
+      ],
+      results:
+        "A production-ready AI software engineering platform deployed across Vercel and Render, capable of autonomous bug fixing, regression testing, and opening production-verified GitHub Pull Requests with full audit trails.",
+      learnings: [
+        "Multi-agent specialization (separating Planner, Coder, Tester, Security, and Reviewer) prevents single-prompt hallucination cascades.",
+        "Running all test executions inside ephemeral, resource-constrained Docker containers is essential for safe autonomous code execution.",
+        "Risk-gated human-in-the-loop checkpoints build critical developer trust before mutating production repositories.",
+      ],
+    },
+  },
+  {
+    slug: "telco-churn-retention",
+    title: "Telco Churn & Retention Intelligence",
+    category: "Machine Learning · Decision Intelligence · XAI",
+    tagline: "Production ML & Decision Intelligence platform identifying subscriber churn, SHAP game-theoretic root causes, and CLV retention prioritization.",
+    description:
+      "A production-grade machine learning platform that predicts customer churn probabilities across 7,043 telecom accounts, explains exact feature drivers using SHAP TreeExplainer, and optimizes retention campaigns using Customer Lifetime Value (CLV) and a cost-sensitive threshold (tau*=0.23) to cut promotional margin erosion by >85%.",
+    image: "/projects/telco-churn.png",
+    gradient: "from-emerald-600/30 to-amber-600/20",
+    tech: ["Python 3.11", "Scikit-Learn", "XGBoost", "FastAPI", "Streamlit", "SHAP", "Docker", "MLflow"],
+    links: {
+      github: "https://github.com/HarshPariya/telco-churn-retention-intelligence",
+      demo: "https://telco-churn-retention-intelligence.streamlit.app/",
+    },
+    metrics: [
+      { label: "ROC-AUC", value: "0.84" },
+      { label: "Recall @ tau*", value: "93.85%" },
+      { label: "Promo Savings", value: ">85%" },
+    ],
+    featured: true,
+    real: true,
+    type: "aiml",
+    caseStudy: {
+      problem:
+        "Telecommunication providers suffer high customer turnover. Blanket 15% promotional discounts across all accounts cause massive margin erosion (>\\$205K/quarter), while selecting customers on raw probability alone wastes call center capacity on low-tenure, low-value trialists.",
+      dataset:
+        "7,043 subscriber accounts from IBM Cognos Telco dataset across 21 demographic, service, and contract attributes with strict zero-leakage stratified splits and data hygiene.",
+      architecture:
+        "End-to-end ML pipeline with ColumnTransformer preprocessing, XGBoost classification, MLflow experiment tracking, SHAP TreeExplainer local attribution, an asynchronous FastAPI REST microservice, and an executive Streamlit decision dashboard.",
+      modelSelection:
+        "Benchmarked Logistic Regression, Random Forest, LightGBM, and XGBoost. XGBoost achieved top holdout discrimination (ROC-AUC 0.84, PR-AUC 0.63). Calibrated threshold optimization at tau*=0.23 balances false negatives against discount costs.",
+      training:
+        "Stratified 80/20 train/test split with zero-leakage feature pipelines. Cost-sensitive threshold search tuned to capture 93.85% of churning accounts while targeting only high-CLV subscribers.",
+      evaluation: [
+        { metric: "Holdout ROC-AUC", value: "0.84" },
+        { metric: "Churn Recall", value: "93.85%" },
+        { metric: "Promo Efficiency", value: "85% Reduction" },
+      ],
+      results:
+        "A live Streamlit intelligence application and FastAPI service delivering real-time churn scoring, directional SHAP explanations, customer cohort pattern charts, and prioritized outreach queues.",
+      learnings: [
+        "Ranking outreach by Expected Loss (Probability * CLV) delivers far superior capital efficiency than raw churn probability ranking.",
+        "Calibrated decision thresholds (tau*=0.23) are essential in asymmetric cost business problems where missing a churner costs far more than a retention offer.",
+        "SHAP TreeExplainer transparency provides frontline account reps with clear, actionable talking points during customer retention calls.",
+      ],
+    },
+  },
   {
     slug: "leadflow-ai",
     title: "LeadFlow AI",
@@ -728,7 +822,7 @@ export const projects: Project[] = [
       ],
     },
   },
-   {
+  {
     slug: "image-caption-generator",
     title: "Image Caption Generator",
     category: "ANN · CNN · RNN",
