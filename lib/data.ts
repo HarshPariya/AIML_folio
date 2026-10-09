@@ -299,7 +299,7 @@ export interface Project {
   metrics: ProjectMetric[];
   featured: boolean;
   real?: boolean; // true = real project from résumé
-  type: "aiml" | "dev"; // project category for tab filtering
+  type: "agentic" | "ml" | "dev"; // project category for tab filtering
   caseStudy: CaseStudy;
 }
 
@@ -326,7 +326,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "agentic",
     caseStudy: {
       problem:
         "Autonomous coding assistants often produce hallucinated patches, introduce security vulnerabilities, or overwrite code without proper isolation, test verification, or human sign-off on critical production branches.",
@@ -373,7 +373,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "ml",
     caseStudy: {
       problem:
         "Telecommunication providers suffer high customer turnover. Blanket 15% promotional discounts across all accounts cause massive margin erosion (>\\$205K/quarter), while selecting customers on raw probability alone wastes call center capacity on low-tenure, low-value trialists.",
@@ -420,7 +420,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "agentic",
     caseStudy: {
       problem:
         "B2B sales teams spend excessive hours manually vetting leads, triaging duplicate records, and updating disparate systems. Inbound prospects slip through the cracks without immediate qualification or structured CRM synchronization.",
@@ -467,7 +467,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "agentic",
     caseStudy: {
       problem:
         "Software debugging, regression isolation, and merge conflict resolution are tedious, high-stakes tasks. Developers often struggle to trace root causes across complex dependencies or risk pushing unvetted patches directly to production branches.",
@@ -514,7 +514,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "agentic",
     caseStudy: {
       problem:
         "Enterprise operations teams waste time toggling between static documentation and internal transactional tools. Existing chatbots either hallucinate policy answers or lack the ability to safely execute multi-step operational actions.",
@@ -561,7 +561,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "agentic",
     caseStudy: {
       problem:
         "Professionals and students often need multiple specialized AI tools - for resumes, interviews, research, and general chat - which are typically scattered across different platforms.",
@@ -608,7 +608,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "ml",
     caseStudy: {
       problem:
         "Brain tumor diagnosis requires careful analysis of MRI scans by radiologists. The goal was to build an automated, accessible tool to assist in detecting and classifying tumor types quickly and accurately.",
@@ -655,7 +655,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     real: true,
-    type: "aiml",
+    type: "agentic",
     caseStudy: {
       problem:
         "Developers spend significant time on boilerplate, debugging explanations, and repetitive coding tasks. SquidAI was built to provide a fast, practical AI assistant focused on real developer workflows.",
@@ -702,7 +702,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "ml",
     caseStudy: {
       problem:
         "Recruiters manually screen hundreds of resumes per role, leading to unconscious bias and massive time costs. The goal was an automated NLP system to predict a candidate's job category from raw resume text - instantly and accurately.",
@@ -749,7 +749,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "ml",
     caseStudy: {
       problem:
         "Misinformation spreads faster than corrections. The goal was a real-time NLP classifier that could distinguish fake from real news with high precision - usable by anyone without ML knowledge via a simple paste-and-check interface.",
@@ -796,7 +796,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "ml",
     caseStudy: {
       problem:
         "House price estimation is a classic regression problem, but the challenge here was bridging the gap between a trained ML model and a polished, real-time web UI - making predictions accessible to non-technical users with live feature comparison.",
@@ -843,7 +843,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     real: true,
-    type: "aiml",
+    type: "ml",
     caseStudy: {
       problem:
         "Creating meaningful descriptions for images is a complex task requiring both computer vision to understand the image content and sequence modeling to articulate it. The goal was to build an accessible web app utilizing ANN, CNN, and RNN architectures to bridge this gap.",
